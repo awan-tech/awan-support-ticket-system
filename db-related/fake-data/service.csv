@@ -1,0 +1,11 @@
+service_id,service_type,service_name
+1,AWS,EC2
+2,AWS,VPC
+3,AWS,Route53
+4,AWS,Cloudfront
+5,AWS,S3
+6,Azure,SQL Database
+7,Azure,App Service
+8,Azure,Azure Active Directory
+9,Azure,Azure Maps
+10,Azure,VM

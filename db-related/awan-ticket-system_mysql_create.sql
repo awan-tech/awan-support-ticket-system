@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS awan_ticket_system;
+
 CREATE DATABASE IF NOT EXISTS awan_ticket_system;
 USE awan_ticket_system;
 
@@ -48,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `Ticket_Status` (
 CREATE TABLE IF NOT EXISTS `Ticket_Contents` (
 	`content_id` int NOT NULL AUTO_INCREMENT,
 	`ticket_id` int NOT NULL,
-	`ticket_content` varchar(500) NOT NULL,
+	`ticket_content` varchar(10000) NOT NULL,
 	`owner` varchar(255),
 	`created_at` DATETIME NOT NULL DEFAULT current_timestamp,
 	PRIMARY KEY (`content_id`)
