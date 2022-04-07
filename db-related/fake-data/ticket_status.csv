@@ -1,0 +1,1001 @@
+ticket_id,ticket_status
+1,Not Processed
+2,Processing
+3,Proccessed
+4,Not Processed
+5,Not Processed
+6,Not Processed
+7,Processing
+8,Processing
+9,Proccessed
+10,Proccessed
+11,Proccessed
+12,Not Processed
+13,Proccessed
+14,Not Processed
+15,Processing
+16,Processing
+17,Not Processed
+18,Processing
+19,Not Processed
+20,Not Processed
+21,Not Processed
+22,Processing
+23,Processing
+24,Not Processed
+25,Proccessed
+26,Processing
+27,Proccessed
+28,Processing
+29,Processing
+30,Not Processed
+31,Processing
+32,Processing
+33,Proccessed
+34,Processing
+35,Processing
+36,Not Processed
+37,Proccessed
+38,Not Processed
+39,Not Processed
+40,Processing
+41,Not Processed
+42,Not Processed
+43,Proccessed
+44,Processing
+45,Processing
+46,Processing
+47,Not Processed
+48,Processing
+49,Proccessed
+50,Proccessed
+51,Processing
+52,Proccessed
+53,Not Processed
+54,Proccessed
+55,Processing
+56,Processing
+57,Not Processed
+58,Processing
+59,Not Processed
+60,Proccessed
+61,Processing
+62,Proccessed
+63,Not Processed
+64,Proccessed
+65,Not Processed
+66,Not Processed
+67,Proccessed
+68,Processing
+69,Proccessed
+70,Processing
+71,Processing
+72,Proccessed
+73,Proccessed
+74,Processing
+75,Proccessed
+76,Not Processed
+77,Proccessed
+78,Processing
+79,Proccessed
+80,Not Processed
+81,Proccessed
+82,Not Processed
+83,Proccessed
+84,Not Processed
+85,Not Processed
+86,Proccessed
+87,Proccessed
+88,Not Processed
+89,Not Processed
+90,Not Processed
+91,Proccessed
+92,Processing
+93,Processing
+94,Proccessed
+95,Proccessed
+96,Not Processed
+97,Not Processed
+98,Processing
+99,Processing
+100,Proccessed
+101,Not Processed
+102,Not Processed
+103,Processing
+104,Processing
+105,Processing
+106,Processing
+107,Not Processed
+108,Not Processed
+109,Proccessed
+110,Processing
+111,Proccessed
+112,Processing
+113,Proccessed
+114,Proccessed
+115,Not Processed
+116,Not Processed
+117,Proccessed
+118,Proccessed
+119,Not Processed
+120,Not Processed
+121,Processing
+122,Proccessed
+123,Not Processed
+124,Proccessed
+125,Not Processed
+126,Processing
+127,Processing
+128,Processing
+129,Proccessed
+130,Proccessed
+131,Proccessed
+132,Not Processed
+133,Processing
+134,Proccessed
+135,Processing
+136,Not Processed
+137,Not Processed
+138,Proccessed
+139,Processing
+140,Processing
+141,Proccessed
+142,Processing
+143,Proccessed
+144,Not Processed
+145,Proccessed
+146,Proccessed
+147,Not Processed
+148,Not Processed
+149,Processing
+150,Proccessed
+151,Proccessed
+152,Proccessed
+153,Proccessed
+154,Processing
+155,Processing
+156,Processing
+157,Proccessed
+158,Proccessed
+159,Processing
+160,Proccessed
+161,Processing
+162,Processing
+163,Not Processed
+164,Not Processed
+165,Not Processed
+166,Processing
+167,Processing
+168,Proccessed
+169,Not Processed
+170,Processing
+171,Processing
+172,Not Processed
+173,Processing
+174,Not Processed
+175,Proccessed
+176,Proccessed
+177,Not Processed
+178,Proccessed
+179,Processing
+180,Processing
+181,Proccessed
+182,Proccessed
+183,Not Processed
+184,Proccessed
+185,Processing
+186,Proccessed
+187,Processing
+188,Not Processed
+189,Not Processed
+190,Proccessed
+191,Not Processed
+192,Proccessed
+193,Processing
+194,Not Processed
+195,Processing
+196,Processing
+197,Proccessed
+198,Processing
+199,Processing
+200,Proccessed
+201,Proccessed
+202,Not Processed
+203,Processing
+204,Proccessed
+205,Proccessed
+206,Not Processed
+207,Processing
+208,Processing
+209,Not Processed
+210,Not Processed
+211,Processing
+212,Processing
+213,Not Processed
+214,Proccessed
+215,Not Processed
+216,Not Processed
+217,Processing
+218,Processing
+219,Proccessed
+220,Processing
+221,Processing
+222,Not Processed
+223,Not Processed
+224,Not Processed
+225,Processing
+226,Not Processed
+227,Processing
+228,Processing
+229,Processing
+230,Proccessed
+231,Proccessed
+232,Processing
+233,Proccessed
+234,Processing
+235,Not Processed
+236,Proccessed
+237,Proccessed
+238,Processing
+239,Not Processed
+240,Not Processed
+241,Processing
+242,Processing
+243,Proccessed
+244,Not Processed
+245,Proccessed
+246,Not Processed
+247,Processing
+248,Proccessed
+249,Proccessed
+250,Not Processed
+251,Proccessed
+252,Processing
+253,Not Processed
+254,Processing
+255,Proccessed
+256,Proccessed
+257,Not Processed
+258,Not Processed
+259,Proccessed
+260,Not Processed
+261,Proccessed
+262,Proccessed
+263,Processing
+264,Not Processed
+265,Proccessed
+266,Not Processed
+267,Proccessed
+268,Processing
+269,Not Processed
+270,Not Processed
+271,Not Processed
+272,Not Processed
+273,Processing
+274,Processing
+275,Not Processed
+276,Not Processed
+277,Not Processed
+278,Proccessed
+279,Proccessed
+280,Not Processed
+281,Proccessed
+282,Not Processed
+283,Not Processed
+284,Not Processed
+285,Proccessed
+286,Processing
+287,Not Processed
+288,Processing
+289,Not Processed
+290,Not Processed
+291,Proccessed
+292,Not Processed
+293,Not Processed
+294,Proccessed
+295,Not Processed
+296,Proccessed
+297,Processing
+298,Processing
+299,Proccessed
+300,Not Processed
+301,Processing
+302,Processing
+303,Not Processed
+304,Not Processed
+305,Proccessed
+306,Processing
+307,Not Processed
+308,Proccessed
+309,Not Processed
+310,Not Processed
+311,Proccessed
+312,Not Processed
+313,Proccessed
+314,Proccessed
+315,Proccessed
+316,Processing
+317,Not Processed
+318,Not Processed
+319,Processing
+320,Processing
+321,Not Processed
+322,Not Processed
+323,Proccessed
+324,Processing
+325,Processing
+326,Processing
+327,Proccessed
+328,Proccessed
+329,Not Processed
+330,Proccessed
+331,Not Processed
+332,Processing
+333,Not Processed
+334,Proccessed
+335,Processing
+336,Processing
+337,Processing
+338,Proccessed
+339,Proccessed
+340,Proccessed
+341,Processing
+342,Processing
+343,Processing
+344,Processing
+345,Proccessed
+346,Not Processed
+347,Proccessed
+348,Proccessed
+349,Processing
+350,Not Processed
+351,Proccessed
+352,Not Processed
+353,Proccessed
+354,Processing
+355,Not Processed
+356,Processing
+357,Not Processed
+358,Proccessed
+359,Not Processed
+360,Processing
+361,Not Processed
+362,Not Processed
+363,Not Processed
+364,Not Processed
+365,Proccessed
+366,Not Processed
+367,Proccessed
+368,Processing
+369,Not Processed
+370,Processing
+371,Processing
+372,Proccessed
+373,Not Processed
+374,Not Processed
+375,Not Processed
+376,Processing
+377,Processing
+378,Processing
+379,Proccessed
+380,Not Processed
+381,Processing
+382,Processing
+383,Processing
+384,Proccessed
+385,Proccessed
+386,Not Processed
+387,Not Processed
+388,Proccessed
+389,Processing
+390,Proccessed
+391,Not Processed
+392,Proccessed
+393,Processing
+394,Processing
+395,Proccessed
+396,Not Processed
+397,Processing
+398,Not Processed
+399,Proccessed
+400,Not Processed
+401,Processing
+402,Processing
+403,Processing
+404,Processing
+405,Processing
+406,Not Processed
+407,Processing
+408,Not Processed
+409,Not Processed
+410,Proccessed
+411,Proccessed
+412,Not Processed
+413,Proccessed
+414,Not Processed
+415,Processing
+416,Proccessed
+417,Not Processed
+418,Processing
+419,Proccessed
+420,Proccessed
+421,Not Processed
+422,Not Processed
+423,Proccessed
+424,Not Processed
+425,Processing
+426,Processing
+427,Processing
+428,Proccessed
+429,Processing
+430,Processing
+431,Proccessed
+432,Not Processed
+433,Proccessed
+434,Processing
+435,Processing
+436,Proccessed
+437,Proccessed
+438,Processing
+439,Processing
+440,Processing
+441,Not Processed
+442,Proccessed
+443,Proccessed
+444,Proccessed
+445,Proccessed
+446,Processing
+447,Not Processed
+448,Processing
+449,Proccessed
+450,Proccessed
+451,Proccessed
+452,Not Processed
+453,Not Processed
+454,Processing
+455,Processing
+456,Processing
+457,Processing
+458,Processing
+459,Processing
+460,Proccessed
+461,Processing
+462,Not Processed
+463,Not Processed
+464,Processing
+465,Not Processed
+466,Processing
+467,Proccessed
+468,Not Processed
+469,Proccessed
+470,Proccessed
+471,Processing
+472,Proccessed
+473,Not Processed
+474,Not Processed
+475,Processing
+476,Processing
+477,Not Processed
+478,Not Processed
+479,Processing
+480,Not Processed
+481,Processing
+482,Processing
+483,Not Processed
+484,Not Processed
+485,Processing
+486,Proccessed
+487,Proccessed
+488,Proccessed
+489,Proccessed
+490,Processing
+491,Not Processed
+492,Not Processed
+493,Proccessed
+494,Not Processed
+495,Processing
+496,Proccessed
+497,Not Processed
+498,Processing
+499,Not Processed
+500,Proccessed
+501,Proccessed
+502,Not Processed
+503,Processing
+504,Proccessed
+505,Processing
+506,Not Processed
+507,Processing
+508,Processing
+509,Not Processed
+510,Not Processed
+511,Proccessed
+512,Proccessed
+513,Not Processed
+514,Proccessed
+515,Proccessed
+516,Not Processed
+517,Processing
+518,Processing
+519,Not Processed
+520,Not Processed
+521,Processing
+522,Processing
+523,Processing
+524,Proccessed
+525,Proccessed
+526,Proccessed
+527,Not Processed
+528,Not Processed
+529,Processing
+530,Proccessed
+531,Proccessed
+532,Processing
+533,Not Processed
+534,Processing
+535,Processing
+536,Not Processed
+537,Processing
+538,Processing
+539,Proccessed
+540,Processing
+541,Proccessed
+542,Not Processed
+543,Not Processed
+544,Processing
+545,Proccessed
+546,Proccessed
+547,Proccessed
+548,Not Processed
+549,Processing
+550,Proccessed
+551,Proccessed
+552,Not Processed
+553,Proccessed
+554,Proccessed
+555,Not Processed
+556,Proccessed
+557,Proccessed
+558,Processing
+559,Not Processed
+560,Proccessed
+561,Processing
+562,Proccessed
+563,Proccessed
+564,Proccessed
+565,Processing
+566,Proccessed
+567,Proccessed
+568,Proccessed
+569,Processing
+570,Proccessed
+571,Processing
+572,Not Processed
+573,Proccessed
+574,Not Processed
+575,Processing
+576,Not Processed
+577,Not Processed
+578,Processing
+579,Processing
+580,Proccessed
+581,Proccessed
+582,Not Processed
+583,Not Processed
+584,Proccessed
+585,Processing
+586,Processing
+587,Not Processed
+588,Processing
+589,Processing
+590,Processing
+591,Proccessed
+592,Not Processed
+593,Processing
+594,Processing
+595,Proccessed
+596,Proccessed
+597,Not Processed
+598,Not Processed
+599,Processing
+600,Proccessed
+601,Not Processed
+602,Not Processed
+603,Processing
+604,Proccessed
+605,Not Processed
+606,Proccessed
+607,Proccessed
+608,Not Processed
+609,Not Processed
+610,Processing
+611,Processing
+612,Not Processed
+613,Proccessed
+614,Not Processed
+615,Proccessed
+616,Not Processed
+617,Proccessed
+618,Processing
+619,Not Processed
+620,Proccessed
+621,Not Processed
+622,Proccessed
+623,Processing
+624,Not Processed
+625,Proccessed
+626,Not Processed
+627,Not Processed
+628,Not Processed
+629,Not Processed
+630,Proccessed
+631,Not Processed
+632,Not Processed
+633,Proccessed
+634,Proccessed
+635,Proccessed
+636,Not Processed
+637,Processing
+638,Processing
+639,Processing
+640,Not Processed
+641,Not Processed
+642,Not Processed
+643,Not Processed
+644,Processing
+645,Proccessed
+646,Processing
+647,Not Processed
+648,Proccessed
+649,Proccessed
+650,Processing
+651,Proccessed
+652,Processing
+653,Not Processed
+654,Not Processed
+655,Not Processed
+656,Proccessed
+657,Processing
+658,Processing
+659,Proccessed
+660,Processing
+661,Not Processed
+662,Processing
+663,Not Processed
+664,Not Processed
+665,Proccessed
+666,Not Processed
+667,Processing
+668,Processing
+669,Proccessed
+670,Processing
+671,Not Processed
+672,Processing
+673,Not Processed
+674,Proccessed
+675,Processing
+676,Not Processed
+677,Processing
+678,Proccessed
+679,Not Processed
+680,Not Processed
+681,Processing
+682,Not Processed
+683,Not Processed
+684,Processing
+685,Not Processed
+686,Proccessed
+687,Processing
+688,Processing
+689,Proccessed
+690,Proccessed
+691,Proccessed
+692,Proccessed
+693,Processing
+694,Not Processed
+695,Proccessed
+696,Processing
+697,Processing
+698,Not Processed
+699,Proccessed
+700,Not Processed
+701,Proccessed
+702,Proccessed
+703,Proccessed
+704,Not Processed
+705,Proccessed
+706,Proccessed
+707,Processing
+708,Proccessed
+709,Proccessed
+710,Processing
+711,Processing
+712,Proccessed
+713,Proccessed
+714,Processing
+715,Processing
+716,Processing
+717,Processing
+718,Not Processed
+719,Processing
+720,Proccessed
+721,Not Processed
+722,Proccessed
+723,Proccessed
+724,Processing
+725,Proccessed
+726,Processing
+727,Proccessed
+728,Not Processed
+729,Processing
+730,Proccessed
+731,Processing
+732,Processing
+733,Not Processed
+734,Proccessed
+735,Not Processed
+736,Not Processed
+737,Not Processed
+738,Processing
+739,Processing
+740,Not Processed
+741,Not Processed
+742,Proccessed
+743,Proccessed
+744,Not Processed
+745,Not Processed
+746,Proccessed
+747,Proccessed
+748,Not Processed
+749,Processing
+750,Not Processed
+751,Processing
+752,Processing
+753,Proccessed
+754,Not Processed
+755,Proccessed
+756,Proccessed
+757,Proccessed
+758,Processing
+759,Proccessed
+760,Not Processed
+761,Proccessed
+762,Processing
+763,Processing
+764,Proccessed
+765,Not Processed
+766,Not Processed
+767,Processing
+768,Proccessed
+769,Proccessed
+770,Proccessed
+771,Not Processed
+772,Proccessed
+773,Processing
+774,Processing
+775,Processing
+776,Processing
+777,Processing
+778,Not Processed
+779,Proccessed
+780,Not Processed
+781,Proccessed
+782,Proccessed
+783,Not Processed
+784,Proccessed
+785,Proccessed
+786,Proccessed
+787,Not Processed
+788,Proccessed
+789,Not Processed
+790,Processing
+791,Processing
+792,Processing
+793,Processing
+794,Proccessed
+795,Proccessed
+796,Processing
+797,Proccessed
+798,Not Processed
+799,Proccessed
+800,Processing
+801,Proccessed
+802,Not Processed
+803,Not Processed
+804,Proccessed
+805,Proccessed
+806,Proccessed
+807,Processing
+808,Not Processed
+809,Proccessed
+810,Processing
+811,Proccessed
+812,Processing
+813,Processing
+814,Proccessed
+815,Proccessed
+816,Not Processed
+817,Not Processed
+818,Processing
+819,Proccessed
+820,Not Processed
+821,Not Processed
+822,Not Processed
+823,Not Processed
+824,Proccessed
+825,Processing
+826,Not Processed
+827,Processing
+828,Processing
+829,Processing
+830,Processing
+831,Processing
+832,Processing
+833,Not Processed
+834,Not Processed
+835,Proccessed
+836,Proccessed
+837,Not Processed
+838,Not Processed
+839,Proccessed
+840,Not Processed
+841,Processing
+842,Proccessed
+843,Processing
+844,Processing
+845,Proccessed
+846,Processing
+847,Processing
+848,Processing
+849,Not Processed
+850,Not Processed
+851,Processing
+852,Proccessed
+853,Processing
+854,Not Processed
+855,Not Processed
+856,Proccessed
+857,Processing
+858,Not Processed
+859,Processing
+860,Proccessed
+861,Not Processed
+862,Processing
+863,Proccessed
+864,Processing
+865,Proccessed
+866,Processing
+867,Proccessed
+868,Processing
+869,Proccessed
+870,Processing
+871,Proccessed
+872,Not Processed
+873,Not Processed
+874,Proccessed
+875,Processing
+876,Proccessed
+877,Processing
+878,Processing
+879,Processing
+880,Processing
+881,Processing
+882,Proccessed
+883,Processing
+884,Not Processed
+885,Not Processed
+886,Proccessed
+887,Processing
+888,Proccessed
+889,Proccessed
+890,Processing
+891,Not Processed
+892,Not Processed
+893,Proccessed
+894,Not Processed
+895,Processing
+896,Not Processed
+897,Processing
+898,Processing
+899,Proccessed
+900,Processing
+901,Proccessed
+902,Not Processed
+903,Not Processed
+904,Processing
+905,Proccessed
+906,Proccessed
+907,Not Processed
+908,Not Processed
+909,Proccessed
+910,Not Processed
+911,Processing
+912,Proccessed
+913,Processing
+914,Processing
+915,Proccessed
+916,Proccessed
+917,Proccessed
+918,Not Processed
+919,Processing
+920,Processing
+921,Not Processed
+922,Processing
+923,Proccessed
+924,Proccessed
+925,Proccessed
+926,Processing
+927,Processing
+928,Proccessed
+929,Proccessed
+930,Processing
+931,Proccessed
+932,Proccessed
+933,Processing
+934,Proccessed
+935,Proccessed
+936,Not Processed
+937,Not Processed
+938,Processing
+939,Not Processed
+940,Proccessed
+941,Not Processed
+942,Proccessed
+943,Proccessed
+944,Processing
+945,Proccessed
+946,Processing
+947,Not Processed
+948,Not Processed
+949,Processing
+950,Not Processed
+951,Not Processed
+952,Processing
+953,Not Processed
+954,Processing
+955,Not Processed
+956,Proccessed
+957,Processing
+958,Proccessed
+959,Proccessed
+960,Proccessed
+961,Processing
+962,Processing
+963,Proccessed
+964,Processing
+965,Not Processed
+966,Proccessed
+967,Not Processed
+968,Proccessed
+969,Proccessed
+970,Not Processed
+971,Not Processed
+972,Processing
+973,Not Processed
+974,Processing
+975,Processing
+976,Not Processed
+977,Not Processed
+978,Not Processed
+979,Proccessed
+980,Not Processed
+981,Proccessed
+982,Not Processed
+983,Not Processed
+984,Not Processed
+985,Not Processed
+986,Proccessed
+987,Proccessed
+988,Processing
+989,Processing
+990,Processing
+991,Proccessed
+992,Not Processed
+993,Proccessed
+994,Processing
+995,Not Processed
+996,Processing
+997,Not Processed
+998,Processing
+999,Proccessed
+1000,Processing
