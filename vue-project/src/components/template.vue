@@ -17,9 +17,9 @@
                     <li>
                         <a href="#">My Ticket</a>
                     </li>
-                    <li v-if="role !== 'costomer' ">
-                        <a href="#sublist" data-bs-toggle="collapse" id="dropdown">History Ticket</a>
-                        <ul id="sublist" class="list-unstyled collapse">
+                    <li v-if="role !== 'customer' ">
+                        <a @click="toggleSublist" >History Ticket</a>
+                        <ul v-if="myticketSublist" id="sublist" class="list-unstyled collapse">
                             <li>
                                 <a href="#">test</a>
                             </li>
@@ -51,31 +51,19 @@
 
 <script>
 export default {
+    props:{
+
+    },
     data() {
         return {
-            side_list_customer : [ 
-                'Home',
-                'My ticket',
-                'Setting'
-            ],
-            side_list_engineer : [
-                'Home',
-                'My ticket',
-                'All Ticket',
-                'Setting'
-            ],
-            side_list_manager : [
-                'Home',
-                'My ticket',
-                'All Ticket',
-                'Setting',
-                'Manage'
-            ],
-            role : 'customer'
+            role : 'customer',
+            myticketSublist : false
         }
     },
     methods : {
-
+        toggleSublist() {
+            this.myticketSublist = ! this.myticketSublist;
+        }
     }
 }
 
