@@ -10,14 +10,15 @@
                     <div>
                         <li>Hi,Larry(後端帶入)</li>
                     </div>
+               
                     <li>
                         <a href="#">Home</a>
                     </li>
                     <li>
                         <a href="#">My Ticket</a>
                     </li>
-                    <li>
-                        <a href="#sublist" data-bs-toggle="collapse" id="dropdown">All Ticket</a>
+                    <li v-if="role !== 'costomer' ">
+                        <a href="#sublist" data-bs-toggle="collapse" id="dropdown">History Ticket</a>
                         <ul id="sublist" class="list-unstyled collapse">
                             <li>
                                 <a href="#">test</a>
@@ -33,6 +34,9 @@
                     <li>
                         <a href="#">Setting</a>
                     </li>
+                    <li v-if="role === 'manager' ">
+                        <a href="#">Manager</a>
+                    </li>
                     
                     <li>
                         <a href="#">Logout</a>
@@ -47,7 +51,32 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+            side_list_customer : [ 
+                'Home',
+                'My ticket',
+                'Setting'
+            ],
+            side_list_engineer : [
+                'Home',
+                'My ticket',
+                'All Ticket',
+                'Setting'
+            ],
+            side_list_manager : [
+                'Home',
+                'My ticket',
+                'All Ticket',
+                'Setting',
+                'Manage'
+            ],
+            role : 'customer'
+        }
+    },
+    methods : {
+
+    }
 }
 
 </script>
