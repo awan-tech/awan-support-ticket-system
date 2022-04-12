@@ -1,55 +1,47 @@
 <template>
-    <body style="background-color:#F8F6F0;">
-    
- 
-
-    <div>
-        <nav id="sidebar">
-        
-            <button type="button" id="collapse" class="collapse-btn">
-                <i class="fas fa-align-left"></i>
-            </button>
+        <div>
+            <nav id="sidebar">
             
-            <ul class="list-unstyled">
-                <div>
-                    <li>Hi,Larry(後端帶入)</li>
-                </div>
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">My Ticket</a>
-                </li>
-                <li>
-                    <a href="#sublist" data-bs-toggle="collapse" id="dropdown">All Ticket</a>
-                    <ul id="sublist" class="list-unstyled collapse">
-                        <li>
-                            <a href="#">test</a>
-                        </li>
-                        <li>
-                            <a href="#">test</a>
-                        </li>
-                        <li>
-                            <a href="#">test</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Setting</a>
-                </li>
+                <button type="button" id="collapse" class="collapse-btn">
+                    <i class="fas fa-align-left"></i>
+                </button>
                 
-                <li>
-                    <a href="#">Logout</a>
-                </li>
-            </ul>
+                <ul class="list-unstyled">
+                    <div>
+                        <li>Hi,Larry(後端帶入)</li>
+                    </div>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">My Ticket</a>
+                    </li>
+                    <li>
+                        <a href="#sublist" data-bs-toggle="collapse" id="dropdown">All Ticket</a>
+                        <ul id="sublist" class="list-unstyled collapse">
+                            <li>
+                                <a href="#">test</a>
+                            </li>
+                            <li>
+                                <a href="#">test</a>
+                            </li>
+                            <li>
+                                <a href="#">test</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Setting</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Logout</a>
+                    </li>
+                </ul>
 
-        </nav>
-    </div>
+            </nav>
+        </div>
 
-    
-   
-
-</body>
 </template>
 
 

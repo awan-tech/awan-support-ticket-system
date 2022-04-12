@@ -1,29 +1,24 @@
 <template>
     <section>
-        <div id="header" class="header">
-        <center>
-            <h2 class="header-h2">Awan Ticket System</h2>        
-        </center>
-    </div>
-    <div class="container" >
-        <form>
-            <div class="form-div">
-              <label for="account" class="form-label">帳號 | Account</label>
-              <input type="text" class="form-control" id="account" required>
-            </div>
-            <div class="form-div">
-              <label for="password" class="form-label">密碼 | Password</label>
-              <input type="password" class="form-control" id="password" required>
-            </div>
-            <div>
-                <button type="submit" class="form-btn" onclick="連結">登入 | Login</button>
-            </div>
-            <div>
-                <font color="red">帳號密碼錯誤</font>
-            </div>
-           
-        </form>
-    </div>
+        <div class="container" >
+            <form>
+                <div class="form-div">
+                <label for="account" class="form-label">帳號 | Account</label>
+                <input type="text" class="form-control" id="account" required>
+                </div>
+                <div class="form-div">
+                <label for="password" class="form-label">密碼 | Password</label>
+                <input type="password" class="form-control" id="password" required>
+                </div>
+                <div>
+                    <button type="submit" class="form-btn" onclick="連結">登入 | Login</button>
+                </div>
+                <div>
+                    <font color="red">帳號密碼錯誤</font>
+                </div>
+            
+            </form>
+        </div>
     </section>
     
 </template>
@@ -40,15 +35,6 @@ export default {
 </script>
 
 <style>
-.header{
-  position: absolute;
-  width: 100%;
-  top: 0%;
-  background-color:#e5e5e5;
-  text-align: center;
-  font-size:20px;
-  font-family:Sans-serif;
-}
 .container{
     padding: 25px;
     position: absolute;
