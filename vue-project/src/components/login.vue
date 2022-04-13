@@ -8,7 +8,7 @@
                 </div>
                 <div class="form-div">
                 <label for="password" class="form-label">密碼 | Password</label>
-                <input v-model="password" type="text" class="form-control" id="password" required>
+                <input v-model="password" type="password" class="form-control" id="password" required>
                 </div>
                 <div>
                     <button @click.prevent="getData" type="submit" class="form-btn" >登入 | Login</button>

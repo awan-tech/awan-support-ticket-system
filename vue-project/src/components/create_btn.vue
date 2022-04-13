@@ -1,14 +1,14 @@
 <template>
 <div>
-    <button>
+    <!-- <button>
         <span>建單</span>
-    </button>
+    </button> -->
 </div>
 </template>
 
 <style>
 /* From uiverse.io by @NorthFishHasNa */
-button {
+/* button {
  display: inline-block;
  border-radius: 4px;
  background-color: rgb(153, 164, 112);
@@ -49,6 +49,6 @@ button:hover span {
 button:hover span:after {
  opacity: 1;
  right: 0;
-}
+} */
 
 </style>
