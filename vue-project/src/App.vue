@@ -2,7 +2,7 @@
     <section>
         <header-page></header-page>
 
-        
+
         <section>
             <login-page v-if="!check_login_status()"></login-page>
             <template-page v-else></template-page>
