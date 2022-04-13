@@ -1,20 +1,23 @@
 <template>
     <section>
         <div class="container" >
-            <form>
+            <form >
                 <div class="form-div">
                 <label for="account" class="form-label">帳號 | Account</label>
-                <input type="text" class="form-control" id="account" required>
+                <input v-model="username" type="text" class="form-control" id="account" required>
                 </div>
                 <div class="form-div">
                 <label for="password" class="form-label">密碼 | Password</label>
-                <input type="password" class="form-control" id="password" required>
+                <input v-model="password" type="text" class="form-control" id="password" required>
                 </div>
                 <div>
-                    <button type="submit" class="form-btn" onclick="連結">登入 | Login</button>
+                    <button @click.prevent="getData" type="submit" class="form-btn" >登入 | Login</button>
                 </div>
-                <div>
-                    <font color="red">帳號密碼錯誤</font>
+                <div v-if="isUser === 'False'">
+                    帳號密碼錯誤
+                </div>
+                <div v-else-if="isUser === 'True'">
+                    登入成功
                 </div>
             
             </form>
@@ -26,11 +29,54 @@
 <script>
 export default {
     data() {
-
+      return {
+        checkuser : '',
+        checkpassword : '',
+        username : '',
+        password : '',
+        role : '',
+        isUser : 'null'
+      }
     },
     methods: {
+      getData() {
+         fetch('https://11931uvt3a.execute-api.us-east-2.amazonaws.com/test/helloworld',{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                this.checkuser = data['name'] ;
+                this.checkpassword = data['password'] ;
+                this.role = data['role'] ;
+                this.loginstatus() ;
+            })
+      },
+      loginstatus() {
+        if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
+          console.log('user and password fit') ;
+          this.isUser = 'True' ;
+          this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
+        }
+        else {
+          console.log('faild') ;
+          this.isUser = 'False' ;
+        }
 
+        this.username = '' ;
+        this.password = '' ;
+      },
+      
     },
+    emits : [
+        'loginSuccess'
+    ]
 }
 </script>
 
