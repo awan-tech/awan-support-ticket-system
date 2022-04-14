@@ -83,7 +83,7 @@ export default {
         return {
             myticketSublist : false,
             historySublist : false,
-            which_page : 'user-table'
+            which_page : 'thomas-page'
         }
     },
     methods : {
