@@ -1,69 +1,5 @@
 <template>
-        <div class="template-content">
-            <div class="template-left">
-                
-            </div>
-            <div class="template-right">
-                <router-link to="/myticket">My Ticket</router-link>
-                <!-- <user-table v-if="which_page === 'user-table'" @changepage="changeToCreateForm"></user-table>
-                <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
-                <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
-                <thomas-page v-if="which_page === 'thomas-page'"></thomas-page>
-                <setting-page v-if="which_page === 'setting-page'"></setting-page> -->
-            </div>
-            
-        </div>
-
-</template>
-
-
-<script>
-// import user_table from './user_table.vue'
-// import tickets from './tickets.vue'
-// import create_form from './user_create_form.vue'
-// import thomas from './thomas.vue'
-// import settings from './setting.vue'
-
-export default {
-    components : {
-    //   'user-table' : user_table,
-    //   'tickets-page' : tickets,
-    //   'create-form-page': create_form,  
-    //   'thomas-page' : thomas,
-    //   'setting-page' : settings 
-
-    },
-    props:{
-        userName : String,
-        userRole : String
-    },
-    data() {
-        return {
-            myticketSublist : false,
-            historySublist : false,
-            which_page : 'thomas-page'
-        }
-    },
-    methods : {
-        toggleSublist() {
-            this.myticketSublist = ! this.myticketSublist;
-        },
-        toggleMyTicketSublist() {
-            this.historySublist = ! this.historySublist;
-        },
-        selectpage( pagename) {
-            this.which_page=pagename ;
-        },
-        changeToCreateForm( pagename ) {
-            this.which_page = pagename ;
-        }
-
-    }
-}
-
-
-/*
-<nav id="sidebar">
+    <nav id="sidebar">
                     <button type="button" id="collapse" class="collapse-btn">
                         <i class="fas fa-align-left"></i>
                     </button>
@@ -110,11 +46,11 @@ export default {
                         </li>
                     </ul>
                 </nav>
-*/
+</template>
 
-</script>
 
-<style>
+
+<style scoped>
     .template-content{
         /* background-color: rgb(10, 32, 25); */
         position: relative ;
