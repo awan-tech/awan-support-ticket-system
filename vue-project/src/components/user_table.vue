@@ -1,7 +1,7 @@
 <template>
     <div class="user-myticket">
         <div class="user-myticket-left" >
-            <button class="user-myticket-btn">
+            <button @click.prevent="changeTemplatePage" class="user-myticket-btn">
                 <span>建單</span>
             </button>
         </div>
@@ -39,6 +39,21 @@
     
     
 </template>
+
+<script>
+export default {
+    emits:[
+        'changepage'
+    ],
+    methods: {
+        changeTemplatePage() {
+            this.$emit( 'changepage', 'create-form-page' ) ;
+        }
+    }
+}
+</script>
+
+
 
 <style>
     .user-table{

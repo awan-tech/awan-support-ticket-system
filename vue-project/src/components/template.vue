@@ -12,23 +12,26 @@
                         </div>
                 
                         <li>
-                            <a href="#">Home</a>
+                            <a @click="selectpage('thomas-page')">Home</a>
                         </li>
                         <li>
-                            <a href="#">My Ticket</a>
+                            <a @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false" @click="selectpage('user-table')" >My Ticket</a>
+                            <ul v-if="myticketSublist" @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false">
+                                <li @click="selectpage('tickets-page')">
+                                    <a>ticket</a>
+                                </li>
+                            </ul>
                         </li>
                         <li v-if="userRole !== 'customer' ">
-                            <a @click="toggleSublist" >History Ticket</a>
-                            <ul v-if="myticketSublist" id="sublist" class="list-unstyled collapse">
+                            <a @mouseenter="historySublist = true" @mouseleave="historySublist = false"  >History Ticket</a>
+                            <ul v-if="historySublist" @mouseenter="historySublist = true" @mouseleave="historySublist = false">
                                 <li>
-                                    <a href="#">test</a>
+                                    <a >test</a>
                                 </li>
                                 <li>
                                     <a href="#">test</a>
                                 </li>
-                                <li>
-                                    <a href="#">test</a>
-                                </li>
+                                
                             </ul>
                         </li>
                         <li>
@@ -46,7 +49,7 @@
             </div>
             <div class="template-right">
 
-                <user-table v-if="which_page === 'user-table'"></user-table>
+                <user-table v-if="which_page === 'user-table'" @changepage="changeToCreateForm"></user-table>
                 <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
                 <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
                 <thomas-page v-if="which_page === 'thomas-page'"></thomas-page>
@@ -79,13 +82,24 @@ export default {
     data() {
         return {
             myticketSublist : false,
-            which_page : 'thomas-page'
+            historySublist : false,
+            which_page : 'user-table'
         }
     },
     methods : {
         toggleSublist() {
             this.myticketSublist = ! this.myticketSublist;
+        },
+        toggleMyTicketSublist() {
+            this.historySublist = ! this.historySublist;
+        },
+        selectpage( pagename) {
+            this.which_page=pagename ;
+        },
+        changeToCreateForm( pagename ) {
+            this.which_page = pagename ;
         }
+
     }
 }
 
