@@ -48,7 +48,7 @@
 
                 <user-table v-if="which_page === 'user-table'"></user-table>
                 <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
-                <create-form-page></create-form-page>
+                <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
 
 
             </div>
@@ -61,6 +61,7 @@
 <script>
 import user_table from './user_table.vue'
 import tickets from './tickets.vue'
+import create_form from './user_create_form.vue'
 
 export default {
     components : {
@@ -76,7 +77,7 @@ export default {
     data() {
         return {
             myticketSublist : false,
-            which_page : 'user_table'
+            which_page : 'tickets-page'
         }
     },
     methods : {
