@@ -84,30 +84,6 @@
         flex-basis: 10%;
     }
   
- @media all and (max-width: 767px) {
-     .user-table .table-header {
-         display: none;
-	}
-     .user-table li {
-         display: block;
-	}
-     .user-table .col {
-         flex-basis: 100%;
-	}
-     .user-table .col {
-         display: flex;
-         padding: 10px 0;
-	}
-     .user-table .col:before {
-         color: #6c7a89;
-         padding-right: 10px;
-         content: attr(data-label);
-         flex-basis: 50%;
-         text-align: center;
-	}
-    
-}
-
 
 
     .user-myticket {

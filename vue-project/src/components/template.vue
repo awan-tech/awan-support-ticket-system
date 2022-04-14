@@ -45,8 +45,12 @@
                 </nav>
             </div>
             <div class="template-right">
+
                 <user-table v-if="which_page === 'user-table'"></user-table>
                 <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
+                <create-form-page></create-form-page>
+
+
             </div>
             
         </div>
@@ -57,10 +61,13 @@
 <script>
 import user_table from './user_table.vue'
 import tickets from './tickets.vue'
+
 export default {
     components : {
       'user-table' : user_table,
-      'tickets-page' : tickets  
+      'tickets-page' : tickets,
+      'create-form-page': create_form  
+
     },
     props:{
         userName : String,
