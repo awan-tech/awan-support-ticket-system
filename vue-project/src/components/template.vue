@@ -45,8 +45,8 @@
                 </nav>
             </div>
             <div class="template-right">
-                <!-- <user-table></user-table> -->
-                <tickets-page></tickets-page>
+                <user-table v-if="which_page === 'user-table'"></user-table>
+                <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
             </div>
             
         </div>
@@ -55,14 +55,21 @@
 
 
 <script>
+import user_table from './user_table.vue'
+import tickets from './tickets.vue'
 export default {
+    components : {
+      'user-table' : user_table,
+      'tickets-page' : tickets  
+    },
     props:{
         userName : String,
         userRole : String
     },
     data() {
         return {
-            myticketSublist : false
+            myticketSublist : false,
+            which_page : 'user_table'
         }
     },
     methods : {

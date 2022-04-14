@@ -30,7 +30,7 @@
            
         </div>
         <div class="tickets-dialogue">
-            test22222
+            message
         </div>
     </div>
 </template>

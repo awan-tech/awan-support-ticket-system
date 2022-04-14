@@ -1,17 +1,15 @@
 <template>
     <section>
         <header-page></header-page>
-
-
         <section>
-            <login-page v-if="!check_login_status()"
-                @loginSuccess="changeLoginStatus"
-            ></login-page>
-            <template-page v-else
-                :user-name="username"
-                :user-role="userrole"
-            ></template-page>
-            <!-- <create-btn></create-btn> -->
+                <login-page v-if="!check_login_status()"
+                    @loginSuccess="changeLoginStatus"
+                ></login-page>
+                <template-page v-else
+                    :user-name="username"
+                    :user-role="userrole"
+                ></template-page>
+                <!-- <create-btn></create-btn> -->
         </section>
         
     </section>
@@ -21,8 +19,17 @@
 
 <script>
 // const axios = require('axios'); 
+import login from './components/login.vue'
+import template from './components/template.vue'
+import header from './components/header.vue'
 
 export default {
+    components : {
+        'login-page' : login,
+        'template-page' : template,
+        'header-page' : header
+
+    },
     props : {
         
     },
