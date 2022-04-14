@@ -45,8 +45,9 @@
                 </nav>
             </div>
             <div class="template-right">
-                <user-table></user-table>
+                <!-- <user-table></user-table> -->
                 <!-- <tickets-page></tickets-page> -->
+                <create-form-page></create-form-page>
             </div>
             
         </div>
@@ -55,7 +56,11 @@
 
 
 <script>
+import create_form from './user_create_form.vue'
 export default {
+    components:{
+        'create-form-page': create_form
+    },
     props:{
         userName : String,
         userRole : String
