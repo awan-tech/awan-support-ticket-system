@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <center>
-            <h2>Awan Ticket System</h2>        
+            <p>Awan Ticket System</p>        
         </center>
     </div>
 </template>
@@ -12,11 +12,13 @@
         width: 100%;
         height: 50px;
         /* padding: 1px ; */
-        margin: 10px;
+        margin: 0px;
         top: 10%;
         background-color:#e5e5e5;
         text-align: center;
-        font-size:20px;
+        font-size:35px;
         font-family:Sans-serif;
+        font-weight: bolder;
+        color:#483C32 ;
 }
 </style>

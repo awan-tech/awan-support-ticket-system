@@ -99,7 +99,7 @@ export default {
     width: 250px;
     height: 100vh;
     background-color:#e5e5e5;
-    color: #0a0a0a39;
+    color: #493D26;
     transition: 1s;
     float: left;
     position: relative;
@@ -132,8 +132,8 @@ export default {
     }
 
     #sidebar ul li a:hover {
-        color: rgb(8, 8, 8);
-        background: #fff;
+        color: rgb(255, 253, 253);
+        background: rgb(153, 164, 112);
     }
     ul ul li a {
         background-color: rgb(153, 164, 112);
