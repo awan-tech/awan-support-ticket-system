@@ -1,5 +1,5 @@
 <template>
-    <div class="tickets-content">
+    <div id="tickets-content">
         <div class="tickets-title">
             <table>
                 <tr>
@@ -41,11 +41,14 @@ export default {
 }
 </script>
 
-<style>
-    .tickets-content{
+<style scoped>
+    #tickets-content{
         /* background-color: gray ; */
         width: 100%;
         position: relative ;
+        border-collapse:separate; 
+        border-spacing:40px 10px ;
+         
     }
     .tickets-title {
         background-color: aquamarine;
@@ -57,6 +60,7 @@ export default {
         align-items: center ;
         margin: auto;
         /* border-top: 30px; */
+       margin-bottom:3% ;
         
     }
     .tickets-title table{
@@ -76,6 +80,8 @@ export default {
         height: 20%;
         margin: auto;  
         align-items: center ;
+         /* margin-bottom:3% ; */
+        
     }
 
 

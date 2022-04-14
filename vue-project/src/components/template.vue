@@ -49,7 +49,7 @@
                 <user-table v-if="which_page === 'user-table'"></user-table>
                 <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
                 <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
-
+                <thomas-page v-if="which_page === 'thomas-page'"></thomas-page>
 
             </div>
             
@@ -62,12 +62,14 @@
 import user_table from './user_table.vue'
 import tickets from './tickets.vue'
 import create_form from './user_create_form.vue'
+import thomas from './thomas.vue'
 
 export default {
     components : {
       'user-table' : user_table,
       'tickets-page' : tickets,
-      'create-form-page': create_form  
+      'create-form-page': create_form,  
+      'thomas-page' : thomas
 
     },
     props:{
@@ -77,7 +79,7 @@ export default {
     data() {
         return {
             myticketSublist : false,
-            which_page : 'tickets-page'
+            which_page : 'thomas-page'
         }
     },
     methods : {
