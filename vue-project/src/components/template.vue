@@ -26,16 +26,16 @@
                             <a @mouseenter="historySublist = true" @mouseleave="historySublist = false"  >History Ticket</a>
                             <ul v-if="historySublist" @mouseenter="historySublist = true" @mouseleave="historySublist = false">
                                 <li>
-                                    <a >test</a>
+                                    <a>test1</a>
                                 </li>
                                 <li>
-                                    <a href="#">test</a>
+                                    <a>test2</a>
                                 </li>
                                 
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">Setting</a>
+                        <li @click="selectpage('setting-page')">
+                            <a >Setting</a>
                         </li>
                         <li v-if="userRole === 'manager' ">
                             <a href="#">Manager</a>
@@ -53,7 +53,7 @@
                 <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
                 <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
                 <thomas-page v-if="which_page === 'thomas-page'"></thomas-page>
-
+                <setting-page v-if="which_page === 'setting-page'"></setting-page>
             </div>
             
         </div>
@@ -66,13 +66,15 @@ import user_table from './user_table.vue'
 import tickets from './tickets.vue'
 import create_form from './user_create_form.vue'
 import thomas from './thomas.vue'
+import settings from './setting.vue'
 
 export default {
     components : {
       'user-table' : user_table,
       'tickets-page' : tickets,
       'create-form-page': create_form,  
-      'thomas-page' : thomas
+      'thomas-page' : thomas,
+      'setting-page' : settings 
 
     },
     props:{
