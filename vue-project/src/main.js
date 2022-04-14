@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import login from './components/login.vue'
 import template from './components/template.vue'

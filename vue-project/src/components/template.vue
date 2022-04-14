@@ -34,7 +34,7 @@
                         <li>
                             <a href="#">Setting</a>
                         </li>
-                        <li v-if="role === 'manager' ">
+                        <li v-if="userRole === 'manager' ">
                             <a href="#">Manager</a>
                         </li>
                         
@@ -45,8 +45,6 @@
                 </nav>
             </div>
             <div class="template-right">
-
-                <!-- <create-btn></create-btn> -->
                 <user-table></user-table>
             </div>
             
