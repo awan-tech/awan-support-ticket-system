@@ -1,11 +1,12 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+// import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import login from './components/login.vue'
 import template from './components/template.vue'
 import header from './components/header.vue'
 import create_btn from './components/create_btn.vue'
 import user_table from './components/user_table.vue'
+import tickets from './components/tickets.vue'
 import BootstrapVue3 from "bootstrap-vue-3";
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -17,8 +18,8 @@ app.use(BootstrapVue3);
 app.component('header-page', header ) ;
 app.component( 'login-page', login ) ;
 app.component('template-page', template ) ;
-app.component('create-btn', create_btn);
-app.component('user-table', user_table);
-
+app.component('create-btn', create_btn) ;
+app.component('user-table', user_table) ;
+app.component('tickets-page', tickets ) ;
 
 app.mount('#frameapp');

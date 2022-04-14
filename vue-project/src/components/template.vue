@@ -46,6 +46,7 @@
             </div>
             <div class="template-right">
                 <user-table></user-table>
+                <!-- <tickets-page></tickets-page> -->
             </div>
             
         </div>
