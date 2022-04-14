@@ -45,8 +45,8 @@
                 </nav>
             </div>
             <div class="template-right">
-                <user-table></user-table>
-                <!-- <tickets-page></tickets-page> -->
+                <!-- <user-table></user-table> -->
+                <tickets-page></tickets-page>
             </div>
             
         </div>
@@ -76,7 +76,7 @@ export default {
 
 <style>
     .template-content{
-        background-color: rgb(10, 32, 25);
+        /* background-color: rgb(10, 32, 25); */
         position: relative ;
         display: flex ;
         flex-direction: row ;

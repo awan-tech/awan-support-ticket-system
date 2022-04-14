@@ -1,7 +1,33 @@
 <template>
     <div class="tickets-content">
         <div class="tickets-title">
-            test111111
+            <table>
+                <tr>
+                    <td>
+                        ticketname:
+                    </td>
+                    <td>
+                        deadline:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        customrname:
+                    </td>
+                    <td>
+                        負責人:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        time:
+                    </td>
+                    <td>
+                        緊急程度:
+                    </td>
+                </tr>
+            </table>
+           
         </div>
         <div class="tickets-dialogue">
             test22222
@@ -17,7 +43,7 @@ export default {
 
 <style>
     .tickets-content{
-        background-color: gray ;
+        /* background-color: gray ; */
         width: 100%;
         position: relative ;
     }
@@ -27,10 +53,20 @@ export default {
         flex-direction: row;
         position: relative ;
         width:80%;
-        height: 20%;
+        height: 30%;
         align-items: center ;
         margin: auto;
+        /* border-top: 30px; */
+        
     }
+    .tickets-title table{
+        width: 1000px;
+        
+    }
+    .tickets-title table tr td{
+        height: 50px ;
+    }
+    
     .tickets-dialogue {
         background-color: yellow;
         display: flex ;
