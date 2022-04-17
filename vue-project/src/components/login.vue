@@ -40,6 +40,7 @@ export default {
     },
     methods: {
       getData() {
+        console.log('test');
          fetch('https://11931uvt3a.execute-api.us-east-2.amazonaws.com/test/helloworld',{
             method: 'GET',
             headers : {
@@ -60,6 +61,7 @@ export default {
       },
       loginstatus() {
         if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
+          this.$router.push('/home')
           console.log('user and password fit') ;
           this.isUser = 'True' ;
           this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
@@ -71,6 +73,7 @@ export default {
 
         this.username = '' ;
         this.password = '' ;
+        
       },
       
     },
