@@ -32,13 +32,7 @@ export default {
       user: {
         type: String,
       },
-    },
-    computed: {
-      userData() {
-        return JSON.parse(this.user);
-      },
-    },
-    
+    },    
     data() {
       return {
         userid : '',
@@ -77,10 +71,12 @@ export default {
       },
       loginstatus() {
         if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
-          this.$router.push('/home')
-          // console.log('user and password fit') ;
+          
+          console.log('user and password fit') ;
           this.isUser = 'True' ;
+          // console.log( this.username )
           this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
+          
         }
         else {
           console.log('faild') ;
@@ -89,7 +85,7 @@ export default {
 
         this.username = '' ;
         this.password = '' ;
-        
+        this.$router.push('/home')
       },
       
     },

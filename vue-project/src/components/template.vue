@@ -4,7 +4,7 @@
                 <side-bar></side-bar>
             </div>
             <div class="template-right">
-                <router-view @getlogin="changeLoginStatus"></router-view>
+                <router-view></router-view>
             </div>
             
         </div>
@@ -15,96 +15,24 @@
 <script>
 import sidebar from './sidebar.vue'
 export default {
-    provide : {
-        'UserName' : this.username 
-    },
+    
     components : {
         'side-bar' : sidebar
     },
-    props:{
-        userName : String,
-        userRole : String
-    },
+    inject: [],
     data() {
         return {
-            myticketSublist : false,
-            historySublist : false,
-            which_page : 'thomas-page',
             username : '',
             userRole : '',
-            userId : ''
+            userId : '',
+            status : false
         }
     },
     methods : {
-        selectpage( pagename) {
-            this.which_page=pagename ;
-        },
-        changeToCreateForm( pagename ) {
-            this.which_page = pagename ;
-        }  ,
-        changeLoginStatus(status, name, role) {
-            if ( status != 'null') {
-                this.login = true ;
-                this.username = name ;
-                this.userrole = role ;
-            }
-                
-        }
+    
 
-    }
+    },
 }
-
-
-/*
-<nav id="sidebar">
-                    <button type="button" id="collapse" class="collapse-btn">
-                        <i class="fas fa-align-left"></i>
-                    </button>
-                    
-                    <ul class="list-unstyled">
-                        <div>
-                            <li>Hi,{{ userName }} </li>
-                        </div>
-                
-                        <li>
-                            <router-link to="/home">Home</router-link>
-                            <!-- <a @click="selectpage('thomas-page')">Home</a> -->
-                        </li>
-                        <li>
-                            <a @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false" @click="selectpage('user-table')" >My Ticket</a>
-                            <ul v-if="myticketSublist" @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false">
-                                <li @click="selectpage('tickets-page')">
-                                    <a>ticket</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li v-if="userRole !== 'customer' ">
-                            <a @mouseenter="historySublist = true" @mouseleave="historySublist = false"  >History Ticket</a>
-                            <ul v-if="historySublist" @mouseenter="historySublist = true" @mouseleave="historySublist = false">
-                                <li>
-                                    <a>test1</a>
-                                </li>
-                                <li>
-                                    <a>test2</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        <li @click="selectpage('setting-page')">
-                            
-                            <a >Setting</a>
-                        </li>
-                        <li v-if="userRole === 'manager' ">
-                            <a href="#">Manager</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#">Logout</a>
-                        </li>
-                    </ul>
-                </nav>
-*/
-
 </script>
 
 <style>
