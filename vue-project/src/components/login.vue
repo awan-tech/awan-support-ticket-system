@@ -40,7 +40,7 @@ export default {
     },
     methods: {
       getData() {
-         fetch('https://11931uvt3a.execute-api.us-east-2.amazonaws.com/test/helloworld',{
+         fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
