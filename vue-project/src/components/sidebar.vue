@@ -1,53 +1,79 @@
 <template>
     <nav id="sidebar">
-                    <button type="button" id="collapse" class="collapse-btn">
-                        <i class="fas fa-align-left"></i>
-                    </button>
+        <button type="button" id="collapse" class="collapse-btn">
+            <i class="fas fa-align-left"></i>
+        </button>
+        
+        <ul class="list-unstyled">
+            <div>
+                <li>Hi,{{ UserName }} </li>
+            </div>
+    
+            <li>
+                <router-link to="/home">Home</router-link>
+             
+            </li>
+            <li>
+                <router-link @click="toggleSublist" to="/home/user_table">My Ticket</router-link>
+                <ul v-if="myticketSublist" >
+                    <li>
+                        <router-link to="/home/tickets" > tickets </router-link>
+                    </li>
+                </ul>
+                <!-- <ul v-if="myticketSublist" @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false">
+                    <li @click="selectpage('tickets-page')">
+                        <a>ticket</a>
+                    </li>
+                </ul> -->
+            </li>
+            <li >
+                <a @click="toggleMyTicketSublist"  >History Ticket</a>
+                <ul v-if="historySublist">
+                    <li>
+                        <a>test1</a>
+                    </li>
+                    <li>
+                        <a>test2</a>
+                    </li>
                     
-                    <ul class="list-unstyled">
-                        <div>
-                            <li>Hi,{{ userName }} </li>
-                        </div>
+                </ul>
+            </li>
+            <li>
                 
-                        <li>
-                            <router-link to="/home">Home</router-link>
-                            <!-- <a @click="selectpage('thomas-page')">Home</a> -->
-                        </li>
-                        <li>
-                            <a @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false" @click="selectpage('user-table')" >My Ticket</a>
-                            <ul v-if="myticketSublist" @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false">
-                                <li @click="selectpage('tickets-page')">
-                                    <a>ticket</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li v-if="userRole !== 'customer' ">
-                            <a @mouseenter="historySublist = true" @mouseleave="historySublist = false"  >History Ticket</a>
-                            <ul v-if="historySublist" @mouseenter="historySublist = true" @mouseleave="historySublist = false">
-                                <li>
-                                    <a>test1</a>
-                                </li>
-                                <li>
-                                    <a>test2</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        <li @click="selectpage('setting-page')">
-                            
-                            <a >Setting</a>
-                        </li>
-                        <li v-if="userRole === 'manager' ">
-                            <a href="#">Manager</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#">Logout</a>
-                        </li>
-                    </ul>
-                </nav>
+                <router-link to="/home/settings">Setting</router-link>
+            </li>
+            <li v-if="userRole === 'manager' ">
+                <a href="#">Manager</a>
+            </li>
+            
+            <li>
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+    </nav>
 </template>
 
+<script>
+export default {
+    inject:[
+        'UserName'
+    ],
+    data() {
+        return {
+            myticketSublist : false,
+            historySublist : false,
+        }
+    },
+    methods: {
+        toggleSublist() {
+            this.myticketSublist = ! this.myticketSublist;
+        },
+        toggleMyTicketSublist() {
+            this.historySublist = ! this.historySublist;
+        },
+    },
+}
+</script>
 
 
 <style scoped>

@@ -1,19 +1,11 @@
 <template>
     <section>
         <header-page></header-page>
-        <side-bar></side-bar>
+        
         <section>
                 <router-view>
 
                 </router-view>
-                <!-- <login-page v-if="!check_login_status()"
-                    @loginSuccess="changeLoginStatus"
-                ></login-page>
-                <template-page v-else
-                    :user-name="username"
-                    :user-role="userrole"
-                ></template-page> -->
-                <!-- <create-btn></create-btn> -->
         </section>
         
     </section>
@@ -26,14 +18,12 @@
 // import login from './components/login.vue'
 // import template from './components/template.vue'
 import header from './components/header.vue'
-import sidebar from './components/sidebar.vue'
+
 export default {
     components : {
         // 'login-page' : login,
         // 'template-page' : template,
-        'header-page' : header,
-        'side-bar' : sidebar 
-
+        'header-page' : header
     },
     props : {
         
@@ -70,14 +60,7 @@ export default {
             else 
                 return false ;
         },
-        changeLoginStatus(status, name, role) {
-            if ( status != 'null') {
-                this.login = true ;
-                this.username = name ;
-                this.userrole = role ;
-            }
-                
-        }
+        
 
     }
 }

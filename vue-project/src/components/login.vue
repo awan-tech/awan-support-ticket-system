@@ -28,8 +28,20 @@
 
 <script>
 export default {
+    props: {
+      user: {
+        type: String,
+      },
+    },
+    computed: {
+      userData() {
+        return JSON.parse(this.user);
+      },
+    },
+    
     data() {
       return {
+        userid : '',
         checkuser : '',
         checkpassword : '',
         username : '',
@@ -39,13 +51,17 @@ export default {
       }
     },
     methods: {
+      
       getData() {
         console.log('test');
-         fetch('https://11931uvt3a.execute-api.us-east-2.amazonaws.com/test/helloworld',{
+         fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
             },
+            // body :  JSON.stringify({
+            //   name : 'Larry'
+            // })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -62,7 +78,7 @@ export default {
       loginstatus() {
         if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
           this.$router.push('/home')
-          console.log('user and password fit') ;
+          // console.log('user and password fit') ;
           this.isUser = 'True' ;
           this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
         }

@@ -9,12 +9,43 @@ import login from './components/login.vue'
 import template from './components/template.vue'
 import thomas from './components/thomas.vue'
 
+import user_table from './components/user_table.vue'
+import tickets from './components/tickets.vue'
+import create_form from './components/user_create_form.vue'
+import settings from './components/setting.vue'
+
 const router = createRouter( {
     history: createWebHistory(),
     routes: [
-        {path: '/', component: login },
-        {path: '/home', component: template },
-        {path: '/myticket', component: thomas }
+        {path: '/', component: login,alias: '/login', props: (route) => route.params },
+        
+        {path: '/home', component: template,
+            children:[
+                {
+                    path : '',
+                    component : thomas
+                },
+                {
+                    path : 'tickets',
+                    component : tickets
+                },
+                {
+                    path : 'user_table',
+                    component : user_table
+                },
+                {
+                    path : 'create_form',
+                    component : create_form
+                },
+                {
+                    path : 'settings',
+                    component : settings
+                },
+
+            ]
+        },
+        {path: '/myticket', component: settings },
+        {path: '/NotFound(.*)', redirect:'/'}
     ]
 })
 

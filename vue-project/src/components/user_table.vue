@@ -47,7 +47,9 @@ export default {
     ],
     methods: {
         changeTemplatePage() {
+            this.$router.push('home/create_form')
             this.$emit( 'changepage', 'create-form-page' ) ;
+
         }
     }
 }

@@ -1,15 +1,10 @@
 <template>
         <div class="template-content">
             <div class="template-left">
-                
+                <side-bar></side-bar>
             </div>
             <div class="template-right">
-                <router-link to="/myticket">My Ticket</router-link>
-                <!-- <user-table v-if="which_page === 'user-table'" @changepage="changeToCreateForm"></user-table>
-                <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
-                <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
-                <thomas-page v-if="which_page === 'thomas-page'"></thomas-page>
-                <setting-page v-if="which_page === 'setting-page'"></setting-page> -->
+                <router-view @getlogin="changeLoginStatus"></router-view>
             </div>
             
         </div>
@@ -18,20 +13,13 @@
 
 
 <script>
-// import user_table from './user_table.vue'
-// import tickets from './tickets.vue'
-// import create_form from './user_create_form.vue'
-// import thomas from './thomas.vue'
-// import settings from './setting.vue'
-
+import sidebar from './sidebar.vue'
 export default {
+    provide : {
+        'UserName' : this.username 
+    },
     components : {
-    //   'user-table' : user_table,
-    //   'tickets-page' : tickets,
-    //   'create-form-page': create_form,  
-    //   'thomas-page' : thomas,
-    //   'setting-page' : settings 
-
+        'side-bar' : sidebar
     },
     props:{
         userName : String,
@@ -41,21 +29,26 @@ export default {
         return {
             myticketSublist : false,
             historySublist : false,
-            which_page : 'thomas-page'
+            which_page : 'thomas-page',
+            username : '',
+            userRole : '',
+            userId : ''
         }
     },
     methods : {
-        toggleSublist() {
-            this.myticketSublist = ! this.myticketSublist;
-        },
-        toggleMyTicketSublist() {
-            this.historySublist = ! this.historySublist;
-        },
         selectpage( pagename) {
             this.which_page=pagename ;
         },
         changeToCreateForm( pagename ) {
             this.which_page = pagename ;
+        }  ,
+        changeLoginStatus(status, name, role) {
+            if ( status != 'null') {
+                this.login = true ;
+                this.username = name ;
+                this.userrole = role ;
+            }
+                
         }
 
     }
