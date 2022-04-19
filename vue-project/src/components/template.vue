@@ -85,7 +85,7 @@ export default {
         return {
             myticketSublist : false,
             historySublist : false,
-            which_page : 'thomas-page'
+            which_page : 'tickets-page'
         }
     },
     methods : {
