@@ -71,8 +71,6 @@ export default {
             this.historySublist = ! this.historySublist;
         },
     },
-    computed: {
-    } ,
 }
 </script>
 

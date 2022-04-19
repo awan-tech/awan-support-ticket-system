@@ -21,18 +21,22 @@ export default {
             type: Object,
         },
     },
+    provide(){
+        return {
+          userdata : this.all_tickets_content 
+        }
+    },
     components : {
         'side-bar' : sidebar
     },
-    inject: [],
     data() {
         return {
             status : false,
-            all_tickets_content : {}
+            all_tickets_content : { topics: [ '123']}
         }
     },
     methods : {
-        getAllticket() {
+       getAllticket() {
             fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
             method: 'GET',
             headers : {
@@ -51,13 +55,21 @@ export default {
                 this.checkuser = data['name'] ;
                 this.checkpassword = data['password'] ;
                 this.role = data['role'] ;
-                this.loginstatus() ;
+                // this.all_tickets_content = data;
+                console.log( typeof(this.all_tickets_content) )
+                console.log(this.all_tickets_content)
+                this.all_tickets_content['topics'].push( data )
+                console.log(this.all_tickets_content)
+
             })
         }
     },
-    computed: {
-      
+    mounted() {
+        this.getAllticket()
     },
+    computed: {
+        
+    }
 }
 </script>
 

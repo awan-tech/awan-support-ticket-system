@@ -23,10 +23,6 @@ export default {
     components : {
         'header-page' : header
     },
-    
-    props : {
-        
-    },
     data() {
         return {
             data : {
@@ -47,7 +43,6 @@ export default {
                 this.data['userRole'] = role ;
             }        
         }
-
     }
 }
 </script>

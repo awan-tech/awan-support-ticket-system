@@ -48,7 +48,7 @@
                      <th>yy/ds</th>
                 </tr>
                 <tr>
-                    <th>回覆內容:</th>
+                    <th>回覆內容: {{ userdata }}</th>
                     
                 </tr> 
             </table>
@@ -62,7 +62,23 @@
 
 <script>
 export default {
-    
+    props : [
+        'ticket'
+    ],
+    inject : [
+        'userdata'
+    ],
+    data() {
+        return {
+            data: {
+                TicketTitle : 'i want to ask',
+                Deadline : '03/26 15:56:02',
+                CustomerName : 'Daniel',
+                Engineer : 'Larry',
+                CreatedTime : '03/25 15:56:02'
+            }
+        }
+    }
 }
 </script>
 
