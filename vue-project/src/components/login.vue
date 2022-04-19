@@ -28,8 +28,14 @@
 
 <script>
 export default {
+    props: {
+      user: {
+        type: String,
+      },
+    },    
     data() {
       return {
+        userid : '',
         checkuser : '',
         checkpassword : '',
         username : '',
@@ -39,12 +45,17 @@ export default {
       }
     },
     methods: {
+      
       getData() {
+        console.log('test');
          fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
             },
+            // body :  JSON.stringify({
+            //   name : 'Larry'
+            // })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -60,9 +71,12 @@ export default {
       },
       loginstatus() {
         if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
+          
           console.log('user and password fit') ;
           this.isUser = 'True' ;
+          // console.log( this.username )
           this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
+          this.$router.push('/home')
         }
         else {
           console.log('faild') ;
@@ -71,6 +85,7 @@ export default {
 
         this.username = '' ;
         this.password = '' ;
+        
       },
       
     },

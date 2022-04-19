@@ -1,15 +1,11 @@
 <template>
     <section>
         <header-page></header-page>
+        
         <section>
-                <login-page v-if="!check_login_status()"
-                    @loginSuccess="changeLoginStatus"
-                ></login-page>
-                <template-page v-else
-                    :user-name="username"
-                    :user-role="userrole"
-                ></template-page>
-                <!-- <create-btn></create-btn> -->
+                <router-view :user="data" @loginSuccess="changeLoginStatus">
+
+                </router-view>
         </section>
         
     </section>
@@ -19,59 +15,37 @@
 
 <script>
 // const axios = require('axios'); 
-import login from './components/login.vue'
-import template from './components/template.vue'
+// import login from './components/login.vue'
+// import template from './components/template.vue'
 import header from './components/header.vue'
 
 export default {
     components : {
-        'login-page' : login,
-        'template-page' : template,
         'header-page' : header
-
     },
+    
     props : {
         
     },
     data() {
         return {
-            login : false,
-            userrole : '',
-            username : ''
+            data : {
+                login : false,
+                userRole : '',
+                username : ''
+            }
+            
         }
         
     },
     methods : {
-        check_login_status() {
-
-            // fetch('https://11931uvt3a.execute-api.us-east-2.amazonaws.com/test/helloworld',{
-            //     method: 'GET',
-            //     headers : {
-            //         'Content-Type': 'application/json'
-            //         //'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-            //     },
-            //     })
-            // .then( (response) => {
-            //     if ( response.ok ) {
-            //         return response.json() ;
-            //     }
-            // })
-            // .then((data) => {
-            //     console.log(  data['name'] ) ; 
-            // })
-
-            if ( this.login )
-                return true ;
-            else 
-                return false ;
-        },
         changeLoginStatus(status, name, role) {
+            console.log( 'test1111111' ) ;
             if ( status != 'null') {
-                this.login = true ;
-                this.username = name ;
-                this.userrole = role ;
-            }
-                
+                this.data['login'] = true ;
+                this.data['username'] = name ;
+                this.data['userRole'] = role ;
+            }        
         }
 
     }
