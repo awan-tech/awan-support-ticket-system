@@ -6,9 +6,6 @@
                     <td>
                         ticketname:
                     </td>
-                    <td>
-                        deadline:
-                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -21,9 +18,6 @@
                 <tr>
                     <td>
                         time:
-                    </td>
-                    <td>
-                        緊急程度:
                     </td>
                 </tr>
             </table>
@@ -54,12 +48,12 @@
             </table>
         </div>
         <div class="tickets-footer">
-            <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88">
-</textarea>
-            <button>傳送</button>
+            <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88"></textarea>
+            <button @click.prevent="changeTemplatePage" class="user-ticket-btn"><span>傳送</span></button>
         </div>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -129,9 +123,9 @@ export default {
         
     }
     .tickets-footer{
-        position: absolute;
+        position: relative;
         left:   100px;
-        top: 500px;
+        
         
         
     }
@@ -140,28 +134,46 @@ export default {
         
         
     }
-    .tickets-footer button{
-        color: #090909;
-        padding: 0.7em 1.7em;
-        font-size: 18px;
-        border-radius: 0.5em;
-        background: #e8e8e8;
-        border: 1px solid #e8e8e8;
-        transition: all .3s;
-        box-shadow: 6px 6px 12px #c5c5c5,
-        -6px -6px 12px #ffffff;
+    .user-ticket-btn{
+        display: inline-block;
+        border-radius: 4px;
+        background-color: rgb(153, 164, 112);
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 17px;
+        padding: 16px;
+        width: 130px;
+        transition: all 0.5s;
+        cursor: pointer;
         position: relative;
         
         left: 720px;
 
     }
-    .tickets-footer button:hover {
-        border: 1px solid white;
-    }
-    .tickets-footer button:active {
-         box-shadow: 4px 4px 12px #c5c5c5,
-        -4px -4px 12px #ffffff;
-    }
+    .user-ticket-btn  span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+        }
 
+        .user-ticket-btn  span:after {
+        content: '»';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -15px;
+        transition: 0.5s;
+        }
+
+        .user-ticket-btn:hover span {
+        padding-right: 15px;
+        }
+
+        .user-ticket-btn:hover span:after {
+        opacity: 1;
+        right: 0;
+        }
 
 </style>
