@@ -29,8 +29,26 @@
             </table>
            
         </div>
-        <div class="tickets-dialogue">
-            message
+        <div class="tickets-user-dialogue">
+            <table>
+                <tr>
+                    <th>問題內容:</th>
+                    <td>yy/ds</td>
+                </tr>
+                    
+                 
+            </table>
+        </div>
+        <div class="tickets-thomas-dialogue">
+            <table>
+                <tr>
+                    <th>(工程師名字)</th>
+                </tr>
+                <tr>
+                    <th>回覆內容:</th>
+                    <td>yy/ds</td>
+                </tr>
+            </table>
         </div>
     </div>
 </template>
@@ -51,7 +69,7 @@ export default {
          
     }
     .tickets-title {
-        background-color: aquamarine;
+        background-color: #FDF5E6;
         display: flex ;
         flex-direction: row;
         position: relative ;
@@ -61,28 +79,48 @@ export default {
         margin: auto;
         /* border-top: 30px; */
        margin-bottom:3% ;
+       margin-top: 3%;
         
     }
     .tickets-title table{
         width: 1000px;
         
     }
-    .tickets-title table tr td{
+    /* .tickets-title table tr td{
         height: 50px ;
-    }
+    } */
     
-    .tickets-dialogue {
-        background-color: yellow;
+    .tickets-user-dialogue {
+        background-color: #FDF5E6;
         display: flex ;
         flex-direction: row;
         position: relative ;
         width: 80%;
-        height: 20%;
+        height: 15%;
         margin: auto;  
         align-items: center ;
-         /* margin-bottom:3% ; */
+         margin-bottom:3% ;
         
     }
+    .tickets-user-dialogue td{
+        align-items: right;
+        color: #fff;
+       
+    }
+
+     .tickets-thomas-dialogue {
+        background-color: rgb(202, 212, 166);
+        display: flex ;
+        flex-direction: row;
+        position: relative ;
+        width: 80%;
+        height: 15%;
+        margin: auto;  
+        align-items: center ;
+         margin-bottom:3% ;
+        
+    }
+
 
 
 </style>
