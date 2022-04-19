@@ -1,46 +1,46 @@
 <template>
-    <div>
-        <div>
-        <button id="pending-btn" onclick="連結">
-            <div>
-                <span>
-                    <p>待處理:()件</p>
-                </span>
-            </div>
-            <div>
-                <span>
-                    <p>上班加油</p><p>:D</p>
-                </span>
-            </div>
-        </button> 
-    </div>
-    <div id="deadline-table">
-        <div class="deadline-tr">
-            <div class="deadline-td">公告</div>
-            <div class="deadline-td">
-                <div class="onoffswitch">
-                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
-                    <label class="onoffswitch-label" for="myonoffswitch">
-                        <span class="onoffswitch-inner"></span>
-                        <span class="onoffswitch-switch"></span>
-                    </label>
+    <div class="thomas-all">
+        <div class="thomas-left">
+            <button id="pending-btn" onclick="連結">
+                <div>
+                    <span>
+                        <p>待處理:()件</p>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <p>上班加油</p><p>:D</p>
+                    </span>
+                </div>
+            </button> 
+        </div>
+        <div id="deadline-table" class="thomas-right" >
+            <div class="deadline-tr">
+                <div class="deadline-td">公告</div>
+                <div class="deadline-td">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="deadline-tr">
-            <div class="deadline-td">1231232113234343</div>
-            <div class="deadline-td">987</div>
-        </div>
-        <div class="deadline-tr">
-            <div class="deadline-td">123123234535</div>
-            <div class="deadline-td">987</div>
-        </div>
-        <div class="deadline-tr">
-            <div class="deadline-td">1231232325353543</div>
-            <div class="deadline-td">987</div>
-        </div>
+            <div class="deadline-tr">
+                <div class="deadline-td">1231232113234343</div>
+                <div class="deadline-td">987</div>
+            </div>
+            <div class="deadline-tr">
+                <div class="deadline-td">123123234535</div>
+                <div class="deadline-td">987</div>
+            </div>
+            <div class="deadline-tr">
+                <div class="deadline-td">1231232325353543</div>
+                <div class="deadline-td">987</div>
+            </div>
 
-    </div>
+        </div>
 
     </div>
 </template>
@@ -109,13 +109,33 @@
 
 
 
+.thomas-all{
+    position: relative ;
+    display: flex ;
+    width: 100%;
+}
+
+.thomas-left {
+    position: relative ;
+    display: flex ;
+    flex-direction: column ;
+    width: 20%;
+}
+.thomas-right {
+    background-color: rgb(255, 255, 255);
+    position: relative ;
+    display: flex ;
+    flex-direction: column ;
+    width: 80%;
+    height: 60%;
+}
 
    
 #deadline-table {
     display:table;
     position: relative;
-    top: 150px;
-    left: 300px;
+    /* top: 150px;
+    left: 300px; */
     border-collapse: collapse;
     font-weight: bold;
 
@@ -139,7 +159,7 @@
       border:1px solid rgb(0, 0, 0);
       display: table-cell;
       width: auto;
-      height: 100%;
+      height: 15%;
       overflow: hidden;
       white-space: nowrap;
       background-color: #ffffff;

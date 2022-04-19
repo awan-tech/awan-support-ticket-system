@@ -14,26 +14,23 @@
              
             </li>
             <li>
-                <router-link @click="toggleSublist" to="/home/user_table">My Ticket</router-link>
+                <router-link v-if="Userdata['userRole'] === 'customer'" @click="toggleSublist" to="/home/user_table">My customer Ticket</router-link>
+                <router-link v-else @click="toggleSublist" to="/home/admin_tickets_table">My admin Ticket</router-link>
                 <ul v-if="myticketSublist" >
                     <li>
                         <router-link to="/home/tickets" > tickets </router-link>
                     </li>
                 </ul>
-                <!-- <ul v-if="myticketSublist" @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false">
-                    <li @click="selectpage('tickets-page')">
-                        <a>ticket</a>
-                    </li>
-                </ul> -->
+               
             </li>
             <li >
                 <a @click="toggleMyTicketSublist"  >History Ticket</a>
                 <ul v-if="historySublist">
                     <li>
-                        <a>test1</a>
+                        <a>已處理</a>
                     </li>
                     <li>
-                        <a>test2</a>
+                        <a>正在處理</a>
                     </li>
                     
                 </ul>
@@ -141,8 +138,12 @@ export default {
         background: rgb(153, 164, 112);
     }
     ul ul li a {
-        background-color: rgb(153, 164, 112);
         font-size: 20px;
         font-style: italic;
     }
+    .router-link-exact-active {
+        background-color: rgb(153, 164, 112);
+    }
+
+    
 </style>

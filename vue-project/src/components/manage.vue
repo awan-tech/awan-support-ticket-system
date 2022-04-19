@@ -1,10 +1,14 @@
 <template>
     <div>
         <div>
-            更改Engineer 資料
+            <button>
+               更改Engineer 資料 
+            </button>
         </div>
         <div>
-            分派tickets
+            <button>
+                分派tickets
+            </button>
         </div>
     </div>
 </template>

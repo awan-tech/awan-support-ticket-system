@@ -14,6 +14,7 @@ import admin_tickets from './components/admin_tickets.vue'
 import create_form from './components/user_create_form.vue'
 import settings from './components/setting.vue'
 import manage from './components/manage.vue'
+import admin_tickets_table from './components/admin_tickets_table.vue'
 
 const router = createRouter( {
     history: createWebHistory(),
@@ -46,6 +47,10 @@ const router = createRouter( {
                 {
                     path : 'manage',
                     component : manage
+                },
+                {
+                    path : 'admin_tickets_table',
+                    component : admin_tickets_table
                 },
 
             ]
