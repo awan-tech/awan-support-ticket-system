@@ -39,11 +39,11 @@
                 </ul>
             </li>
             <li>
-                
                 <router-link to="/home/settings">Setting</router-link>
             </li>
-            <li v-if="userRole === 'manager' ">
-                <a href="#">Manager</a>
+            <li v-if="Userdata['userRole'] === 'engineer' ">
+                <router-link to="/home/manage" > Manager </router-link>
+                <!-- <a href="#">Manager</a> -->
             </li>
             
             <li>
@@ -73,10 +73,6 @@ export default {
         toggleMyTicketSublist() {
             this.historySublist = ! this.historySublist;
         },
-        testdata() {
-            console.log('ssssssssssssssssssssssssssssss')
-            console.log(this.Userdata)
-        }
     },
     computed: {
     } ,

@@ -27,11 +27,33 @@ export default {
     inject: [],
     data() {
         return {
-            status : false
+            status : false,
+            all_tickets_content : {}
         }
     },
     methods : {
-
+        getAllticket() {
+            fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            // body :  JSON.stringify({
+            //   name : 'Larry'
+            // })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                this.checkuser = data['name'] ;
+                this.checkpassword = data['password'] ;
+                this.role = data['role'] ;
+                this.loginstatus() ;
+            })
+        }
     },
     computed: {
       

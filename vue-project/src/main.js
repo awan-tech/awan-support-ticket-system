@@ -10,9 +10,10 @@ import template from './components/template.vue'
 import thomas from './components/thomas.vue'
 
 import user_table from './components/user_table.vue'
-import tickets from './components/tickets.vue'
+import admin_tickets from './components/admin_tickets.vue'
 import create_form from './components/user_create_form.vue'
 import settings from './components/setting.vue'
+import manage from './components/manage.vue'
 
 const router = createRouter( {
     history: createWebHistory(),
@@ -28,7 +29,7 @@ const router = createRouter( {
                 },
                 {
                     path : 'tickets',
-                    component : tickets
+                    component : admin_tickets
                 },
                 {
                     path : 'user_table',
@@ -41,6 +42,10 @@ const router = createRouter( {
                 {
                     path : 'settings',
                     component : settings
+                },
+                {
+                    path : 'manage',
+                    component : manage
                 },
 
             ]

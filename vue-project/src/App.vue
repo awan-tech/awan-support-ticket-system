@@ -45,13 +45,6 @@ export default {
                 this.data['login'] = true ;
                 this.data['username'] = name ;
                 this.data['userRole'] = role ;
-                alert( this.data['username'] ) ;
-                // this.UserName = this.data['username'] ;
-
-                // this.$router.push( {
-                //     name : 'user',
-                //     params : { userdata : JSON.stringify(this.data) }
-                // })
             }        
         }
 
