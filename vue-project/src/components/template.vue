@@ -63,7 +63,7 @@
 
 <script>
 import user_table from './user_table.vue'
-import tickets from './tickets.vue'
+import tickets from './admin_tickets.vue'
 import create_form from './user_create_form.vue'
 import thomas from './thomas.vue'
 import settings from './setting.vue'
@@ -113,12 +113,14 @@ export default {
         position: relative ;
         display: flex ;
         flex-direction: row ;
+        
     }
     .template-left{
         
         position: relative ;
         display: flex ;
         flex-direction: row ;
+        
     }
     .template-right{
         background-color: rgb(255, 255, 255);
