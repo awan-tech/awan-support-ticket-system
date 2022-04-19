@@ -1,7 +1,6 @@
 <template>
     <section>
         <header-page></header-page>
-        
         <section>
                 <router-view :user="data" @loginSuccess="changeLoginStatus">
 
