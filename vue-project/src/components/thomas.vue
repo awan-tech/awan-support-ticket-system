@@ -58,7 +58,7 @@
     overflow: hidden;
     position: relative;
     top: 50px;
-    left: 100px;
+    left: 40px;
    }
    
    #pending-btn div {

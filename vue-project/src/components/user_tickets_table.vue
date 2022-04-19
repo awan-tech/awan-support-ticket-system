@@ -2,7 +2,7 @@
     <div class="tickets-table">
         <div class="tickets-table-left">
             <li class="table-header">
-                    <div class="tickets-table-left-tr">尚未處理</div>
+                    <div class="tickets-table-left-tr">待處理</div>
             </li>
             <li class="table-row">
                      <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
@@ -23,7 +23,7 @@
         </div>
         <div class="tickets-table-right">
             <li class="table-header">
-                    <div class="tickets-table-right-tr">待處理</div>
+                    <div class="tickets-table-right-tr">已處理</div>
             </li>
             <li class="table-row">
                      <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>

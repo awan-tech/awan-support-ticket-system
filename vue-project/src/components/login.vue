@@ -137,7 +137,7 @@ export default {
   float: right;
   align-items: center;
   background-clip: padding-box;
-  background-color: #fa6400;
+  background-color: rgb(153, 164, 112);
   border: 1px solid transparent;
   color: #000000;
   font-size: 16px;
@@ -155,10 +155,10 @@ export default {
 
 .form-btn:hover,
 .form-btn:focus {
-  background-color: #fb8332;
+  background-color: rgb(149, 173, 50);
 }
 .form-btn:active {
-  background-color: #c85000;
+  background-color: rgb(126, 153, 16);
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }

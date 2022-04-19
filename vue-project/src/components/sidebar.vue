@@ -20,6 +20,9 @@
                     <li>
                         <router-link to="/home/tickets" > tickets </router-link>
                     </li>
+                    <li>
+                        <router-link to="/home/user_tickets" > user_tickets </router-link>
+                    </li>
                 </ul>
                
             </li>
