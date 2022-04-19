@@ -17,9 +17,10 @@ import settings from './components/setting.vue'
 const router = createRouter( {
     history: createWebHistory(),
     routes: [
-        {path: '/', component: login,alias: '/login', props: (route) => route.params },
+        {path: '/', component: login,alias: '/login' },
         
-        {path: '/home', component: template,
+        {path: '/home', component: template, 
+        props: (route) => route.params,
             children:[
                 {
                     path : '',

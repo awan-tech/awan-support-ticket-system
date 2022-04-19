@@ -6,7 +6,7 @@
         
         <ul class="list-unstyled">
             <div>
-                <li>Hi,{{ UserName }} </li>
+                <li>Hi,{{ Userdata['username'] }} </li>
             </div>
     
             <li>
@@ -47,7 +47,7 @@
             </li>
             
             <li>
-                <a href="#">Logout</a>
+                <router-link to="/">Logout</router-link>
             </li>
         </ul>
     </nav>
@@ -55,9 +55,11 @@
 
 <script>
 export default {
-    inject:[
-        'UserName'
-    ],
+    props: {
+        Userdata: {
+            type: Object,
+        },
+    },
     data() {
         return {
             myticketSublist : false,
@@ -71,7 +73,13 @@ export default {
         toggleMyTicketSublist() {
             this.historySublist = ! this.historySublist;
         },
+        testdata() {
+            console.log('ssssssssssssssssssssssssssssss')
+            console.log(this.Userdata)
+        }
     },
+    computed: {
+    } ,
 }
 </script>
 

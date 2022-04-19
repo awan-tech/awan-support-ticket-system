@@ -3,7 +3,7 @@
         <header-page></header-page>
         
         <section>
-                <router-view  @loginSuccess="changeLoginStatus">
+                <router-view :user="data" @loginSuccess="changeLoginStatus">
 
                 </router-view>
         </section>
@@ -23,11 +23,7 @@ export default {
     components : {
         'header-page' : header
     },
-    provide() {
-        return {
-            UserName :  this.data['username']
-        }
-    },
+    
     props : {
         
     },
@@ -35,7 +31,7 @@ export default {
         return {
             data : {
                 login : false,
-                userrole : '',
+                userRole : '',
                 username : ''
             }
             
@@ -43,30 +39,22 @@ export default {
         
     },
     methods : {
-        check_login_status() {
-
-            if ( this.login )
-                return true ;
-            else 
-                return false ;
-        },
         changeLoginStatus(status, name, role) {
             console.log( 'test1111111' ) ;
             if ( status != 'null') {
                 this.data['login'] = true ;
                 this.data['username'] = name ;
                 this.data['userRole'] = role ;
-                alert( this.data['username'] )
-                this.UserName = this.data['username']
-                console.log(this.UserName)
+                alert( this.data['username'] ) ;
+                // this.UserName = this.data['username'] ;
+
+                // this.$router.push( {
+                //     name : 'user',
+                //     params : { userdata : JSON.stringify(this.data) }
+                // })
             }        
         }
 
-    },
-    mounted () {
-        
-        this.UserName = this.data['username']
-        console.log(this.UserName)
     }
 }
 </script>

@@ -76,7 +76,7 @@ export default {
           this.isUser = 'True' ;
           // console.log( this.username )
           this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
-          
+          this.$router.push('/home')
         }
         else {
           console.log('faild') ;
@@ -85,7 +85,7 @@ export default {
 
         this.username = '' ;
         this.password = '' ;
-        this.$router.push('/home')
+        
       },
       
     },

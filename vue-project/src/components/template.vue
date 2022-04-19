@@ -1,7 +1,7 @@
 <template>
         <div class="template-content">
             <div class="template-left">
-                <side-bar></side-bar>
+                <side-bar :Userdata="user"> </side-bar>
             </div>
             <div class="template-right">
                 <router-view></router-view>
@@ -13,24 +13,28 @@
 
 
 <script>
+//:Userdata="userdata"
 import sidebar from './sidebar.vue'
 export default {
-    
+    props: {
+        user: {
+            type: Object,
+        },
+    },
     components : {
         'side-bar' : sidebar
     },
     inject: [],
     data() {
         return {
-            username : '',
-            userRole : '',
-            userId : '',
             status : false
         }
     },
     methods : {
-    
 
+    },
+    computed: {
+      
     },
 }
 </script>
