@@ -123,8 +123,10 @@ export default {
         
     }
     .tickets-footer{
-        position: relative;
-        left:   100px;
+       position: relative;
+       width: 80%;
+       margin: auto;
+       align-items: center ;
         
         
         

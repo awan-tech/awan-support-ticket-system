@@ -42,9 +42,6 @@
 
 <script>
 export default {
-    props:{
-        tickets_content : Object
-    },
     emits:[
         'changepage'
     ],
@@ -52,7 +49,6 @@ export default {
         changeTemplatePage() {
             this.$router.push('/userhome/create_form') ;
             this.$emit( 'changepage', 'create-form-page' ) ;
-
         }
     }
 }
