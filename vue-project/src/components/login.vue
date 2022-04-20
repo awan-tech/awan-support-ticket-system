@@ -63,9 +63,10 @@ export default {
                 }
             })
             .then((data) => { 
-                this.checkuser = data['name'] ;
-                this.checkpassword = data['password'] ;
-                this.role = data['role'] ;
+                var temp = data['user']
+                this.checkuser = temp['name'] ;
+                this.checkpassword = temp['password'] ;
+                this.role = temp['role'] ;
                 this.loginstatus() ;
             })
       },

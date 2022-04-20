@@ -42,17 +42,12 @@
 
 <script>
 export default {
-    props:{
-        tickets_content : Object
-    },
     emits:[
         'changepage'
     ],
     methods: {
         changeTemplatePage() {
-            this.$router.push('create_form')
             this.$emit( 'changepage', 'create-form-page' ) ;
-
         }
     }
 }

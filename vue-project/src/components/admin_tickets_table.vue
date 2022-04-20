@@ -1,5 +1,6 @@
 <template>
     <div class="tickets-table">
+       
         <div class="tickets-table-left">
             <li class="table-header">
                     <div class="tickets-table-left-tr">尚未處理</div>

@@ -1,5 +1,6 @@
 <template>
     <section>
+        
         <header-page></header-page>
         
         <section>
@@ -9,6 +10,7 @@
         </section>
         
     </section>
+    
     
 </template>
 

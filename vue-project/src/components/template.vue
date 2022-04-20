@@ -77,11 +77,13 @@ export default {
         
     }
     .template-right{
-        background-color: rgb(255, 255, 255);
+        /* background-color: rgb(255, 255, 255); */
         position: relative ;
         display: flex ;
         flex-direction: row ;
         width: 100%;
+        background:url(../../public/background.png);
+        
     }
 
     .collapse-btn {
@@ -99,4 +101,12 @@ export default {
         background-color: rgba(77, 73, 73, 0.347);
         transition: 0.4s;
     }
+    .template-right background {
+        z-index:1;
+        
+    }
+    /* .template-right route-view{
+        position: relative;
+        z-index: 10;
+    } */
 </style>

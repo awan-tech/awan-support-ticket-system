@@ -88,7 +88,7 @@ export default {
         flex-direction: row ;
     }
     .template-left{
-        
+        height: 100%;
         position: relative ;
         display: flex ;
         flex-direction: row ;
@@ -99,6 +99,7 @@ export default {
         display: flex ;
         flex-direction: row ;
         width: 100%;
+        height: 100%;
     }
     #sidebar {
     width: 250px;
