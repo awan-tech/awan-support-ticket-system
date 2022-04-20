@@ -91,10 +91,10 @@ export default {
         // console.log('ttttttttt')
         // console.log( this.userdata  ) ;
 
-        if ( this.role === 'Business')
-            this.$router.push('/userhome')
+        if ( this.role === 'Engineer' || this.role === 'Engineer Supervisor' )
+            this.$router.push('/home')
         else 
-          this.$router.push('/home')
+          this.$router.push('/userhome')
 
         this.$emit( 'loginSuccess', this.userid, this.checkuser, this.role ) ;
 

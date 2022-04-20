@@ -28,6 +28,10 @@ export default {
     },
     methods: {
         submmitAndCreate() {
+            if ( this.ticket_title === '' || this.ticket_content === '') {
+                alert('請填好表格')
+                return false ;
+            }
             fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/tickets/create',{
                 method: 'POST',
                 headers : {
@@ -48,7 +52,13 @@ export default {
             })
             .then((data) => { 
                 console.log( data )
+                alert(data)
             })
+
+            this.ticket_title = '' ;
+            this.ticket_content = '' ;
+
+            this.$router.push('/userhome')
         },
         testCreate() {
             const temp = {
