@@ -6,17 +6,20 @@
         
         <ul class="list-unstyled">
             <div>
-                <li>Hi,{{ Userdata['username'] }} </li>
+                <li>Hi, {{ Userdata['username'] }},  {{ Userdata['userRole'] }} </li>
             </div>
     
             <li>
-                <router-link v-if="Userdata['userRole'] === 'customer'" to="/userhome">Home</router-link>
-                <router-link v-else-if="Userdata['userRole'] === 'engineer'" to="/home">Home</router-link>
+                <router-link v-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home">Home</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer'" to="/home">Home</router-link>
+                <router-link v-else to="/userhome">Home</router-link>
              
             </li>
             <li>
-                <router-link v-if="Userdata['userRole'] === 'engineer'"  to="/home/tickets_table">Ticket</router-link>
-                <router-link v-if="Userdata['userRole'] === 'customer'"  to="/userhome/tickets_table">Ticket</router-link>
+                <router-link v-if="Userdata['userRole'] === 'Engineer'"  to="/home/tickets_table">Ticket</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'"  to="/home/tickets_table">Ticket</router-link>
+                <router-link v-else  to="/userhome/tickets_table">Ticket</router-link>
+                
                 <!-- <ul v-if="myticketSublist" >
                     <li>
                         <router-link to="/home/tickets" > tickets </router-link>
@@ -28,13 +31,14 @@
                
             </li>
             <li >
-                <router-link v-if="Userdata['userRole'] === 'engineer'" to="/home/tickets" >History Ticket</router-link>
-                <router-link v-if="Userdata['userRole'] === 'customer'" to="/userhome/tickets" >History Ticket</router-link>
+                <router-link v-if="Userdata['userRole'] === 'Engineer'" to="/home/tickets" >History Ticket</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home/tickets" >History Ticket</router-link>
+                <router-link v-else to="/userhome/tickets" >History Ticket</router-link>
             </li>
             <li>
                 <router-link to="/home/settings">Setting</router-link>
             </li>
-            <li v-if="Userdata['userRole'] === 'engineer' ">
+            <li v-if="Userdata['userRole'] === 'Engineer Supervisor' ">
                 <router-link to="/home/manage" > Manager </router-link>
                 <!-- <a href="#">Manager</a> -->
             </li>

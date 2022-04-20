@@ -2,18 +2,67 @@
     <div id="create-form-container">
         <!-- <div class>&bull; Keep in Touch &bull;</div> -->
         <div action="#" method="post" id="contact_form">
-            <input type="form-text" placeholder="title" name="telephone" id="telephone_input" required>
+            <input v-model="ticket_title" type="form-text" placeholder="title" name="telephone" id="telephone_input" required>
 
-            <div class="message">
-                <textarea name="message" placeholder="I'd like to ask a question" id="message_input" cols="30" rows="5" required></textarea>
+            <div  class="message">
+                <textarea v-model="ticket_content" name="message" placeholder="I'd like to ask a question" id="message_input" cols="30" rows="5" required></textarea>
             </div>
-
             <div class="submit">
-                <input type="submit" value="Send Message" id="form_button" />
+                <input @click="submmitAndCreate" type="submit" value="Send Message" id="form_button" />
             </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    inject : [
+        'userlogindata'
+    ],
+    data() {
+        return {
+            ticket_title : '',
+            ticket_content : '',
+
+        }
+    },
+    methods: {
+        submmitAndCreate() {
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/tickets/create',{
+                method: 'POST',
+                headers : {
+                    'Content-Type': 'application/json'
+                },
+                body :  JSON.stringify({
+                "customer_id": this.userlogindata['id'],
+                    "service_id": '3',
+                    "ticket_title": this.ticket_title,
+                    "ticket_content": this.ticket_content,
+                    "urgency": 1
+                })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data )
+            })
+        },
+        testCreate() {
+            const temp = {
+                "customer_id": this.userlogindata['id'],
+                    "service_id": '3',
+                    "ticket_title": this.ticket_title,
+                    "ticket_content": this.ticket_content,
+                    "urgency": 1
+            }
+            console.log( temp )
+        }
+    },
+}
+</script>
 
 <style>
     #create-form-container {
