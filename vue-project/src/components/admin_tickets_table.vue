@@ -53,12 +53,10 @@ export default {
     }
     .tickets-table-left {
         /* background-color: rgb(105, 4, 4); */
-       position: relative;   
-        width: 350px;
-        left: 50px;
-        top: 30px;
-     /* padding-left: 10px;
-     padding-right: 10px; */
+       position: relative; 
+       width: 40%;  
+        top: 10px;
+        margin: 5px;
         table-layout: fixed;
     
     }
@@ -90,10 +88,12 @@ export default {
     }
 
     .tickets-table-right {
-       position: relative;   
-        width: 350px;
-        left: 150px;
-        top: 30px;
+       position: relative; 
+       width: 40%;   
+       margin: 5px;
+        /* width: 350px; */
+        /* left: 150px; */
+        top: 10px;
      /* padding-left: 10px;
      padding-right: 10px; */
         table-layout: fixed;

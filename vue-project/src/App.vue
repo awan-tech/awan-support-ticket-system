@@ -2,7 +2,6 @@
     <section>
         
         <header-page></header-page>
-        
         <section>
                 <router-view :user="data" @loginSuccess="changeLoginStatus">
 
@@ -25,10 +24,6 @@ export default {
     components : {
         'header-page' : header
     },
-    
-    props : {
-        
-    },
     data() {
         return {
             data : {
@@ -49,7 +44,6 @@ export default {
                 this.data['userRole'] = role ;
             }        
         }
-
     }
 }
 </script>
