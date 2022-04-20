@@ -10,33 +10,26 @@
             </div>
     
             <li>
-                <router-link to="/home">Home</router-link>
+                <router-link v-if="Userdata['userRole'] === 'customer'" to="/userhome">Home</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'engineer'" to="/home">Home</router-link>
              
             </li>
             <li>
-                <router-link v-if="Userdata['userRole'] === 'customer'" @click="toggleSublist" to="/home/user_table">My customer Ticket</router-link>
-                <router-link v-else @click="toggleSublist" to="/home/admin_tickets_table">My admin Ticket</router-link>
-                <ul v-if="myticketSublist" >
+                <router-link v-if="Userdata['userRole'] === 'engineer'"  to="/home/tickets_table">Ticket</router-link>
+                <router-link v-if="Userdata['userRole'] === 'customer'"  to="/userhome/tickets_table">Ticket</router-link>
+                <!-- <ul v-if="myticketSublist" >
                     <li>
                         <router-link to="/home/tickets" > tickets </router-link>
                     </li>
                     <li>
                         <router-link to="/home/user_tickets" > user_tickets </router-link>
                     </li>
-                </ul>
+                </ul> -->
                
             </li>
             <li >
-                <a @click="toggleMyTicketSublist"  >History Ticket</a>
-                <ul v-if="historySublist">
-                    <li>
-                        <a>已處理</a>
-                    </li>
-                    <li>
-                        <a>正在處理</a>
-                    </li>
-                    
-                </ul>
+                <router-link v-if="Userdata['userRole'] === 'engineer'" to="/home/tickets" >History Ticket</router-link>
+                <router-link v-if="Userdata['userRole'] === 'customer'" to="/userhome/tickets" >History Ticket</router-link>
             </li>
             <li>
                 <router-link to="/home/settings">Setting</router-link>
@@ -72,6 +65,12 @@ export default {
         },
         toggleMyTicketSublist() {
             this.historySublist = ! this.historySublist;
+        },
+        toTickets_table() {
+            this.$router.push('tickets_table')
+        },
+        toTickets() {
+            this.$router.push('tickets') ;
         },
     },
 }

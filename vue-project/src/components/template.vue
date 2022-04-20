@@ -56,9 +56,7 @@ export default {
                 this.checkpassword = data['password'] ;
                 this.role = data['role'] ;
                 // this.all_tickets_content = data;
-                console.log( typeof(this.all_tickets_content) )
-                console.log(this.all_tickets_content)
-                this.all_tickets_content['topics'].push( data )
+                this.all_tickets_content['tickets'] = data['data'] 
                 console.log(this.all_tickets_content)
 
             })
@@ -89,7 +87,6 @@ export default {
         
     }
     .template-right{
-        background-color: rgb(255, 255, 255);
         position: relative ;
         display: flex ;
         flex-direction: row ;

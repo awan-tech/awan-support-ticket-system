@@ -50,7 +50,7 @@ export default {
     ],
     methods: {
         changeTemplatePage() {
-            this.$router.push('create_form')
+            this.$router.push('/userhome/create_form') ;
             this.$emit( 'changepage', 'create-form-page' ) ;
 
         }

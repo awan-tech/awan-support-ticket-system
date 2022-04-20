@@ -35,6 +35,7 @@ export default {
     },    
     data() {
       return {
+        userdata : [],
         userid : '',
         checkuser : '',
         checkpassword : '',
@@ -63,20 +64,39 @@ export default {
                 }
             })
             .then((data) => { 
-                this.checkuser = data['name'] ;
-                this.checkpassword = data['password'] ;
-                this.role = data['role'] ;
+                this.userdata = data['user']
+                // this.checkuser = temp['name'] ;
+                // this.checkpassword = temp['password'] ;
+                // this.role = temp['role'] ;
                 this.loginstatus() ;
             })
       },
       loginstatus() {
-        if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
-          
+        console.log('ttttttttt')
+        console.log( this.userdata  ) ;
+        if ( (this.username === this.userdata[0]['name'] && this.password === this.userdata[0]['password'] ) ) {
+          this.checkuser = this.userdata[0]['name'] ;
+          this.role = this.userdata[0]['role']
           console.log('user and password fit') ;
           this.isUser = 'True' ;
           // console.log( this.username )
           this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
-          this.$router.push('/home')
+          if ( this.role === 'customer')
+            this.$router.push('/userhome')
+          else 
+            this.$router.push('/home')
+        }
+        else if ( (this.username === this.userdata[1]['name'] && this.password === this.userdata[1]['password'] ) ) {
+          this.checkuser = this.userdata[1]['name'] ;
+          this.role = this.userdata[1]['role']
+          console.log('user and password fit') ;
+          this.isUser = 'True' ;
+          // console.log( this.username )
+          this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
+          if ( this.role === 'customer')
+            this.$router.push('/userhome')
+          else 
+            this.$router.push('/home')
         }
         else {
           console.log('faild') ;

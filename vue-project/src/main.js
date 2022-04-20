@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
 import BootstrapVue3 from "bootstrap-vue-3";
 
@@ -19,7 +19,7 @@ import user_tickets from './components/user_tickets.vue'
 import user_tickets_table from './components/user_tickets_table.vue'
 
 const router = createRouter( {
-    history: createWebHistory(),
+    history : createWebHashHistory(process.env.BASE_URL ),
     routes: [
         {path: '/', component: login,alias: '/login' },
         
@@ -31,16 +31,12 @@ const router = createRouter( {
                     component : thomas
                 },
                 {
+                    path : 'tickets_table',
+                    component : admin_tickets_table
+                },
+                {
                     path : 'tickets',
                     component : admin_tickets
-                },
-                {
-                    path : 'user_table',
-                    component : user_table
-                },
-                {
-                    path : 'create_form',
-                    component : create_form
                 },
                 {
                     path : 'settings',
@@ -50,25 +46,39 @@ const router = createRouter( {
                     path : 'manage',
                     component : manage
                 },
-                {
-                    path : 'admin_tickets_table',
-                    component : admin_tickets_table
-                },
-                {
-                    path : 'user_tickets',
-                    component : user_tickets
-                },
-                {
-                    path : 'user_tickets_table',
-                    component : user_tickets_table
-                },
+                
 
             ]
         },
-        {path: '/myticket', component: settings },
+        {path: '/userhome', component: template, 
+        props: (route) => route.params,
+            children:[
+                {
+                    path : '',
+                    component : user_table
+                },
+                {
+                    path : 'tickets_table',
+                    component : user_tickets_table
+                },
+                {
+                    path : 'create_form',
+                    component : create_form
+                },
+                {
+                    path : 'tickets',
+                    component : user_tickets
+                },
+                {
+                    path : 'settings',
+                    component : settings
+                },
+            ]
+        },
         {path: '/NotFound(.*)', redirect:'/'}
     ]
 })
+
 
 const app = createApp(App);
 app.use(BootstrapVue3);
