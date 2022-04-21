@@ -80,16 +80,12 @@ export default {
                   this.loginstatus() ;
                 }
                   
-                // console.log( this.userdata[0] ) ;
-                // this.checkuser = temp['name'] ;
-                // this.checkpassword = temp['password'] ;
-                // this.role = temp['role'] ;
+         
                 
             })
       },
       loginstatus() {
-        // console.log('ttttttttt')
-        // console.log( this.userdata  ) ;
+   
 
         if ( this.role === 'Engineer' || this.role === 'Engineer Supervisor' )
             this.$router.push('/home')
@@ -99,19 +95,7 @@ export default {
         this.$emit( 'loginSuccess', this.userid, this.checkuser, this.role ) ;
 
 
-        // if ( (this.username === this.userdata[0]['name'] && this.password === this.userdata[0]['password'] ) ) {
-        //   this.checkuser = this.userdata[0]['name'] ;
-        //   this.role = this.userdata[0]['role']
-        //   console.log('user and password fit') ;
-        //   this.isUser = 'True' ;
-        //   // console.log( this.username )
-        //   this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
-          
-        // }
-        // else {
-        //   console.log('faild') ;
-        //   this.isUser = 'False' ;
-        // }
+      
 
         this.username = '' ;
         this.password = '' ;
@@ -167,7 +151,7 @@ export default {
   float: right;
   align-items: center;
   background-clip: padding-box;
-  background-color: rgb(153, 164, 112);
+  background-color: #fa6400;
   border: 1px solid transparent;
   color: #000000;
   font-size: 16px;
@@ -185,10 +169,10 @@ export default {
 
 .form-btn:hover,
 .form-btn:focus {
-  background-color: rgb(149, 173, 50);
+  background-color: #fb8332;
 }
 .form-btn:active {
-  background-color: rgb(126, 153, 16);
+  background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }

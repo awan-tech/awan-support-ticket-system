@@ -82,26 +82,6 @@ export default {
 
 
 <style scoped>
-    .template-content{
-        /* background-color: rgb(10, 32, 25); */
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-    }
-    .template-left{
-        height: 100%;
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-    }
-    .template-right{
-        background-color: rgb(255, 255, 255);
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-        width: 100%;
-        height: 100%;
-    }
     #sidebar {
     width: 250px;
     height: 100vh;
@@ -140,14 +120,14 @@ export default {
 
     #sidebar ul li a:hover {
         color: rgb(255, 253, 253);
-        background: rgb(153, 164, 112);
+        background: #797979;
     }
     ul ul li a {
         font-size: 20px;
         font-style: italic;
     }
     .router-link-exact-active {
-        background-color: rgb(153, 164, 112);
+        background-color: #797979;
     }
 
     

@@ -15,9 +15,10 @@
             </button> 
         </div>
         <div id="deadline-table" class="thomas-right" >
-            <div class="deadline-tr">
-                <div class="deadline-td">公告</div>
-                <div class="deadline-td">
+            <li class="deadline-header">
+                <div class="deadline-tr">公告</div>
+                <!-- <div class="deadline -tr">時間</div> -->
+                <div class="deadline-tr">
                     <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
                         <label class="onoffswitch-label" for="myonoffswitch">
@@ -26,11 +27,11 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="deadline-tr" v-for="temp in userdata['tickets']" :key="temp">
-                <div class="deadline-td">{{ temp['ticket_title']}} </div>
-                <div class="deadline-td">{{ temp['ticket_status']}}</div>
-            </div>
+            </li>
+            <li class="deadline-row" v-for="temp in userdata['tickets']" :key="temp">
+                <div class="deadline-td1">{{ temp['ticket_title']}} </div>
+                <div class="deadline-td2">{{ temp['ticket_status']}}</div>
+            </li>
             <!-- <div class="deadline-tr">
                 <div class="deadline-td">123123234535</div>
                 <div class="deadline-td">987</div>
@@ -53,7 +54,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 #pending-btn {
     border: 0;
@@ -62,7 +63,7 @@ export default {
     width: 100%;
     max-width: 140px;
     height: 50px;
-    border-radius: 0.5em;
+    /* border-radius: 0em; */
     overflow: hidden;
     position: relative;
     top: 50px;
@@ -92,11 +93,11 @@ export default {
    }
    
    #pending-btn div:nth-child(2) {
-    background-color: #21dc62;
+    background-color: #dc7221;
    }
    
    #pending-btn:hover {
-    box-shadow: 0 0.625em 1em 0 rgba(33, 220, 98, 0.35);
+    box-shadow: 0 0.625em 1em 0 rgba(220, 148, 33, 0.35);
    }
    
    #pending-btn:hover div {
@@ -140,43 +141,52 @@ export default {
 
    
 #deadline-table {
-    display:table;
+    /* display:table; */
     position: relative;
-    /* top: 150px;
-    left: 300px; */
+    left: -20px;
+    top: 50px;
     border-collapse: collapse;
     font-weight: bold;
+    table-layout: fixed;
+    
+  }
+   #deadline-table li{
+        border-radius: 3px;
+        padding: 25px 30px;
+        display: flex;
+        justify-content: space-between;
+   }
+  #deadline-table .deadline-header{
+       background-color: #e5e5e5;
+     font-size: 20px;
+     font-weight: bolder;
+     text-transform: uppercase;
+     letter-spacing: 0.03em;
 
   }
-  .deadline-tr {
-    display: table-row;
-    height: 30px;
+  #deadline-table .deadline-row {
+   
+    background-color: rgb(255, 255, 255);
+     box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   }
-  .deadline-tr:nth-child(even) {
+  /* .deadline-tr:nth-child(even) {
     background-color: #ccc;
   }
   .deadline-tr:nth-child(odd) {
     background-color: #fafafa;
+  } */
+   #deadline-table .deadline-row:hover {
+    background-color: #797979;
+         color: rgb(255, 255, 255);
   }
-  .deadline-tr:hover {
-    background-color: #E9CFEC;
-  }
-
-
-  .deadline-td {
-      border:1px solid rgb(0, 0, 0);
-      display: table-cell;
-      width: auto;
-      height: 15%;
-      overflow: hidden;
-      white-space: nowrap;
-      background-color: #ffffff;
-      text-align: center;
-      vertical-align: middle;
-      border-right: none;
-      border-left: none;
-      border-top: none;
-  }
+  #deadline-table .deadline-td1 {
+         flex-basis: 80%;
+         overflow: hidden;
+         text-overflow: ellipsis;
+    }
+    #deadline-table .deadline-td12 {
+        flex-basis: 10%;
+    }
   
 
   .onoffswitch {
