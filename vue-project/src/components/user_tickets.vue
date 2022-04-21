@@ -109,7 +109,7 @@ export default {
          
     }
     .tickets-title {
-        background-color: #ffffff;
+      
         display: flex ;
         flex-direction: row;
         position: relative ;
