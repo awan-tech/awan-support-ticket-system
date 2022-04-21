@@ -11,35 +11,11 @@
                     <div class="user-table-tr">進行中</div>
                     <div class="user-table-tr">更新時間</div>
                 </li>
-                <!-- {{ userdata['tickets'] }} -->
-                <li class="table-row" v-for="temp in userdata['tickets']" :key="temp">
-                    <!-- {{ temp.ticket }} -->
+                <li class="table-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_name'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
                      
                      <div class="user-table-td2" data-label="Payment Status">{{ temp['ticket_status'] }}</div>
                 </li>
-
-                 <!-- <li class="table-row">
-                     <div class="user-table-td1"  data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-                     
-                     <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>
-                <li class="table-row">
-                    <div class="user-table-td1" data-label="Job Id">42442</div>
-                    
-                    <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>
-                <li class="table-row">
-                    <div class="user-table-td1" data-label="Job Id">42257</div>
-                   
-                    <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>
-                <li class="table-row">
-                    <div class="user-table-td1" data-label="Job Id">42311</div>
-            
-                    <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>    -->
-                        
                 </div>
         </div>
     </div>
@@ -49,16 +25,54 @@
 
 <script>
 export default {
+    provide() {
+        return {
+            ticketcontent : this.oneTicket 
+        }
+    },
     inject : [
-        'userdata'
+        'userdata',
+        'alltickets'
     ],
     emits:[
-        'changepage'
+        'changepage',
+        'all_ticket_contents'
     ],
+    data() {
+        return {
+            oneTicket : {}
+        }
+    },
     methods: {
         changeTemplatePage() {
             this.$router.push('/userhome/create_form') ;
             this.$emit( 'changepage', 'create-form-page' ) ;
+        },
+        viewTicket( ticketid, tickettitle, ticket_admin_name ) {
+            // console.log( ticketid ) ;
+            // var url = 'https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket/content?ticket_id='
+            // url += String( ticketid)  ;
+            // console.log( url )
+            // fetch(url,{
+            // method: 'GET',
+            // headers : {
+            //     'Content-Type': 'application/json'
+            // }
+            // })
+            // .then( (response) => {
+            //     if ( response.ok ) {
+            //         return response.json() ;
+            //     }
+            // })
+            // .then((data) => { 
+            //     console.log( data['data'] ) ;
+            //     this.oneTicket['ticketTitle'] = tickettitle ;
+            //     this.oneTicket['ticketCustomer'] = this.userdata['username']
+            //     this.oneTicket['createTime'] = data['data'][0]['created_at']
+            // })
+
+            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
+            this.$router.push('/userhome/tickets')
         }
     }
 }

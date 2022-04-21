@@ -5,22 +5,10 @@
             <li class="table-header">
                     <div class="tickets-table-left-tr">待處理</div>
             </li>
-            <li class="table-row" v-for="data in doing" :key="data">
+            <li class="table-row" v-for="data in alltickets['doing']" :key="data">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
             <!-- <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
                      <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
             </li> -->
 
@@ -29,7 +17,7 @@
             <li class="table-header">
                     <div class="tickets-table-right-tr">已處理</div>
             </li>
-            <li class="table-row" v-for="data in undo" :key="data">
+            <li class="table-row" v-for="data in alltickets['done']" :key="data">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
             <!-- <li class="table-row">
@@ -47,7 +35,8 @@
 <script>
 export default {
     inject : [
-        'userdata'
+        'userdata',
+        'alltickets'
     ],
     data() {
         return {
@@ -64,7 +53,7 @@ export default {
         }
     },
     mounted() {
-        this.classify() ;
+        // this.classify() ;
     },
 }
 </script>

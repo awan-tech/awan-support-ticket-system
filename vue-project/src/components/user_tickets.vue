@@ -4,12 +4,12 @@
             <table>
                 <tr>
                     <td>
-                        ticketname:
+                        ticketname: {{ ticketcontent['title'] }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        customrname:
+                        customrname: {{ userdata['username'] }}
                     </td>
                     <td>
                         負責人:
@@ -57,7 +57,45 @@
 
 <script>
 export default {
-    
+    inject : [
+        'userdata',
+        'alltickets',
+        'ticketcontent'
+    ],
+    methods : {
+        fetchTicket() {
+
+            var url = 'https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket/content?ticket_id='
+            url += String( this.ticketcontent['ticketid'])  ;
+            console.log( url )
+            fetch(url,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            }
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data['data'] ) ;
+                // this.myticket['ticketTitle'] = tickettitle ;
+                // this.myticket['ticketCustomer'] = this.userdata['username']
+                // this.myticket['createTime'] = data['data'][0]['created_at']
+            })
+
+        }
+    },
+    data() {
+        return {
+            myticket : {}
+        }
+    },
+    mounted() {
+        this.fetchTicket() ;
+    }
 }
 </script>
 

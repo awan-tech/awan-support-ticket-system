@@ -5,7 +5,7 @@
             <li class="table-header">
                     <div class="tickets-table-left-tr">尚未處理</div>
             </li>
-            <li class="table-row" v-for="data in undo" :key="data">
+            <li class="table-row" v-for="data in alltickets['undo']" :key="data">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
             <!-- <li class="table-row">
@@ -29,7 +29,7 @@
             <li class="table-header">
                     <div class="tickets-table-right-tr">待處理</div>
             </li>
-            <li class="table-row" v-for="data in doing" :key="data">
+            <li class="table-row" v-for="data in alltickets['doing']" :key="data">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
             <!-- <li class="table-row">
@@ -47,7 +47,8 @@
 <script>
 export default {
     inject : [
-        'userdata'
+        'userdata',
+        'alltickets',
     ],
     data() {
         return {
@@ -64,7 +65,7 @@ export default {
         }
     },
     mounted() {
-        this.classify() ;
+        // this.classify() ;
     },
 }
 </script>

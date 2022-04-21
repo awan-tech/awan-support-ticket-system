@@ -46,8 +46,6 @@ const router = createRouter( {
                     path : 'manage',
                     component : manage
                 },
-                
-
             ]
         },
         {path: '/userhome', component: template, 
