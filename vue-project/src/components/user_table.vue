@@ -11,7 +11,7 @@
                     <div class="user-table-tr">進行中</div>
                     <div class="user-table-tr">更新時間</div>
                 </li>
-                <li class="table-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_name'])">
+                <li class="table-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
                      
                      <div class="user-table-td2" data-label="Payment Status">{{ temp['ticket_status'] }}</div>

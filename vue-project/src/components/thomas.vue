@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </li>
-            <li class="deadline-row" v-for="temp in userdata['tickets']" :key="temp">
+            <li class="deadline-row" v-for="temp in alltickets['undo']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
                 <div class="deadline-td2">{{ temp['ticket_status']}}</div>
             </li>
@@ -48,9 +48,24 @@
 
 <script>
 export default {
-    inject : [
-        'userdata'
+    emits:[
+        'all_ticket_contents'
     ],
+    data() {
+        return {
+            oneTicket : {}
+        }
+    },
+    inject : [
+        'userdata',
+        'alltickets'
+    ],
+    methods: {
+        viewTicket( ticketid, tickettitle, ticket_admin_name ) {
+            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
+            this.$router.push('/userhome/tickets')
+        }
+    },
 }
 </script>
 

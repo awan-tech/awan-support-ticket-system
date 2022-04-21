@@ -12,12 +12,12 @@
                         customrname: {{ userdata['username'] }}
                     </td>
                     <td>
-                        負責人:
-                    </td>
+                        負責人:  {{ ticketcontent['admin_name'] }}
+                    </td> 
                 </tr>
                 <tr>
                     <td>
-                        time:
+                        time: {{ myticket['createTime'] }}
                     </td>
                 </tr>
             </table>
@@ -26,10 +26,10 @@
         <div class="tickets-user-dialogue">
             <table>
                 <tr>
-                    <th>yy/ds</th>
+                    <th>{{ myticket['createTime']}}</th>
                 </tr>
                 <tr>
-                    <th>問題內容:</th>
+                    <th>問題內容: {{ myticket['content']}} </th>
                 </tr>
                     
                  
@@ -38,8 +38,8 @@
         <div class="tickets-thomas-dialogue">
             <table>
                 <tr>
-                    <th>(工程師名字)</th>
-                     <th>yy/ds</th>
+                    <th>{{ ticketcontent['admin_name'] }}</th>
+                     <th>{{ myticket['createTime']}} </th>
                 </tr>
                 <tr>
                     <th>回覆內容:</th>
@@ -83,7 +83,8 @@ export default {
                 console.log( data['data'] ) ;
                 // this.myticket['ticketTitle'] = tickettitle ;
                 // this.myticket['ticketCustomer'] = this.userdata['username']
-                // this.myticket['createTime'] = data['data'][0]['created_at']
+                this.myticket['createTime'] = data['data'][0]['created_at'] ;
+                this.myticket['content'] = data['data'][0]['ticket_content'] ;
             })
 
         }

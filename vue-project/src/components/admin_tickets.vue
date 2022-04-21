@@ -66,18 +66,44 @@ export default {
         'ticket'
     ],
     inject : [
-        'userdata'
+        'userdata',
+        'alltickets',
+        'ticketcontent'
     ],
+    methods : {
+        fetchTicket() {
+
+            var url = 'https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket/content?ticket_id='
+            url += String( this.ticketcontent['ticketid'])  ;
+            console.log( url )
+            fetch(url,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            }
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data['data'] ) ;
+                // this.myticket['ticketTitle'] = tickettitle ;
+                // this.myticket['ticketCustomer'] = this.userdata['username']
+                this.myticket['createTime'] = data['data'][0]['created_at'] ;
+                this.myticket['content'] = data['data'][0]['ticket_content'] ;
+            })
+
+        }
+    },
     data() {
         return {
-            data: {
-                TicketTitle : 'i want to ask',
-                Deadline : '03/26 15:56:02',
-                CustomerName : 'Daniel',
-                Engineer : 'Larry',
-                CreatedTime : '03/25 15:56:02'
-            }
+            myticket : {}
         }
+    },
+    mounted() {
+        this.fetchTicket() ;
     }
 }
 </script>
