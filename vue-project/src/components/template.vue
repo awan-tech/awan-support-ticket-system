@@ -4,7 +4,7 @@
                 <side-bar :Userdata="user"> </side-bar>
             </div>
             <div class="template-right">
-                <router-view></router-view>
+                <router-view @all_ticket_contents="transferTicketId"></router-view>
             </div>
             
         </div>
@@ -23,7 +23,9 @@ export default {
     },
     provide(){
         return {
-          userdata : this.all_tickets_content 
+          userdata : this.all_tickets_content,
+          alltickets: this.fetchalltickets,
+          ticketcontent : this.oneTicket 
         }
     },
     components : {
@@ -32,19 +34,26 @@ export default {
     data() {
         return {
             status : false,
-            all_tickets_content : { topics: [ '123']}
+            all_tickets_content : { topics: [ '123']},
+            fetchalltickets : {},
+            oneTicket : {}
         }
     },
     methods : {
-       getAllticket() {
-            fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
-            method: 'GET',
+
+//         35,Processing
+// 36,Not Processed
+// 37,Proccessed
+        getAllticket() {
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Not Processed',{
+            method: 'POST',
             headers : {
                 'Content-Type': 'application/json'
             },
-            // body :  JSON.stringify({
-            //   name : 'Larry'
-            // })
+            body :  JSON.stringify({
+                "user_id": this.user['id'],
+                "role": this.user['userRole']
+            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -52,18 +61,62 @@ export default {
                 }
             })
             .then((data) => { 
-                this.all_tickets_content['tickets'] = data['data'] 
-                console.log(this.all_tickets_content['tickets'])
-
+                console.log ('undo')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['undo'] = data['data'] ;
             })
+
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processing',{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body :  JSON.stringify({
+                "user_id": this.user['id'],
+                "role": this.user['userRole']
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('doing')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['doing'] = data['data'] ;
+            })
+
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processed',{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body :  JSON.stringify({
+                "user_id": this.user['id'],
+                "role": this.user['userRole']
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('done')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['done'] = data['data'] ;
+            })
+        },
+        transferTicketId( ticketid, tickettitle, ticket_admin_name) {
+            this.oneTicket['ticketid'] = ticketid ;
+            this.oneTicket['title'] = tickettitle ;
+            this.oneTicket['admin_name'] = ticket_admin_name ;
         }
     },
     mounted() {
         this.getAllticket()
     },
-    computed: {
-        
-    }
 }
 </script>
 
