@@ -110,7 +110,7 @@ export default {
          
     }
     .tickets-title {
-        background-color: #ffffff;
+      
         display: flex ;
         flex-direction: row;
         position: relative ;
@@ -121,6 +121,8 @@ export default {
         /* border-top: 30px; */
        margin-bottom:3% ;
        margin-top: 3%;
+       font-weight: bolder;
+       font-size: 20px;
         
     }
     .tickets-title table{
