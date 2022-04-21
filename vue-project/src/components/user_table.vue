@@ -14,7 +14,7 @@
                 <li class="table-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
                      
-                     <div class="user-table-td2" data-label="Payment Status">{{ temp['ticket_status'] }}</div>
+                     <div class="user-table-td2" data-label="Payment Status">{{ temp['created_at'] }}</div>
                 </li>
                 </div>
         </div>
@@ -49,28 +49,6 @@ export default {
             this.$emit( 'changepage', 'create-form-page' ) ;
         },
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
-            // console.log( ticketid ) ;
-            // var url = 'https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket/content?ticket_id='
-            // url += String( ticketid)  ;
-            // console.log( url )
-            // fetch(url,{
-            // method: 'GET',
-            // headers : {
-            //     'Content-Type': 'application/json'
-            // }
-            // })
-            // .then( (response) => {
-            //     if ( response.ok ) {
-            //         return response.json() ;
-            //     }
-            // })
-            // .then((data) => { 
-            //     console.log( data['data'] ) ;
-            //     this.oneTicket['ticketTitle'] = tickettitle ;
-            //     this.oneTicket['ticketCustomer'] = this.userdata['username']
-            //     this.oneTicket['createTime'] = data['data'][0]['created_at']
-            // })
-
             this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
             this.$router.push('/userhome/tickets')
         }

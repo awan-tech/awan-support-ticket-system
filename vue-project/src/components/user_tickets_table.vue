@@ -5,7 +5,7 @@
             <li class="table-header">
                     <div class="tickets-table-left-tr">待處理</div>
             </li>
-            <li class="table-row" v-for="data in alltickets['doing']" :key="data">
+            <li class="table-row" v-for="data in alltickets['doing']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])" >
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
             <!-- <li class="table-row">
@@ -17,7 +17,7 @@
             <li class="table-header">
                     <div class="tickets-table-right-tr">已處理</div>
             </li>
-            <li class="table-row" v-for="data in alltickets['done']" :key="data">
+            <li class="table-row" v-for="data in alltickets['done']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
             <!-- <li class="table-row">
@@ -45,11 +45,10 @@ export default {
         }
     },
     methods: {
-        classify() {
-            this.doing = this.userdata['tickets'].filter( temp => temp.ticket_status == 'doing');
-            this.done = this.userdata['tickets'].filter( temp => temp.ticket_status == 'undo');
-            console.log( ' what is doing ')
-            console.log( this.doing )
+        viewTicket( ticketid, tickettitle, ticket_admin_name ) {
+      
+            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
+            this.$router.push('/userhome/tickets')
         }
     },
     mounted() {
