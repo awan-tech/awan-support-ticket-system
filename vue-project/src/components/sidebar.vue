@@ -79,26 +79,6 @@ export default {
 
 
 <style scoped>
-    .template-content{
-        /* background-color: rgb(10, 32, 25); */
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-    }
-    .template-left{
-        height: 100%;
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-    }
-    .template-right{
-        background-color: rgb(255, 255, 255);
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-        width: 100%;
-        height: 100%;
-    }
     #sidebar {
     width: 250px;
     height: 100vh;

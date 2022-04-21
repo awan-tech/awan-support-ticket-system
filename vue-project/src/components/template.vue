@@ -75,25 +75,25 @@ export default {
 
 <style>
     .template-content{
-        /* background-color: rgb(10, 32, 25); */
+        
         position: relative ;
         display: flex ;
         flex-direction: row ;
         
+        
     }
     .template-left{
-        
         position: relative ;
         display: flex ;
         flex-direction: row ;
         
     }
     .template-right{
-        /* background-color: rgb(255, 255, 255); */
         position: relative ;
         display: flex ;
         flex-direction: row ;
         width: 100%;
+
         background:url(../../public/background.png);
         
     }
