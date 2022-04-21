@@ -120,14 +120,14 @@ export default {
 
     #sidebar ul li a:hover {
         color: rgb(255, 253, 253);
-        background: rgb(153, 164, 112);
+        background: #797979;
     }
     ul ul li a {
         font-size: 20px;
         font-style: italic;
     }
     .router-link-exact-active {
-        background-color: rgb(153, 164, 112);
+        background-color: #797979;
     }
 
     

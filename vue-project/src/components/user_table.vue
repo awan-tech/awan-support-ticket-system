@@ -94,7 +94,7 @@ export default {
      box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
     }
     .user-table .table-row:hover {
-         background-color: rgb(153, 164, 112);
+         background-color: #797979;
          color: rgb(255, 253, 253);
     }
      .user-table .user-table-tr {
@@ -139,7 +139,7 @@ export default {
     .user-myticket-btn {
         display: inline-block;
         border-radius: 4px;
-        background-color: rgb(153, 164, 112);
+        background-color: #797979;
         border: none;
         color: #FFFFFF;
         text-align: center;

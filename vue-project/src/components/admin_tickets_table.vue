@@ -103,7 +103,7 @@ export default {
      box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
     }
     .tickets-table-left .table-row:hover {
-         background-color: rgb(153, 164, 112);
+         background-color: #797979;
          color: rgb(255, 253, 253);
     }
     .tickets-table-left .user-table-td1 {
@@ -141,7 +141,7 @@ export default {
      box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
     }
     .tickets-table-right .table-row:hover {
-         background-color: rgb(153, 164, 112);
+         background-color: #797979;
          color: rgb(255, 253, 253);
     }
     .tickets-table-right .user-table-td1 {

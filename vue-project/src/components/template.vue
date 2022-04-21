@@ -73,6 +73,7 @@ export default {
         position: relative ;
         display: flex ;
         flex-direction: row ;
+        overflow:auto;
         
         
     }
@@ -80,6 +81,8 @@ export default {
         position: relative ;
         display: flex ;
         flex-direction: row ;
+        background-color: #e5e5e5;
+       
         
     }
     .template-right{
@@ -87,6 +90,7 @@ export default {
         display: flex ;
         flex-direction: row ;
         width: 100%;
+        overflow:auto;
 
         background:url(../../public/background.png);
         

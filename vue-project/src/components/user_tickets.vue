@@ -71,7 +71,7 @@ export default {
          
     }
     .tickets-title {
-        background-color: #FDF5E6;
+        background-color: #ffffff;
         display: flex ;
         flex-direction: row;
         position: relative ;
@@ -93,7 +93,7 @@ export default {
     } */
     
     .tickets-user-dialogue {
-        background-color: #FDF5E6;
+        background-color: #FFEBCD;
         display: flex ;
         flex-direction: row;
         position: relative ;
@@ -111,7 +111,7 @@ export default {
     }
 
      .tickets-thomas-dialogue {
-        background-color: rgb(202, 212, 166);
+        background-color: #CFECEC;
         display: flex ;
         flex-direction: row;
         position: relative ;
@@ -139,7 +139,7 @@ export default {
     .user-ticket-btn{
         display: inline-block;
         border-radius: 4px;
-        background-color: rgb(153, 164, 112);
+        background-color: #fa6400;
         border: none;
         color: #FFFFFF;
         text-align: center;
