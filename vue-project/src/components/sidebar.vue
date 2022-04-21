@@ -6,42 +6,39 @@
         
         <ul class="list-unstyled">
             <div>
-                <li>Hi,{{ Userdata['username'] }} </li>
+                <li>Hi, {{ Userdata['username'] }},  {{ Userdata['userRole'] }} </li>
             </div>
     
             <li>
-                <router-link to="/home">Home</router-link>
+                <router-link v-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home">Home</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer'" to="/home">Home</router-link>
+                <router-link v-else to="/userhome">Home</router-link>
              
             </li>
             <li>
-                <router-link v-if="Userdata['userRole'] === 'customer'" @click="toggleSublist" to="/home/user_table">My customer Ticket</router-link>
-                <router-link v-else @click="toggleSublist" to="/home/admin_tickets_table">My admin Ticket</router-link>
-                <ul v-if="myticketSublist" >
+                <router-link v-if="Userdata['userRole'] === 'Engineer'"  to="/home/tickets_table">Ticket</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'"  to="/home/tickets_table">Ticket</router-link>
+                <router-link v-else  to="/userhome/tickets_table">Ticket</router-link>
+                
+                <!-- <ul v-if="myticketSublist" >
                     <li>
                         <router-link to="/home/tickets" > tickets </router-link>
                     </li>
                     <li>
                         <router-link to="/home/user_tickets" > user_tickets </router-link>
                     </li>
-                </ul>
+                </ul> -->
                
             </li>
             <li >
-                <a @click="toggleMyTicketSublist"  >History Ticket</a>
-                <ul v-if="historySublist">
-                    <li>
-                        <a>已處理</a>
-                    </li>
-                    <li>
-                        <a>正在處理</a>
-                    </li>
-                    
-                </ul>
+                <router-link v-if="Userdata['userRole'] === 'Engineer'" to="/home/tickets" >History Ticket</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home/tickets" >History Ticket</router-link>
+                <router-link v-else to="/userhome/tickets" >History Ticket</router-link>
             </li>
             <li>
                 <router-link to="/home/settings">Setting</router-link>
             </li>
-            <li v-if="Userdata['userRole'] === 'engineer' ">
+            <li v-if="Userdata['userRole'] === 'Engineer Supervisor' ">
                 <router-link to="/home/manage" > Manager </router-link>
                 <!-- <a href="#">Manager</a> -->
             </li>
@@ -72,6 +69,12 @@ export default {
         },
         toggleMyTicketSublist() {
             this.historySublist = ! this.historySublist;
+        },
+        toTickets_table() {
+            this.$router.push('tickets_table')
+        },
+        toTickets() {
+            this.$router.push('tickets') ;
         },
     },
 }

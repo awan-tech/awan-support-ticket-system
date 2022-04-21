@@ -27,23 +27,31 @@
                     </div>
                 </div>
             </div>
-            <div class="deadline-tr">
-                <div class="deadline-td">1231232113234343</div>
-                <div class="deadline-td">987</div>
+            <div class="deadline-tr" v-for="temp in userdata['tickets']" :key="temp">
+                <div class="deadline-td">{{ temp['ticket_title']}} </div>
+                <div class="deadline-td">{{ temp['ticket_status']}}</div>
             </div>
-            <div class="deadline-tr">
+            <!-- <div class="deadline-tr">
                 <div class="deadline-td">123123234535</div>
                 <div class="deadline-td">987</div>
             </div>
             <div class="deadline-tr">
                 <div class="deadline-td">1231232325353543</div>
                 <div class="deadline-td">987</div>
-            </div>
+            </div> -->
 
         </div>
 
     </div>
 </template>
+
+<script>
+export default {
+    inject : [
+        'userdata'
+    ],
+}
+</script>
 
 <style>
 

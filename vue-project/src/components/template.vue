@@ -52,14 +52,8 @@ export default {
                 }
             })
             .then((data) => { 
-                this.checkuser = data['name'] ;
-                this.checkpassword = data['password'] ;
-                this.role = data['role'] ;
-                // this.all_tickets_content = data;
-                console.log( typeof(this.all_tickets_content) )
-                console.log(this.all_tickets_content)
-                this.all_tickets_content['topics'].push( data )
-                console.log(this.all_tickets_content)
+                this.all_tickets_content['tickets'] = data['data'] 
+                console.log(this.all_tickets_content['tickets'])
 
             })
         }

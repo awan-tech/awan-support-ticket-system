@@ -21,13 +21,18 @@
 import header from './components/header.vue'
 
 export default {
+    provide(){
+        return {
+          userlogindata : this.data 
+        }
+    },
     components : {
         'header-page' : header
     },
     data() {
         return {
             data : {
-                login : false,
+                id : '',
                 userRole : '',
                 username : ''
             }
@@ -36,10 +41,10 @@ export default {
         
     },
     methods : {
-        changeLoginStatus(status, name, role) {
+        changeLoginStatus(id, name, role) {
             console.log( 'test1111111' ) ;
-            if ( status != 'null') {
-                this.data['login'] = true ;
+            if ( id != 'null') {
+                this.data['id'] = id ;
                 this.data['username'] = name ;
                 this.data['userRole'] = role ;
             }        

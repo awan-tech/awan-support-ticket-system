@@ -9,11 +9,18 @@
             <div class="user-table">
                 <li class="table-header">
                     <div class="user-table-tr">進行中</div>
-
                     <div class="user-table-tr">更新時間</div>
                 </li>
-                 <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
+                <!-- {{ userdata['tickets'] }} -->
+                <li class="table-row" v-for="temp in userdata['tickets']" :key="temp">
+                    <!-- {{ temp.ticket }} -->
+                    <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
+                     
+                     <div class="user-table-td2" data-label="Payment Status">{{ temp['ticket_status'] }}</div>
+                </li>
+
+                 <!-- <li class="table-row">
+                     <div class="user-table-td1"  data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
                      
                      <div class="user-table-td2" data-label="Payment Status">Pending</div>
                 </li>
@@ -31,7 +38,7 @@
                     <div class="user-table-td1" data-label="Job Id">42311</div>
             
                     <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>   
+                </li>    -->
                         
                 </div>
         </div>
@@ -42,11 +49,15 @@
 
 <script>
 export default {
+    inject : [
+        'userdata'
+    ],
     emits:[
         'changepage'
     ],
     methods: {
         changeTemplatePage() {
+            this.$router.push('/userhome/create_form') ;
             this.$emit( 'changepage', 'create-form-page' ) ;
         }
     }

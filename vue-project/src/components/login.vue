@@ -35,6 +35,7 @@ export default {
     },    
     data() {
       return {
+        userdata : [],
         userid : '',
         checkuser : '',
         checkpassword : '',
@@ -48,14 +49,15 @@ export default {
       
       getData() {
         console.log('test');
-         fetch('https://mbsgp811h1.execute-api.us-east-2.amazonaws.com/test/helloworld',{
-            method: 'GET',
+         fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/login',{
+            method: 'POST',
             headers : {
                 'Content-Type': 'application/json'
             },
-            // body :  JSON.stringify({
-            //   name : 'Larry'
-            // })
+            body :  JSON.stringify({
+               'account' : this.username,
+               'password' : this.password
+            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -63,26 +65,53 @@ export default {
                 }
             })
             .then((data) => { 
-                var temp = data['user']
-                this.checkuser = temp['name'] ;
-                this.checkpassword = temp['password'] ;
-                this.role = temp['role'] ;
-                this.loginstatus() ;
+                
+                if ( data['data']['error'] == '無此帳號或密碼' ) {
+                  console.log( '登入失敗') ;
+                  this.isUser = 'False'
+                }
+                else {
+                  console.log( '登入成功')
+                  this.checkuser = data['data']['name']
+                  this.role = data['data']['role']
+                  this.userid = data['data']['id']
+
+
+                  this.loginstatus() ;
+                }
+                  
+                // console.log( this.userdata[0] ) ;
+                // this.checkuser = temp['name'] ;
+                // this.checkpassword = temp['password'] ;
+                // this.role = temp['role'] ;
+                
             })
       },
       loginstatus() {
-        if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
+        // console.log('ttttttttt')
+        // console.log( this.userdata  ) ;
+
+        if ( this.role === 'Engineer' || this.role === 'Engineer Supervisor' )
+            this.$router.push('/home')
+        else 
+          this.$router.push('/userhome')
+
+        this.$emit( 'loginSuccess', this.userid, this.checkuser, this.role ) ;
+
+
+        // if ( (this.username === this.userdata[0]['name'] && this.password === this.userdata[0]['password'] ) ) {
+        //   this.checkuser = this.userdata[0]['name'] ;
+        //   this.role = this.userdata[0]['role']
+        //   console.log('user and password fit') ;
+        //   this.isUser = 'True' ;
+        //   // console.log( this.username )
+        //   this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
           
-          console.log('user and password fit') ;
-          this.isUser = 'True' ;
-          // console.log( this.username )
-          this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
-          this.$router.push('/home')
-        }
-        else {
-          console.log('faild') ;
-          this.isUser = 'False' ;
-        }
+        // }
+        // else {
+        //   console.log('faild') ;
+        //   this.isUser = 'False' ;
+        // }
 
         this.username = '' ;
         this.password = '' ;
