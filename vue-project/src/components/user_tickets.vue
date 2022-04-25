@@ -4,12 +4,12 @@
             <table>
                 <tr>
                     <td>
-                        ticketname: {{ ticketcontent['title'] }}
+                        Ticketname: {{ ticketcontent['title'] }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        customrname: {{ userdata['username'] }}
+                        Customername: {{ userdata['username'] }}
                     </td>
                     <td>
                         負責人:  {{ ticketcontent['admin_name'] }}
@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td>
-                        time: {{ myticket['createTime'] }}
+                        Time: {{ myticket['createTime'] }}
                     </td>
                 </tr>
             </table>

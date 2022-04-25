@@ -1,7 +1,7 @@
 <template>
         <div class="template-content">
             <div class="template-left">
-                <side-bar :Userdata="user"> </side-bar>
+                <side-bar :Userdata="user" @redirect_home="againgetticket()" > </side-bar>
             </div>
             <div class="template-right">
                 <router-view @all_ticket_contents="transferTicketId"></router-view>
@@ -112,6 +112,10 @@ export default {
             this.oneTicket['ticketid'] = ticketid ;
             this.oneTicket['title'] = tickettitle ;
             this.oneTicket['admin_name'] = ticket_admin_name ;
+        },
+        againgetticket() {
+            console.log('reload tickets')
+            this.getAllticket()
         }
     },
     mounted() {

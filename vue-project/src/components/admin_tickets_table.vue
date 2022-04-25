@@ -5,39 +5,18 @@
             <li class="table-header">
                     <div class="tickets-table-left-tr">尚未處理</div>
             </li>
-            <li class="table-row" v-for="data in alltickets['undo']" :key="data">
+            <li class="table-row" v-for="data in alltickets['undo']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
-            <!-- <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li> -->
-
+         
         </div>
         <div class="tickets-table-right">
             <li class="table-header">
                     <div class="tickets-table-right-tr">待處理</div>
             </li>
-            <li class="table-row" v-for="data in alltickets['doing']" :key="data">
+            <li class="table-row" v-for="data in alltickets['doing']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
-            <!-- <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li>
-            <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
-            </li> -->
 
             
         </div>
@@ -57,11 +36,10 @@ export default {
         }
     },
     methods: {
-        classify() {
-            this.doing = this.userdata['tickets'].filter( temp => temp.ticket_status == 'doing');
-            this.undo = this.userdata['tickets'].filter( temp => temp.ticket_status == 'undo');
-            console.log( ' what is doing ')
-            console.log( this.doing )
+        viewTicket( ticketid, tickettitle, ticket_admin_name ) {
+      
+            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
+            this.$router.push('/userhome/tickets')
         }
     },
     mounted() {

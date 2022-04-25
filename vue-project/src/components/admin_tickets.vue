@@ -4,23 +4,23 @@
             <table>
                 <tr>
                     <td>
-                        ticketname:
+                        Ticketname: {{ ticketcontent['title'] }}
                     </td>
                     <td>
-                        deadline:
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        customrname:
-                    </td>
-                    <td>
-                        負責人:
+                        Deadline: 
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        time:
+                        Customername:  
+                    </td>
+                    <td>
+                        負責人: {{ ticketcontent['admin_name'] }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Time:
                     </td>
                     <td>
                         緊急程度:

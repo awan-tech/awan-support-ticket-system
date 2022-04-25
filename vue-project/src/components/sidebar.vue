@@ -12,7 +12,7 @@
             <li>
                 <router-link v-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home">Home</router-link>
                 <router-link v-else-if="Userdata['userRole'] === 'Engineer'" to="/home">Home</router-link>
-                <router-link v-else to="/userhome">Home</router-link>
+                <a v-else href="#/userhome" @click="make_redirect"> Home</a>
              
             </li>
             <li>
@@ -52,6 +52,9 @@
 
 <script>
 export default {
+    emits:[
+        'redirect_home'
+    ],
     props: {
         Userdata: {
             type: Object,
@@ -76,6 +79,10 @@ export default {
         toTickets() {
             this.$router.push('tickets') ;
         },
+        make_redirect() {
+            this.$emit( 'redirect_home' )
+            this.$router.push('userhome') ;
+        }
     },
 }
 </script>

@@ -32,14 +32,6 @@
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
                 <div class="deadline-td2">{{ temp['created_at']}}</div>
             </li>
-            <!-- <div class="deadline-tr">
-                <div class="deadline-td">123123234535</div>
-                <div class="deadline-td">987</div>
-            </div>
-            <div class="deadline-tr">
-                <div class="deadline-td">1231232325353543</div>
-                <div class="deadline-td">987</div>
-            </div> -->
 
         </div>
 
