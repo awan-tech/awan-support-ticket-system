@@ -45,7 +45,7 @@ export default {
 // 36,Not Processed
 // 37,Proccessed
         getAllticket() {
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Not Processed',{
+            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Not Processed',{
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ export default {
                 this.fetchalltickets['undo'] = data['data'] ;
             })
 
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processing',{
+            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Processing',{
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ export default {
                 this.fetchalltickets['doing'] = data['data'] ;
             })
 
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processed',{
+            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Processed',{
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ export default {
         display: flex ;
         flex-direction: row ;
         overflow:auto;
-        
+        height: 120%;
         
     }
     .template-left{
@@ -139,7 +139,7 @@ export default {
         display: flex ;
         flex-direction: row ;
         background-color: #e5e5e5;
-       
+        height: 100%;
         
     }
     .template-right{

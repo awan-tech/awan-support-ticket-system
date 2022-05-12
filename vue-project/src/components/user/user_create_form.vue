@@ -32,7 +32,7 @@ export default {
                 alert('請填好表格')
                 return false ;
             }
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/tickets/create',{
+            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/create',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json'

@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
     #sidebar {
-    width: 250px;
+    width: 160px;
     height: 100vh;
     background-color:#e5e5e5;
     color: #493D26;
@@ -98,6 +98,7 @@ export default {
     float: left;
     position: relative;
     top: -8px;
+    text-align: center;
     }
     #sidebar.active {
         margin-left: -200px;
@@ -136,6 +137,8 @@ export default {
     .router-link-exact-active {
         background-color: #797979;
     }
-
+    .list-unstyled li{
+        height: 10%;
+    }
     
 </style>

@@ -14,7 +14,7 @@
                     <button @click.prevent="getData" type="submit" class="form-btn" >登入 | Login</button>
                 </div>
                 <div v-if="isUser === 'False'">
-                    帳號密碼錯誤
+                    <p style="color:red">帳號密碼錯誤  </p>
                 </div>
                 <div v-else-if="isUser === 'True'">
                     登入成功
@@ -49,7 +49,7 @@ export default {
       
       getData() {
         console.log('test');
-         fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/login',{
+         fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/login',{
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json'

@@ -6,18 +6,24 @@
                     <td>
                         Ticketname: {{ ticketcontent['title'] }}
                     </td>
+                    <td>
+                        Deadline: 
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        Customername: {{ userdata['username'] }}
+                        Customername:  
                     </td>
                     <td>
-                        負責人:  {{ ticketcontent['admin_name'] }}
-                    </td> 
+                        負責人: {{ ticketcontent['admin_name'] }}
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        Time: {{ myticket['createTime'] }}
+                        Time:
+                    </td>
+                    <td>
+                        緊急程度:
                     </td>
                 </tr>
             </table>
@@ -26,10 +32,10 @@
         <div class="tickets-user-dialogue">
             <table>
                 <tr>
-                    <th>{{ myticket['createTime']}}</th>
+                    <th>yy/ds</th>
                 </tr>
                 <tr>
-                    <th>問題內容: {{ myticket['content']}} </th>
+                    <th>問題內容:</th>
                 </tr>
                     
                  
@@ -38,11 +44,11 @@
         <div class="tickets-thomas-dialogue">
             <table>
                 <tr>
-                    <th>{{ ticketcontent['admin_name'] }}</th>
-                     <th>{{ myticket['createTime']}} </th>
+                    <th>(工程師名字)</th>
+                     <th>yy/ds</th>
                 </tr>
                 <tr>
-                    <th>回覆內容:</th>
+                    <th>回覆內容: {{ userdata }}</th>
                     
                 </tr> 
             </table>
@@ -54,9 +60,11 @@
     </div>
 </template>
 
-
 <script>
 export default {
+    props : [
+        'ticket'
+    ],
     inject : [
         'userdata',
         'alltickets',
@@ -65,7 +73,7 @@ export default {
     methods : {
         fetchTicket() {
 
-            var url = 'https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket/content?ticket_id='
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket/content?ticket_id='
             url += String( this.ticketcontent['ticketid'])  ;
             console.log( url )
             fetch(url,{
@@ -110,7 +118,7 @@ export default {
          
     }
     .tickets-title {
-      
+        /* background-color: #ffffff; */
         display: flex ;
         flex-direction: row;
         position: relative ;
@@ -164,11 +172,11 @@ export default {
         
     }
     .tickets-footer{
-       position: relative;
-       width: 80%;
-       margin: auto;
-       align-items: center ;
-        
+        position: relative;
+        width: 80%;
+        margin: auto;  
+        align-items: center ;
+        /* left:   100px; */
         
         
     }

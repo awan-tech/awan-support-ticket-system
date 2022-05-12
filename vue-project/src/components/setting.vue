@@ -11,6 +11,11 @@
             <p>new password</p>
             <input type="password" >
         </a>
+        <p>
+            <button>
+                送出
+            </button>
+        </p>
     </div>
 </template>
 

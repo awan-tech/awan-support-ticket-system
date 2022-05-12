@@ -7,16 +7,18 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import login from './components/login.vue'
 import template from './components/template.vue'
-import thomas from './components/thomas.vue'
+import thomas from './components/admin/thomas.vue'
 
-import user_table from './components/user_table.vue'
-import admin_tickets from './components/admin_tickets.vue'
-import create_form from './components/user_create_form.vue'
+import user_table from './components/user/user_table.vue'
+import admin_tickets from './components/admin/admin_tickets.vue'
+import create_form from './components/user/user_create_form.vue'
 import settings from './components/setting.vue'
-import manage from './components/manage.vue'
-import admin_tickets_table from './components/admin_tickets_table.vue'
-import user_tickets from './components/user_tickets.vue'
-import user_tickets_table from './components/user_tickets_table.vue'
+import manage from './components/admin/manage.vue'
+import admin_tickets_table from './components/admin/admin_tickets_table.vue'
+import user_tickets from './components/user/user_tickets.vue'
+import user_tickets_table from './components/user/user_tickets_table.vue'
+import admin_create_engineer from './components/admin/admin_create_engineer.vue'
+import admin_dispatch_ticket from './components/admin/admin_dispatch_ticket'
 
 const router = createRouter( {
     history : createWebHashHistory(process.env.BASE_URL ),
@@ -46,6 +48,14 @@ const router = createRouter( {
                     path : 'manage',
                     component : manage
                 },
+                {
+                    path: 'admin_create_engineer',
+                    component : admin_create_engineer
+                },
+                {
+                    path: 'admin_dispatch_ticket',
+                    component : admin_dispatch_ticket
+                }
             ]
         },
         {path: '/userhome', component: template, 
