@@ -49,7 +49,7 @@
         </div>
         <div class="tickets-footer">
             <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88"></textarea>
-            <button @click.prevent="changeTemplatePage" class="user-ticket-btn"><span>傳送</span></button>
+            <button  class="user-ticket-btn"><span>傳送</span></button>
         </div>
     </div>
 </template>

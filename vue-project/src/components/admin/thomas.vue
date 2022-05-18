@@ -176,12 +176,6 @@ export default {
     background-color: rgb(255, 255, 255);
      box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
   }
-  /* .deadline-tr:nth-child(even) {
-    background-color: #ccc;
-  }
-  .deadline-tr:nth-child(odd) {
-    background-color: #fafafa;
-  } */
    #deadline-table .deadline-row:hover {
     background-color: #797979;
          color: rgb(255, 255, 255);

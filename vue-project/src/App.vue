@@ -1,23 +1,20 @@
 <template>
-    <section>
+    <div id="all">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <header-page></header-page>
-        <section>
+        <header-page id="headerup"></header-page>
+        <div id="down">
                 <router-view :user="data" @loginSuccess="changeLoginStatus">
 
                 </router-view>
-        </section>
+        </div>
         
-    </section>
+    </div>
     
     
 </template>
 
 
 <script>
-// const axios = require('axios'); 
-// import login from './components/login.vue'
-// import template from './components/template.vue'
 import header from './components/header.vue'
 
 export default {
@@ -54,6 +51,28 @@ export default {
 </script>
 
 <style>
-
+    #all{
+        position: relative ;
+        display: flex ;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+    #headerup{
+        position: relative ;
+        display: flex ;
+        flex-direction: column;
+        text-align:center;
+        align-items: center;
+        height: 20%;
+      
+    }
+    #down{
+        position: relative ;
+        display: flex ;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+    }
 
 </style>

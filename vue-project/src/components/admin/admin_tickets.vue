@@ -44,7 +44,7 @@
         <div class="tickets-thomas-dialogue">
             <table>
                 <tr>
-                    <th>(工程師名字)</th>
+                    <th>{{ userlogindata['username']}}</th>
                      <th>yy/ds</th>
                 </tr>
                 <tr>
@@ -55,7 +55,7 @@
         </div>
         <div class="tickets-footer">
             <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88"></textarea>
-            <button @click.prevent="changeTemplatePage" class="user-ticket-btn"><span>傳送</span></button>
+            <button class="user-ticket-btn"><span>傳送</span></button>
         </div>
     </div>
 </template>
@@ -89,8 +89,7 @@ export default {
             })
             .then((data) => { 
                 console.log( data['data'] ) ;
-                // this.myticket['ticketTitle'] = tickettitle ;
-                // this.myticket['ticketCustomer'] = this.userdata['username']
+
                 this.myticket['createTime'] = data['data'][0]['created_at'] ;
                 this.myticket['content'] = data['data'][0]['ticket_content'] ;
             })

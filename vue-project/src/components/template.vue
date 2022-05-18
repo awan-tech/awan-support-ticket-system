@@ -40,10 +40,6 @@ export default {
         }
     },
     methods : {
-
-//         35,Processing
-// 36,Not Processed
-// 37,Proccessed
         getAllticket() {
             fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Not Processed',{
             method: 'POST',
@@ -172,8 +168,4 @@ export default {
         z-index:1;
         
     }
-    /* .template-right route-view{
-        position: relative;
-        z-index: 10;
-    } */
 </style>

@@ -38,7 +38,7 @@ export default {
     methods: {
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
       
-            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
+            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name ) ; // back to template
             this.$router.push('/userhome/tickets')
         }
     },
