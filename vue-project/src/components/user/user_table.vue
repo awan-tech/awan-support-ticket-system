@@ -89,10 +89,7 @@ export default {
          background-color: #797979;
          color: rgb(255, 253, 253);
     }
-     .user-table .user-table-tr {
-         /* flex-basis: 10%; */
-    }
-    
+
     .user-table .user-table-td1 {
          flex-basis: 80%;
          overflow: hidden;

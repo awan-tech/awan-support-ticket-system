@@ -64,7 +64,7 @@ export default {
         },
         make_redirect() {
             this.$emit( 'redirect_home' )
-            this.$router.push('userhome') ;
+            this.$router.push('/userhome') ;
         }
     },
 }

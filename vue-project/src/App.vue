@@ -39,7 +39,7 @@ export default {
     },
     methods : {
         changeLoginStatus(id, name, role) {
-            console.log( 'test1111111' ) ;
+            // console.log( 'test1111111' ) ;
             if ( id != 'null') {
                 this.data['id'] = id ;
                 this.data['username'] = name ;

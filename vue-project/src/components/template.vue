@@ -25,7 +25,7 @@ export default {
         return {
           userdata : this.all_tickets_content,
           alltickets: this.fetchalltickets,
-          ticketcontent : this.oneTicket 
+          ticketcontent : this.oneTicket // for user_tickets and admin_tickets from user_table
         }
     },
     components : {
@@ -41,15 +41,14 @@ export default {
     },
     methods : {
         getAllticket() {
-            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Not Processed',{
-            method: 'POST',
+            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
+            let page = '0', user_id = this.user['id'], role = this.user['userRole'] ;
+            console.log( address + '?page=' + page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
+            fetch( address + '?page=' + page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
             },
-            body :  JSON.stringify({
-                "user_id": this.user['id'],
-                "role": this.user['userRole']
-            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -62,15 +61,11 @@ export default {
                 this.fetchalltickets['undo'] = data['data'] ;
             })
 
-            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Processing',{
-            method: 'POST',
+            fetch( address + '?page=' + page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
             },
-            body :  JSON.stringify({
-                "user_id": this.user['id'],
-                "role": this.user['userRole']
-            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -83,15 +78,15 @@ export default {
                 this.fetchalltickets['doing'] = data['data'] ;
             })
 
-            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket?page=0&status=Processed',{
-            method: 'POST',
+            fetch( address + '?page=' + page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
             },
-            body :  JSON.stringify({
-                "user_id": this.user['id'],
-                "role": this.user['userRole']
-            })
+            // body :  JSON.stringify({
+            //     "user_id": this.user['id'],
+            //     "role": this.user['userRole']
+            // })
             })
             .then( (response) => {
                 if ( response.ok ) {

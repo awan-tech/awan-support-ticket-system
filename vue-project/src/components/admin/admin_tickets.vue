@@ -4,18 +4,18 @@
             <table>
                 <tr>
                     <td>
-                        Ticketname: {{ ticketcontent['title'] }}
+                        Ticketname: {{ myticket['ticket_title'] }}
                     </td>
                     <td>
-                        Deadline: 
+                        Deadline: {{ myticket['created_at'] }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Customername:  
+                        Customername:  {{ myticket['customer_name'] }}
                     </td>
                     <td>
-                        負責人: {{ ticketcontent['admin_name'] }}
+                        負責人: {{ myticket['admin_name'] }}
                     </td>
                 </tr>
                 <tr>
@@ -29,29 +29,31 @@
             </table>
            
         </div>
-        <div class="tickets-user-dialogue">
-            <table>
-                <tr>
-                    <th>yy/ds</th>
-                </tr>
-                <tr>
-                    <th>問題內容:</th>
-                </tr>
+        <div v-for="one_response in all_ticket_contents" :key="one_response">
+            <div v-if="one_response['owner'] === 'customer'" class="tickets-user-dialogue">
+                <table>
+                    <tr>
+                        <th>{{ one_response['created_at']}}</th>
+                    </tr>
+                    <tr>
+                        <th>問題內容: {{ one_response['ticket_content']}} </th>
+                    </tr>
                     
                  
-            </table>
-        </div>
-        <div class="tickets-thomas-dialogue">
-            <table>
-                <tr>
-                    <th>{{ userlogindata['username']}}</th>
-                     <th>yy/ds</th>
-                </tr>
-                <tr>
-                    <th>回覆內容: {{ userdata }}</th>
-                    
-                </tr> 
-            </table>
+                </table>
+            </div>
+            <div v-else class="tickets-thomas-dialogue">
+                <table>
+                    <tr>
+                        <th>{{ myticket['admin_name'] }}</th>
+                        <th>{{ one_response['created_at']}} </th>
+                    </tr>
+                    <tr>
+                        <th>回覆內容: </th>
+                        <th> {{ one_response['ticket_content'] }}</th>
+                    </tr> 
+                </table>
+            </div>
         </div>
         <div class="tickets-footer">
             <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88"></textarea>
@@ -71,9 +73,9 @@ export default {
         'ticketcontent'
     ],
     methods : {
-        fetchTicket() {
-
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/ticket/content?ticket_id='
+       fetchTicket() {
+            // https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/{id}
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/'
             url += String( this.ticketcontent['ticketid'])  ;
             console.log( url )
             fetch(url,{
@@ -88,17 +90,67 @@ export default {
                 }
             })
             .then((data) => { 
-                console.log( data['data'] ) ;
-
-                this.myticket['createTime'] = data['data'][0]['created_at'] ;
-                this.myticket['content'] = data['data'][0]['ticket_content'] ;
+                this.myticket = data['data'] ;
+                console.log( "testtttttttt")
+                console.log( this.myticket)
+                this.fetch_all_contents() ;
             })
 
+        },
+        fetch_all_contents() {
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/contents?'
+            url += 'ticket_id=' + String( this.ticketcontent['ticketid'])  ;
+            console.log( url )
+            fetch(url,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            }
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data )
+                this.all_ticket_contents = data['data'] ;
+            })
+        },
+        responseTicket( ) {
+            console.log( this.input_content)
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/contents'
+            console.log( url )
+            fetch(url,{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body :JSON.stringify( {
+                "ticket_id" : this.ticketcontent['ticketid'],
+                "ticket_content" : this.input_content,
+                "owner": "admin"
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data )
+                alert( data['message'] ) ;
+                setTimeout( this.fetchTicket(), 3000 ) ;
+                this.input_content = '' ;
+            })
         }
+
     },
     data() {
         return {
-            myticket : {}
+            myticket : {},
+            input_content : "",
+            all_ticket_contents : {}
         }
     },
     mounted() {
@@ -179,11 +231,7 @@ export default {
         
         
     }
-    .tickets-footer textarea{
 
-        
-        
-    }
     .user-ticket-btn{
         display: inline-block;
         border-radius: 4px;
