@@ -77,7 +77,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
     #create-form-container {
         border: solid 3px #474544;
         width: 768px;
@@ -90,7 +91,7 @@ export default {
         padding: 37.5px;
         margin: 50px 0;
     }
-    input[type='form-text'], [type='email'], select, textarea {
+    input[type='form-text'], [type='email'], textarea {
         background: none;
         border: none;
         border-bottom: solid 2px #474544;
