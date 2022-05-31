@@ -20,10 +20,10 @@
                 </tr>
                 <tr>
                     <td>
-                        Time:
+                        Time: {{ myticket['created_at'] }}
                     </td>
                     <td>
-                        緊急程度:
+                        緊急程度: {{ myticket['urgency'] }}
                     </td>
                 </tr>
             </table>
@@ -93,7 +93,7 @@ export default {
                 this.myticket = data['data'] ;
                 console.log( "testtttttttt")
                 console.log( this.myticket)
-                this.fetch_all_contents() ;
+                
             })
 
         },
@@ -155,6 +155,7 @@ export default {
     },
     mounted() {
         this.fetchTicket() ;
+        this.fetch_all_contents() ;
     }
 }
 </script>
@@ -174,12 +175,12 @@ export default {
         flex-direction: row;
         position: relative ;
         width:80%;
-        height: 30%;
+        height: 20%;
         align-items: center ;
         margin: auto;
         /* border-top: 30px; */
-       margin-bottom:3% ;
-       margin-top: 3%;
+       /* margin-bottom:1% ; */
+       /* margin-top: 1%; */
        font-weight: bolder;
        font-size: 20px;
         
@@ -188,9 +189,12 @@ export default {
         width: 1000px;
         
     }
-    /* .tickets-title table tr td{
-        height: 50px ;
-    } */
+    textarea {
+        line-height: 150%;
+        height: 10vh;
+        resize: none;
+        width: 100%;
+    }
     
     .tickets-user-dialogue {
         background-color: #FFEBCD;

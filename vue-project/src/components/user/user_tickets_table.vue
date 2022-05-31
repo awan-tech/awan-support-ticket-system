@@ -5,7 +5,7 @@
             <li class="table-header">
                     <div class="tickets-table-left-tr">待處理</div>
             </li>
-            <li class="table-row" v-for="data in alltickets['doing']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])" >
+            <li class="table-row" v-for="data in alltickets['customer_doing']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])" >
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
         </div>
@@ -52,18 +52,15 @@ export default {
         width: 100%;
         position: relative ;
         display: flex ;
-        
+        flex-direction: row ;
+
     }
     .tickets-table-left {
-        /* background-color: rgb(105, 4, 4); */
        position: relative;   
-        width: 350px;
+        width: 40%;
         left: 50px;
         top: 30px;
-     /* padding-left: 10px;
-     padding-right: 10px; */
         table-layout: fixed;
-    
     }
     .tickets-table-left li{
         border-radius: 3px;
@@ -94,11 +91,9 @@ export default {
 
     .tickets-table-right {
        position: relative;   
-        width: 350px;
+        width: 40%;
         left: 150px;
         top: 30px;
-     /* padding-left: 10px;
-     padding-right: 10px; */
         table-layout: fixed;
     }
     .tickets-table-right li{

@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     #create-form-container {
         border: solid 3px #474544;
         width: 768px;
@@ -85,12 +85,21 @@ export default {
         position: relative;
         top: -30px;
         left: -20px;
+        height: 80vh;
     }
     #contact_form {
         padding: 37.5px;
         margin: 50px 0;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column ;
     }
-    input[type='form-text'], [type='email'], select, textarea {
+    #telephone_input{
+        display: flex;
+        flex-direction: column ;
+    }
+    input[type='form-text'], [type='email'], textarea {
         background: none;
         border: none;
         border-bottom: solid 2px #474544;
@@ -106,7 +115,7 @@ export default {
 
     textarea {
         line-height: 150%;
-        height: 150px;
+        height: 35vh;
         resize: none;
         width: 100%;
     }
@@ -114,6 +123,8 @@ export default {
         color: #474544;
     }
     #form_button {
+        position: relative;
+        top: 5vh;
         background: none;
         border: solid 2px #474544;
         color: #474544;
@@ -127,11 +138,15 @@ export default {
         text-transform: uppercase;
     }
     #form_button {
+        height: 10vh;
         padding: 15px 25px;
     }
     #form_button:hover {
         background: rgb(153, 164, 112);
         color: #F2F3EB;
+    }
+    #submit{
+        height: 100%;
     }
 
 </style>

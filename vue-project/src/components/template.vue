@@ -36,15 +36,17 @@ export default {
             status : false,
             all_tickets_content : { topics: [ '123']},
             fetchalltickets : {},
-            oneTicket : {}
+            oneTicket : {},
+            tickets_page : '0'
         }
     },
     methods : {
-        getAllticket() {
+        async getAllticket() {
             let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
-            let page = '0', user_id = this.user['id'], role = this.user['userRole'] ;
-            console.log( address + '?page=' + page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
-            fetch( address + '?page=' + page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
+            let user_id = this.user['id'], role = this.user['userRole'] ;
+            // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
+
+            await fetch( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
@@ -59,9 +61,13 @@ export default {
                 console.log ('undo')
                 console.log( data['data'] ) ;
                 this.fetchalltickets['undo'] = data['data'] ;
+                // for( let i = 0 ; i < this.fetchalltickets['undo'].length ; i ++ ) {
+                //     var test = Date.parse(this.fetchalltickets['undo'][i]['created_at']) ;
+                //     this.fetchalltickets['undo'][i]['created_at'] = new Date( test ).toDateString()
+                // } // for
             })
 
-            fetch( address + '?page=' + page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
+            await fetch( address + '?page=' + this.tickets_page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
@@ -74,11 +80,16 @@ export default {
             })
             .then((data) => { 
                 console.log ('doing')
-                console.log( data['data'] ) ;
+                // console.log( data['data'] ) ;
                 this.fetchalltickets['doing'] = data['data'] ;
+                // for( let i = 0 ; i < this.fetchalltickets['doing'].length ; i ++ ) {
+                //     console.log(i)
+                //     var test = Date.parse(this.fetchalltickets['doing'][i]['created_at']) ;
+                //     this.fetchalltickets['doing'][i]['created_at'] = new Date( test ).toDateString()
+                // } // for
             })
 
-            fetch( address + '?page=' + page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
+            fetch( address + '?page=' + this.tickets_page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json'
@@ -95,9 +106,26 @@ export default {
             })
             .then((data) => { 
                 console.log ('done')
-                console.log( data['data'] ) ;
+                // console.log( data['data'] ) ;
                 this.fetchalltickets['done'] = data['data'] ;
+                // for( let i = 0 ; i < this.fetchalltickets['done'].length ; i ++ ) {
+                //     var test = Date.parse(this.fetchalltickets['done'][i]['created_at']) ;
+                //     this.fetchalltickets['done'][i]['created_at'] = new Date( test ).toDateString()
+                // } // for
             })
+            
+            await this.concatTickets() ;
+            
+
+            
+        },
+        concatTickets() {
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['doing']
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['customer_doing'] .concat( this.fetchalltickets['undo'])
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['customer_doing'].sort(function(a,b) {
+                return a.ticket_id > b.ticket_id ? 1 : -1;
+            })
+
         },
         transferTicketId( ticketid, tickettitle, ticket_admin_name) {
             this.oneTicket['ticketid'] = ticketid ;
@@ -107,6 +135,10 @@ export default {
         againgetticket() {
             console.log('reload tickets')
             this.getAllticket()
+        },
+        change_page( page ) {
+            this.tickets_page = page ;
+            this.getAllticket() ;
         }
     },
     mounted() {

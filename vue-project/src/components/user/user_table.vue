@@ -8,10 +8,10 @@
         <div class="user-myticket-right" >
             <div class="user-table">
                 <li class="table-header">
-                    <div class="user-table-tr">進行中</div>
-                    <div class="user-table-tr">更新時間</div>
+                    <div class="user-table-tr1">進行中</div>
+                    <div class="user-table-tr2">更新時間</div>
                 </li>
-                <li class="table-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
+                <li class="table-row" v-for="temp in alltickets['customer_doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
                      
                      <div class="user-table-td2" data-label="Payment Status">{{ temp['created_at'] }}</div>
@@ -61,7 +61,7 @@ export default {
 <style>
     .user-table{
         position: relative;   
-        width: 700px;
+        width: 65vw;
         left: -50px;
         top: 30px;
      /* padding-left: 10px;
@@ -91,12 +91,12 @@ export default {
     }
 
     .user-table .user-table-td1 {
-         flex-basis: 80%;
+         flex-basis: 75%;
          overflow: hidden;
          text-overflow: ellipsis;
     }
     .user-table .user-table-td2 {
-        flex-basis: 10%;
+        flex-basis: 25%;
     }
   
 
@@ -105,6 +105,7 @@ export default {
         width: 100%;
         position: relative ;
         display: flex ;
+        font-weight: bold;
         
     }
     .user-myticket-left {
@@ -123,7 +124,12 @@ export default {
         width: 80%;
         align-items: center;
     }
-
+    .user-table-tr1{
+        width: 75%;
+    }
+    .user-table-tr2{
+        width: 25%;
+    }
 
     .user-myticket-btn {
         display: inline-block;

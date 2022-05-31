@@ -19,10 +19,22 @@
     </div>
 </template>
 
-<script>
+ <script>
+ export default {
+    data() {
+        return {
+            oneTicket : {}
+        }
+    },
+    inject : [
+        'userdata',
+        'alltickets'
+    ],
+    methods : {
 
-</script>
-
+    }
+ }
+ </script>
 
 
 <style>

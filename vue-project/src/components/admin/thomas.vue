@@ -4,7 +4,7 @@
             <button id="pending-btn" onclick="連結">
                 <div>
                     <span>
-                        <p>待處理:()件</p>
+                        <p>待處理: 件</p>
                     </span>
                 </div>
                 <div>

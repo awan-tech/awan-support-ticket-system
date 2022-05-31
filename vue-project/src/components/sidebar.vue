@@ -22,7 +22,7 @@
             <li >
                 <router-link v-if="Userdata['userRole'] === 'Engineer'" to="/home/tickets" >History Ticket</router-link>
                 <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home/tickets" >History Ticket</router-link>
-                <router-link v-else to="/userhome/tickets" >History Ticket</router-link>
+                <!-- <router-link v-else to="/userhome/tickets" >History Ticket</router-link> -->
             </li>
             <li>
                 <router-link to="/home/settings">Setting</router-link>
