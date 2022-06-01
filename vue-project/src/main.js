@@ -19,6 +19,7 @@ import user_tickets from './components/user/user_tickets.vue'
 import user_tickets_table from './components/user/user_tickets_table.vue'
 import admin_create_engineer from './components/admin/admin_create_engineer.vue'
 import admin_dispatch_ticket from './components/admin/admin_dispatch_ticket'
+import history_ticket from './components/admin/admin_history_ticket.vue'
 
 const router = createRouter( {
     history : createWebHashHistory(process.env.BASE_URL ),
@@ -39,6 +40,10 @@ const router = createRouter( {
                 {
                     path : 'tickets',
                     component : admin_tickets
+                },
+                {
+                    path : 'history_ticket',
+                    component : history_ticket
                 },
                 {
                     path : 'settings',

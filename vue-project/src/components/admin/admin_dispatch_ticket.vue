@@ -15,13 +15,10 @@
           <div class="dispatch-table-td2"> {{ data.created_at }} </div>
           <div class="dispatch-table-td3">
             <div class="engineer-select">
-                <select>
-                    <option value="#">請選擇負責人</option>
-                    <option v-bind:value="data.admin_name" >Larry</option>
-                    <option value="#">郭賴瑞翼</option>   
-                    <option value="#">山羌</option>
-                    <option value="#">館長</option>           
-                </select>
+                <input type="text" name="city" list="cityname">
+                <datalist id="cityname">  
+                    <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
+                </datalist>
             </div>
           </div>
           <div @click="dispatch_ticket(data.admin_id, data.ticket_id, 'Processing')" class="dispatch-table-td4"><input value="Send" type="submit" /></div>
@@ -63,7 +60,8 @@
  export default {
     data() {
         return {
-            oneTicket : {}
+            oneTicket : {},
+            allEngineers : []
         }
     },
     inject : [
@@ -96,8 +94,50 @@
                 console.log( this.myticket)
                 
             })
+        },
+        find_engineer() {
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer&=Engineer Supervisor'
+            console.log( url )
+            fetch(url,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            }
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data['data'] ) ;
+                this.allEngineers = this.allEngineers.concat( data['data'] )
+            })
+        },
+        find_engineer_supervisor() {
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer Supervisor'
+            console.log( url )
+            fetch(url,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            }
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log( data['data'] ) ;
+                this.allEngineers = this.allEngineers.concat( data['data'] )
+            })
         }
-    }
+    },
+    mounted() {
+        this.find_engineer() ;
+        this.find_engineer_supervisor() ;
+    },
  }
  </script>
 
