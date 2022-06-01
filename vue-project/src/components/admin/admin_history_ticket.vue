@@ -1,34 +1,11 @@
 <template>
     <div class="thomas-all">
-        <div class="thomas-left">
-            <button id="pending-btn" onclick="連結">
-                <div>
-                    <span>
-                        <p>待處理: 件</p>
-                    </span>
-                </div>
-                <div>
-                    <span>
-                        <p>上班加油!</p>
-                    </span>
-                </div>
-            </button> 
-        </div>
         <div id="deadline-table" class="thomas-right" >
             <li class="deadline-header">
-                <div class="deadline-tr">公告</div>
-                <!-- <div class="deadline -tr">時間</div> -->
-                <div class="deadline-tr">
-                    <div class="onoffswitch">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
-                        <label class="onoffswitch-label" for="myonoffswitch">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
-                    </div>
-                </div>
+                <div class="deadline-tr">問題標題</div>
+                <div class="deadline -tr">Created At</div>
             </li>
-            <li class="deadline-row" v-for="temp in alltickets['undo']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
+            <li class="deadline-row" v-for="temp in alltickets['done']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
                 <div class="deadline-td2">{{ temp['created_at']}}</div>
             </li>
@@ -45,8 +22,7 @@ export default {
     ],
     data() {
         return {
-            oneTicket : {},
-            number_ticket : 0
+            oneTicket : {}
         }
     },
     inject : [
@@ -57,14 +33,7 @@ export default {
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
             this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
             this.$router.push('/userhome/tickets')
-        },
-        // change_number_ticket() {
-        //     if( this.alltickets['undo'].length != 0 ) {
-        //         this.number_ticket = this.alltickets['undo'].length
-        //     }
-        // }
-    },
-    mounted() {
+        }
     },
 }
 </script>
@@ -76,15 +45,15 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 60%;
-    height: 7%;
+    max-width: 140px;
+    height: 50px;
     /* border-radius: 0em; */
     overflow: hidden;
     position: relative;
-    top: 8%;
-    left: 20%;
+    top: 50px;
+    left: 40px;
    }
-  
+   
    #pending-btn div {
     transform: translateY(0px);
     width: 100%;
@@ -100,7 +69,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: 50px;
-    /* padding: 15%; */
+    padding: 0.75em 1.125em;
    }
    
    #pending-btn div:nth-child(1) {
@@ -150,17 +119,16 @@ export default {
     position: relative ;
     display: flex ;
     flex-direction: column ;
-    width: 80%;
-    height: 60%;
-
+    margin: auto;
+    width: 70%;
+    height: 100%;
 }
 
    
 #deadline-table {
     /* display:table; */
     position: relative;
-    left: -20px;
-    top: 50px;
+    top: 5%;
     border-collapse: collapse;
     font-weight: bold;
     table-layout: fixed;
@@ -190,12 +158,13 @@ export default {
          color: rgb(255, 255, 255);
   }
   #deadline-table .deadline-td1 {
-         flex-basis: 80%;
+
+         flex-basis: 70%;
          overflow: hidden;
          text-overflow: ellipsis;
     }
     #deadline-table .deadline-td12 {
-        flex-basis: 10%;
+        flex-basis: 30%;
     }
   
 

@@ -20,16 +20,28 @@
                
             </li>
             <li >
-                <router-link v-if="Userdata['userRole'] === 'Engineer'" to="/home/tickets" >History Ticket</router-link>
-                <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home/tickets" >History Ticket</router-link>
+                <router-link v-if="Userdata['userRole'] === 'Engineer'" to="/home/history_ticket" >History Ticket</router-link>
+                <router-link v-else-if="Userdata['userRole'] === 'Engineer Supervisor'" to="/home/history_ticket" >History Ticket</router-link>
                 <!-- <router-link v-else to="/userhome/tickets" >History Ticket</router-link> -->
             </li>
             <li>
                 <router-link to="/home/settings">Setting</router-link>
             </li>
             <li v-if="Userdata['userRole'] === 'Engineer Supervisor' ">
-                <router-link to="/home/manage" > Manager </router-link>
-                <!-- <a href="#">Manager</a> -->
+                <a @click="toggle_myticketSublist">Manager</a>
+                <!-- <router-link to="/home/manage" > Manager </router-link> -->
+                <ul v-if="myticketSublist"  >
+                    <!-- <li>
+                        <router-link to="/home/admin_create_engineer" > 更改Engineer 資料  </router-link>
+                    </li> -->
+                    <li>
+                        <router-link to="/home/admin_dispatch_ticket" style="font-size:15px" > 分派tickets </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/home/admin_create_engineer" style="font-size:15px"  > 新增Engineer帳號 </router-link>
+                    </li>
+                </ul>
+                
             </li>
             
             <li>
@@ -65,7 +77,11 @@ export default {
         make_redirect() {
             this.$emit( 'redirect_home' )
             this.$router.push('/userhome') ;
+        },
+        toggle_myticketSublist() {
+            this.myticketSublist = ! this.myticketSublist ;
         }
+        
     },
 }
 </script>
