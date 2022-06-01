@@ -9,30 +9,13 @@
             <div class="user-table">
                 <li class="table-header">
                     <div class="user-table-tr">進行中</div>
-
                     <div class="user-table-tr">更新時間</div>
                 </li>
-                 <li class="table-row">
-                     <div class="user-table-td1" data-label="Job Id">4223543556456435214246532438787548789385498689589328dbs796987ddddddddd</div>
+                <li class="table-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
+                    <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
                      
-                     <div class="user-table-td2" data-label="Payment Status">Pending</div>
+                     <div class="user-table-td2" data-label="Payment Status">{{ temp['created_at'] }}</div>
                 </li>
-                <li class="table-row">
-                    <div class="user-table-td1" data-label="Job Id">42442</div>
-                    
-                    <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>
-                <li class="table-row">
-                    <div class="user-table-td1" data-label="Job Id">42257</div>
-                   
-                    <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>
-                <li class="table-row">
-                    <div class="user-table-td1" data-label="Job Id">42311</div>
-            
-                    <div class="user-table-td2" data-label="Payment Status">Pending</div>
-                </li>   
-                        
                 </div>
         </div>
     </div>
@@ -42,12 +25,32 @@
 
 <script>
 export default {
-    emits:[
-        'changepage'
+    provide() {
+        return {
+            ticketcontent : this.oneTicket 
+        }
+    },
+    inject : [
+        'userdata',
+        'alltickets'
     ],
+    emits:[
+        'changepage',
+        'all_ticket_contents'
+    ],
+    data() {
+        return {
+            oneTicket : {}
+        }
+    },
     methods: {
         changeTemplatePage() {
+            this.$router.push('/userhome/create_form') ;
             this.$emit( 'changepage', 'create-form-page' ) ;
+        },
+        viewTicket( ticketid, tickettitle, ticket_admin_name ) {
+            this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
+            this.$router.push('/userhome/tickets')
         }
     }
 }
@@ -83,7 +86,7 @@ export default {
      box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
     }
     .user-table .table-row:hover {
-         background-color: rgb(153, 164, 112);
+         background-color: #797979;
          color: rgb(255, 253, 253);
     }
      .user-table .user-table-tr {
@@ -128,7 +131,7 @@ export default {
     .user-myticket-btn {
         display: inline-block;
         border-radius: 4px;
-        background-color: rgb(153, 164, 112);
+        background-color: #797979;
         border: none;
         color: #FFFFFF;
         text-align: center;

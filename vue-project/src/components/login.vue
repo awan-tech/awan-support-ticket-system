@@ -28,8 +28,15 @@
 
 <script>
 export default {
+    props: {
+      user: {
+        type: String,
+      },
+    },    
     data() {
       return {
+        userdata : [],
+        userid : '',
         checkuser : '',
         checkpassword : '',
         username : '',
@@ -39,12 +46,18 @@ export default {
       }
     },
     methods: {
+      
       getData() {
-         fetch('https://11931uvt3a.execute-api.us-east-2.amazonaws.com/test/helloworld',{
-            method: 'GET',
+        console.log('test');
+         fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/login',{
+            method: 'POST',
             headers : {
                 'Content-Type': 'application/json'
             },
+            body :  JSON.stringify({
+               'account' : this.username,
+               'password' : this.password
+            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -52,25 +65,41 @@ export default {
                 }
             })
             .then((data) => { 
-                this.checkuser = data['name'] ;
-                this.checkpassword = data['password'] ;
-                this.role = data['role'] ;
-                this.loginstatus() ;
+                
+                if ( data['data']['error'] == '無此帳號或密碼' ) {
+                  console.log( '登入失敗') ;
+                  this.isUser = 'False'
+                }
+                else {
+                  console.log( '登入成功')
+                  this.checkuser = data['data']['name']
+                  this.role = data['data']['role']
+                  this.userid = data['data']['id']
+
+
+                  this.loginstatus() ;
+                }
+                  
+         
+                
             })
       },
       loginstatus() {
-        if ( this.username === this.checkuser && this.password === this.checkpassword  ) {
-          console.log('user and password fit') ;
-          this.isUser = 'True' ;
-          this.$emit( 'loginSuccess', this.isUser, this.checkuser, this.role ) ;
-        }
-        else {
-          console.log('faild') ;
-          this.isUser = 'False' ;
-        }
+   
+
+        if ( this.role === 'Engineer' || this.role === 'Engineer Supervisor' )
+            this.$router.push('/home')
+        else 
+          this.$router.push('/userhome')
+
+        this.$emit( 'loginSuccess', this.userid, this.checkuser, this.role ) ;
+
+
+      
 
         this.username = '' ;
         this.password = '' ;
+        
       },
       
     },

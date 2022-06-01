@@ -1,59 +1,10 @@
 <template>
         <div class="template-content">
             <div class="template-left">
-                <nav id="sidebar">
-                    <button type="button" id="collapse" class="collapse-btn">
-                        <i class="fas fa-align-left"></i>
-                    </button>
-                    
-                    <ul class="list-unstyled">
-                        <div>
-                            <li>Hi,{{ userName }} </li>
-                        </div>
-                
-                        <li>
-                            <a @click="selectpage('thomas-page')">Home</a>
-                        </li>
-                        <li>
-                            <a @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false" @click="selectpage('user-table')" >My Ticket</a>
-                            <ul v-if="myticketSublist" @mouseenter="myticketSublist = true" @mouseleave="myticketSublist = false">
-                                <li @click="selectpage('tickets-page')">
-                                    <a>ticket</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li v-if="userRole !== 'customer' ">
-                            <a @mouseenter="historySublist = true" @mouseleave="historySublist = false"  >History Ticket</a>
-                            <ul v-if="historySublist" @mouseenter="historySublist = true" @mouseleave="historySublist = false">
-                                <li>
-                                    <a>test1</a>
-                                </li>
-                                <li>
-                                    <a>test2</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        <li @click="selectpage('setting-page')">
-                            <a >Setting</a>
-                        </li>
-                        <li v-if="userRole === 'manager' ">
-                            <a href="#">Manager</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#">Logout</a>
-                        </li>
-                    </ul>
-                </nav>
+                <side-bar :Userdata="user" @redirect_home="againgetticket()" > </side-bar>
             </div>
             <div class="template-right">
-
-                <user-table v-if="which_page === 'user-table'" @changepage="changeToCreateForm"></user-table>
-                <tickets-page v-if="which_page === 'tickets-page'"></tickets-page>
-                <create-form-page v-if="which_page === 'create-form-page'"></create-form-page>
-                <thomas-page v-if="which_page === 'thomas-page'"></thomas-page>
-                <setting-page v-if="which_page === 'setting-page'"></setting-page>
+                <router-view @all_ticket_contents="transferTicketId"></router-view>
             </div>
             
         </div>
@@ -62,84 +13,146 @@
 
 
 <script>
-import user_table from './user_table.vue'
-import tickets from './tickets.vue'
-import create_form from './user_create_form.vue'
-import thomas from './thomas.vue'
-import settings from './setting.vue'
-
+//:Userdata="userdata"
+import sidebar from './sidebar.vue'
 export default {
-    components : {
-      'user-table' : user_table,
-      'tickets-page' : tickets,
-      'create-form-page': create_form,  
-      'thomas-page' : thomas,
-      'setting-page' : settings 
-
+    props: {
+        user: {
+            type: Object,
+        },
     },
-    props:{
-        userName : String,
-        userRole : String
+    provide(){
+        return {
+          userdata : this.all_tickets_content,
+          alltickets: this.fetchalltickets,
+          ticketcontent : this.oneTicket 
+        }
+    },
+    components : {
+        'side-bar' : sidebar
     },
     data() {
         return {
-            myticketSublist : false,
-            historySublist : false,
-            which_page : 'thomas-page'
+            status : false,
+            all_tickets_content : { topics: [ '123']},
+            fetchalltickets : {},
+            oneTicket : {}
         }
     },
     methods : {
-        toggleSublist() {
-            this.myticketSublist = ! this.myticketSublist;
+
+//         35,Processing
+// 36,Not Processed
+// 37,Proccessed
+        getAllticket() {
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Not Processed',{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body :  JSON.stringify({
+                "user_id": this.user['id'],
+                "role": this.user['userRole']
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('undo')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['undo'] = data['data'] ;
+            })
+
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processing',{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body :  JSON.stringify({
+                "user_id": this.user['id'],
+                "role": this.user['userRole']
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('doing')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['doing'] = data['data'] ;
+            })
+
+            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processed',{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body :  JSON.stringify({
+                "user_id": this.user['id'],
+                "role": this.user['userRole']
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('done')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['done'] = data['data'] ;
+            })
         },
-        toggleMyTicketSublist() {
-            this.historySublist = ! this.historySublist;
+        transferTicketId( ticketid, tickettitle, ticket_admin_name) {
+            this.oneTicket['ticketid'] = ticketid ;
+            this.oneTicket['title'] = tickettitle ;
+            this.oneTicket['admin_name'] = ticket_admin_name ;
         },
-        selectpage( pagename) {
-            this.which_page=pagename ;
-        },
-        changeToCreateForm( pagename ) {
-            this.which_page = pagename ;
+        againgetticket() {
+            console.log('reload tickets')
+            this.getAllticket()
         }
-
-    }
+    },
+    mounted() {
+        this.getAllticket()
+    },
 }
-
 </script>
 
 <style>
     .template-content{
-        /* background-color: rgb(10, 32, 25); */
-        position: relative ;
-        display: flex ;
-        flex-direction: row ;
-    }
-    .template-left{
         
         position: relative ;
         display: flex ;
         flex-direction: row ;
+        overflow:auto;
+        
+        
+    }
+    .template-left{
+        position: relative ;
+        display: flex ;
+        flex-direction: row ;
+        background-color: #e5e5e5;
+       
+        
     }
     .template-right{
-        background-color: rgb(255, 255, 255);
         position: relative ;
         display: flex ;
         flex-direction: row ;
         width: 100%;
+        overflow:auto;
+
+        background:url(../../public/background.png);
+        
     }
-    #sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color:#e5e5e5;
-    color: #493D26;
-    transition: 1s;
-    float: left;
-    position: relative;
-    top: -8px;
-    }
-    #sidebar.active {
-        margin-left: -200px;
-    }
+
     .collapse-btn {
         position: relative;
         top: 1%;
@@ -155,21 +168,12 @@ export default {
         background-color: rgba(77, 73, 73, 0.347);
         transition: 0.4s;
     }
-    #sidebar ul li a {
-        padding: 10px;
-        font-size: 20px;
-        display: block;
-        text-decoration: none;
-        color: rgb(29, 25, 25);
+    .template-right background {
+        z-index:1;
+        
     }
-
-    #sidebar ul li a:hover {
-        color: rgb(255, 253, 253);
-        background: rgb(153, 164, 112);
-    }
-    ul ul li a {
-        background-color: rgb(153, 164, 112);
-        font-size: 20px;
-        font-style: italic;
-    }
+    /* .template-right route-view{
+        position: relative;
+        z-index: 10;
+    } */
 </style>
