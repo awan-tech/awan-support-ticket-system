@@ -16,7 +16,8 @@
           <div class="dispatch-table-td3">
             <div class="engineer-select">
                 <input type="text" name="city" list="cityname">
-                <datalist id="cityname">  
+                <datalist id="cityname"> 
+                    <option value="">請選擇負責人</option> 
                     <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
                 </datalist>
             </div>
@@ -206,6 +207,7 @@
     
      table-layout: fixed;
      height: 10%;
+     
      /* box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1); */
 }
 .dispatch-table .dispatch-table-td1{
@@ -218,6 +220,7 @@
      table-layout:fixed;
      overflow: hidden;
      text-overflow: ellipsis;
+      white-space: nowrap;
       background-color: #fff;
      
 
