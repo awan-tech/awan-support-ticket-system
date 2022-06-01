@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <span>
-                        <p>上班加油</p><p>:D</p>
+                        <p>上班加油!</p>
                     </span>
                 </div>
             </button> 
@@ -68,15 +68,15 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 140px;
-    height: 50px;
+    max-width: 60%;
+    height: 7%;
     /* border-radius: 0em; */
     overflow: hidden;
     position: relative;
-    top: 50px;
-    left: 40px;
+    top: 8%;
+    left: 20%;
    }
-   
+  
    #pending-btn div {
     transform: translateY(0px);
     width: 100%;
@@ -92,7 +92,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: 50px;
-    padding: 0.75em 1.125em;
+    /* padding: 15%; */
    }
    
    #pending-btn div:nth-child(1) {
