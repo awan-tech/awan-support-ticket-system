@@ -42,7 +42,7 @@
                         <th>{{ one_response['created_at']}}</th>
                     </tr>
                     <tr>
-                        <th>問題內容: {{ one_response['ticket_content']}} </th>
+                        <th>回覆內容: {{ one_response['ticket_content']}} </th>
                     </tr>
                     
                  
@@ -73,7 +73,7 @@
                 </tr> 
             </table>
         </div> -->
-        <div class="tickets-footer">
+        <div class="tickets-footer" v-if="myticket['ticket_status'] !== 'Processed'" >
             <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88" v-model="input_content"></textarea>
             <button  class="user-ticket-btn" @click="responseTicket()" ><span>傳送</span></button>
         </div>

@@ -1,5 +1,8 @@
 <template>
     <div class="dispatch-table">
+        <div>
+           未配單
+        </div>
       <div class="dispatch-table-row1">
           <div class="dispatch-table-th1">ticket title</div>
           <div class="dispatch-table-th2">deadline</div>
@@ -7,76 +10,52 @@
            <div class="dispatch-table-th4"></div>
           
       </div>
-      <div class="dispatch-table-row2">
-          <div class="dispatch-table-td1">123456789101203488057534552344234241131423</div>
-          <div class="dispatch-table-td2">2022/05/21</div>
+      <div class="dispatch-table-row2" v-for="data in alltickets['undo']" :key="data">
+          <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
+          <div class="dispatch-table-td2"> {{ data.created_at }} </div>
           <div class="dispatch-table-td3">
-              <div class="engineer-select">
-              <select>
-              <option value="#">請選擇負責人</option>
-              <option value="#">Larry</option>
-              <option value="#">郭賴瑞翼</option>   
-              <option value="#">山羌</option>
-              <option value="#">館長</option>           
-          </select>
-              </div>
-          </div>
-          <div class="dispatch-table-td4"><input value="Send" type="submit" /></div>
-
-      </div>
-        <div class="dispatch-table-row2">
-          <div class="dispatch-table-td1">123456789101203488057534552344234241131423</div>
-          <div class="dispatch-table-td2">2022/05/21</div>
-          <div class="dispatch-table-td3">
-              <div class="engineer-select">
-              <select>
-              <option value="#">請選擇負責人</option>
-              <option value="#">Larry</option>
-              <option value="#">郭賴瑞翼</option>   
-              <option value="#">山羌</option>
-              <option value="#">館長</option>           
-          </select>
-              </div>
-          </div>
-          <div class="dispatch-table-td4"><input value="Send" type="submit" /></div>
-
-      </div>
-        <div class="dispatch-table-row2">
-          <div class="dispatch-table-td1">123456789101203488057534552344234241131423</div>
-          <div class="dispatch-table-td2">2022/05/21</div>
-          <div class="dispatch-table-td3">
-              <div class="engineer-select">
-              <select>
-              <option value="#">請選擇負責人</option>
-              <option value="#">Larry</option>
-              <option value="#">郭賴瑞翼</option>   
-              <option value="#">山羌</option>
-              <option value="#">館長</option>           
-          </select>
-              </div>
-          </div>
-          <div class="dispatch-table-td4"><input value="Send" type="submit" /></div>
-
-      </div>
-        <div class="dispatch-table-row2">
-          <div class="dispatch-table-td1">12345678910120348805753455234423424113132545643734563526423</div>
-          <div class="dispatch-table-td2">2022/05/21</div>
-          <div class="dispatch-table-td3">
-              <div class="engineer-select">
-                  <select>
-                      <option value="First value">First</option>
-                      <option value="Second value">Second</option>
-                      <option value="Third value">Third</option>
-                      <option value="Forth value">Forth</option>
-                      <option value="Fifth value">Fifth</option>
+            <div class="engineer-select">
+                <select>
+                    <option value="#">請選擇負責人</option>
+                    <option v-bind:value="data.admin_name" >Larry</option>
+                    <option value="#">郭賴瑞翼</option>   
+                    <option value="#">山羌</option>
+                    <option value="#">館長</option>           
                 </select>
-</div>
+            </div>
           </div>
-          <div class="dispatch-table-td4"><input value="Send" type="submit" /></div>
-
+          <div @click="dispatch_ticket(data.admin_id, data.ticket_id, 'Processing')" class="dispatch-table-td4"><input value="Send" type="submit" /></div>
+          
       </div>
+    <div>
+           已配單
+    </div>
 
-        
+    <div class="dispatch-table-row1">
+          <div class="dispatch-table-th1">ticket title</div>
+          <div class="dispatch-table-th2">deadline</div>
+          <div class="dispatch-table-th3">負責人</div>
+           <div class="dispatch-table-th4"></div>
+           <div class="dispatch-table-th4"></div>
+          
+      </div>
+      <div class="dispatch-table-row2" v-for="data in alltickets['doing']" :key="data">
+          <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
+          <div class="dispatch-table-td2"> {{ data.created_at }} </div>
+          <div class="dispatch-table-td3">
+            <div class="engineer-select">
+                <select>
+                    <option value="#">請選擇負責人</option>
+                    <option value="#">Larry</option>
+                    <option value="#">郭賴瑞翼</option>   
+                    <option value="#">山羌</option>
+                    <option value="#">館長</option>           
+                </select>
+            </div>
+          </div>
+          <div @click="dispatch_ticket(data.admin_id, data.ticket_id, 'Processing')" class="dispatch-table-td4"><input value="Send" type="submit" /></div>
+          <div @click="dispatch_ticket(data.admin_id, data.ticket_id, 'Processed')" class="dispatch-table-td4"><input value="Sucess" type="submit" /></div>
+      </div>
     </div>
 </template>
 
@@ -92,7 +71,32 @@
         'alltickets'
     ],
     methods : {
-
+        dispatch_ticket( adminId, ticketId, ticket_status) {
+            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/assign'
+            console.log( url )
+            fetch(url,{
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify({
+                'admin_id' : adminId,
+                'ticket_id' : ticketId,
+                'ticket_status' : ticket_status
+            })
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                this.myticket = data['data'] ;
+                console.log( "testtttttttt")
+                console.log( this.myticket)
+                
+            })
+        }
     }
  }
  </script>
@@ -203,7 +207,7 @@
 .dispatch-table .dispatch-table-td4{
     display: table-cell;
      /* height: 10px; */
-      width: 10px;
+    width: 10px;
      border: 1px solid gray; 
      text-align: center;
      vertical-align: middle;
