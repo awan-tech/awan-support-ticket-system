@@ -9,20 +9,17 @@
             <div class="dispatch-table-th3">負責人</div>
             <div class="dispatch-table-th4"></div>
           
-        </div>
-        <div class="dispatch-table-row2" v-for="data in alltickets['undo']" :key="data">
-            <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
-            <div class="dispatch-table-td2"> {{ data.created_at }} </div>
-            <div class="dispatch-table-td3">
-                <div class="engineer-select">
-                    <input type="text" list="allEngineers" v-model="data.selected" v-on:input="select_undo_admin()">
-                    
-                    <datalist id="allEngineers"  >  
-                        <option>請選擇負責人</option>
-                        <option v-for="engineer in allEngineers" :key="engineer" :value="selected.admin_id"  > {{engineer.admin_name}} </option>
-
-                    </datalist>
-                </div>
+      </div>
+      <div class="dispatch-table-row2" v-for="data in alltickets['undo']" :key="data">
+          <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
+          <div class="dispatch-table-td2"> {{ data.created_at }} </div>
+          <div class="dispatch-table-td3">
+            <div class="engineer-select">
+                <input type="text" name="city" list="cityname">
+                <datalist id="cityname"> 
+                    <option value="">請選擇負責人</option> 
+                    <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
+                </datalist>
             </div>
             <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected, data.ticket_id, 'Processing')" /></div>
             <div>{{data.selected}}</div> 
@@ -252,6 +249,7 @@
     
      table-layout: fixed;
      height: 10%;
+     
      /* box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1); */
 }
 .dispatch-table .dispatch-table-td1{
@@ -264,6 +262,7 @@
      table-layout:fixed;
      overflow: hidden;
      text-overflow: ellipsis;
+      white-space: nowrap;
       background-color: #fff;
      
 
