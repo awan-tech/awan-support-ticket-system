@@ -2,7 +2,7 @@
     <div class="thomas-all">
         <div id="deadline-table" class="thomas-right" >
             <li class="deadline-header">
-                <div class="deadline-tr">問題標題</div>
+                <div class="deadline-tr">歷史清單</div>
                 <div class="deadline -tr">Created At</div>
             </li>
             <li class="deadline-row" v-for="temp in alltickets['done']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">

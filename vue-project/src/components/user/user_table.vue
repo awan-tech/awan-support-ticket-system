@@ -16,7 +16,8 @@
                      
                      <div class="user-table-td2" data-label="Payment Status">{{ temp['created_at'] }}</div>
                 </li>
-                </div>
+            </div>
+            
         </div>
     </div>
     

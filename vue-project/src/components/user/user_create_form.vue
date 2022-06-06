@@ -27,12 +27,13 @@ export default {
         }
     },
     methods: {
-        submmitAndCreate() {
+        async submmitAndCreate() {
+            this.testCreate() ;
             if ( this.ticket_title === '' || this.ticket_content === '') {
                 alert('請填好表格')
                 return false ;
             }
-            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/create',{
+            await fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/create',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json'
@@ -49,14 +50,13 @@ export default {
                 if ( response.ok ) {
                     return response.json() ;
                 }
-                else {
-                    console.log( response )
-                }
             })
             .then((data) => { 
-                console.log( data['data']['message'] )
-                alert(data['data']['message'])
+                console.log( data )
+                // console.log( data['data']['message'] )
+                // alert(data['data']['message'])
             })
+            
 
             this.ticket_title = '' ;
             this.ticket_content = '' ;
