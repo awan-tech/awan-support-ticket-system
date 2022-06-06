@@ -8,21 +8,22 @@
             <div class="dispatch-table-th2">deadline</div>
             <div class="dispatch-table-th3">負責人</div>
             <div class="dispatch-table-th4"></div>
-          
-      </div>
-      <div class="dispatch-table-row2" v-for="data in alltickets['undo']" :key="data">
-          <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
-          <div class="dispatch-table-td2"> {{ data.created_at }} </div>
-          <div class="dispatch-table-td3">
-            <div class="engineer-select">
-                <input type="text" name="city" list="cityname">
-                <datalist id="cityname"> 
-                    <option value="">請選擇負責人</option> 
-                    <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
-                </datalist>
+        </div>
+        <div class="dispatch-table-row2" v-for="(data, index) in every_tickets['not_proccess']" :key="data">
+            <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
+            <div class="dispatch-table-td2"> {{ data.created_at }} </div>
+            <div class="dispatch-table-td3">
+                <div class="engineer-select">
+                    <input type="text" name="city" list="cityname" v-model="data.selected" v-on:input="get_engineer_id(index, data.selected, 'not_proccess')">
+                    <datalist id="cityname"> 
+                        <option value="">請選擇負責人</option> 
+                        <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
+                    </datalist>
+                </div>
             </div>
-            <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected, data.ticket_id, 'Processing')" /></div>
+            <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected_id, data.ticket_id, 'Processing')" /></div>
             <div>{{data.selected}}</div> 
+            
         </div>
       
         <div>
@@ -36,22 +37,22 @@
             <div class="dispatch-table-th4"></div>
             <div class="dispatch-table-th4"></div>
         </div>
-        <div class="dispatch-table-row2" v-for="data in alltickets['doing']" :key="data">
+        <div class="dispatch-table-row2" v-for="(data, index) in every_tickets['proccessing']" :key="data">
             <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
             <div class="dispatch-table-td2"> {{ data.created_at }} </div>
             <div class="dispatch-table-td3">
                 <div class="engineer-select">
-                    <input type="text" name="city" list="cityname">
-                    <datalist id="cityname" >  
-                        
-                        <option>請選擇負責人</option>
-                        <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_id" > {{engineer.admin_name}} </option>
+                    現在負責人: {{data.admin_name}}
+                    <input type="text" name="city" list="cityname" v-model="data.selected" v-on:input="get_engineer_id(index, data.selected, 'proccessing')">
+                    <datalist id="cityname"> 
+                        <option value="">請選擇負責人</option> 
+                        <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
                     </datalist>
                 </div>
-                 {{data.admin_name}}
+                 
             </div>
-            <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected , data.ticket_id, 'Processing')" /></div>
-            <div  class="dispatch-table-td4"><input value="Sucess" type="submit" @click="dispatch_ticket(data.selected, data.ticket_id, 'Processed')" /></div>
+            <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected_id , data.ticket_id, 'Processing')" /></div>
+            <div  class="dispatch-table-td4"><input value="Sucess" type="submit" @click="dispatch_ticket(data.selected_id, data.ticket_id, 'Processed')" /></div>
         </div>
         <div>
            已完成
@@ -62,21 +63,20 @@
             <div class="dispatch-table-th3">負責人</div>
             <div class="dispatch-table-th4"></div>          
         </div>
-        <div class="dispatch-table-row2" v-for="data in alltickets['done']" :key="data">
+        <div class="dispatch-table-row2" v-for="(data, index) in every_tickets['proccessed']" :key="data">
             <div class="dispatch-table-td1"> {{ data.ticket_title}} </div>
             <div class="dispatch-table-td2"> {{ data.created_at }} </div>
             <div class="dispatch-table-td3">
                 <div class="engineer-select">
-                    <input type="text" name="city" list="cityname">
-                    <datalist id="cityname" >  
-                        
-                        <option>請選擇負責人</option>
-                        <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_id" > {{data.selected}} </option>
+                    現在負責人: {{data.admin_name}}
+                    <input type="text" name="city" list="cityname" v-model="data.selected" v-on:input="get_engineer_id(index, data.selected, 'proccessed')">
+                    <datalist id="cityname"> 
+                        <option value="">請選擇負責人</option> 
+                        <option v-for="engineer in allEngineers" :key="engineer" :value="engineer.admin_name" > {{engineer.admin_name}} </option>
                     </datalist>
-                   
                 </div>
             </div>
-            <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected , data.ticket_id, 'Processing')" /></div>
+            <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected_id , data.ticket_id, 'Processing')" /></div>
         </div>
     </div>
     
@@ -89,7 +89,13 @@
             oneTicket : {},
             allEngineers : [],
             selected : '',
-            temp_select_id : 0
+            temp_select_id : 0,
+            every_tickets : {
+                not_proccess : [],
+                proccessing : [],
+                proccessed : []
+            },
+            tickets_page : '0'
         }
     },
     inject : [
@@ -98,6 +104,11 @@
     ],
     methods : {
         dispatch_ticket( adminId, ticketId, ticket_status) {
+            if ( adminId === undefined || ticketId === '' || ticket_status === '' ) {
+                alert( '請選擇負責人')
+                return false ;
+            }
+                
             console.log( adminId )
             console.log( ticketId )
             console.log( ticket_status )
@@ -122,6 +133,7 @@
             .then((data) => { 
                 console.log( data )
                 alert( data['data']['message'])
+                this.reload() ;
             })
         },
         async find_engineer() {
@@ -165,21 +177,60 @@
                 this.allEngineers = this.allEngineers.concat( data['data'] )
             })
         },
-        select_undo_admin( index) {
-            this.temp_select_id = this.allEngineers['undo'][index]['admin_id'] ;
-            // this.allEngineers['undo'][index]
-            console.log( this.temp_select_id )
+        get_engineer_id( index ,name, status) {
+            // console.log( index )
+            // console.log( this.every_tickets[status] ) 
+            for ( let i of this.allEngineers) {
+               if ( i.admin_name === name ) {
+                    this.every_tickets[status][index].selected_id = i.admin_id ;
+                    console.log( this.every_tickets[status][index].selected_id )
+               }
+           }
         },
-        get_all_tickets() {
-            // let url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets'
-            // for( let i ; i < this.allEngineers.length ; i ++ ) {
-            //     let temp = url + allEngineers[i] ;
-            // } // for
+        getAlltickets() {
+            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + this.tickets_page + '&status=all&user_id=0&role=0' ;
+
+            fetch( address ,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                // console.log ('all')
+                // console.log( data ) ;
+                for( let i of data['data'] ) {
+                    if ( i['ticket_status'] === 'Not Processed') {
+                        this.every_tickets['not_proccess'].push( i ) ;
+                    }
+                    else if ( i['ticket_status'] === 'Processing' ) {
+                        this.every_tickets['proccessing'].push( i ) ;
+                    }
+                    else if ( i['ticket_status'] === 'Processed' ) {
+                        this.every_tickets['proccessed'].push( i ) ;
+                    }
+                }
+                // console.log( this.every_tickets )
+            })
+        },
+        reload() {
+            this.every_tickets = {
+                not_proccess : [],
+                proccessing : [],
+                proccessed : []
+            }
+            setTimeout( this.getAlltickets(), 3000 ) ;
         }
     },
-    mounted() {
+    created() {
         this.find_engineer() ;
         this.find_engineer_supervisor() ;
+        this.getAlltickets()
     },
  }
  </script>

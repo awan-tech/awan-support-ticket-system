@@ -141,7 +141,7 @@ export default {
             this.getAllticket() ;
         }
     },
-    mounted() {
+    created() {
         this.getAllticket()
     },
 }
