@@ -9,9 +9,20 @@
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
                 <div class="deadline-td2">{{ temp['created_at']}}</div>
             </li>
-
         </div>
-
+        <div class="thomas-left">
+            <ul class="pagination">
+                 <li><a href="#">«</a></li>
+                 <li><a href="#">1</a></li>
+                 <li><a class="active" href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>
+                 <li><a href="#">5</a></li>
+                 <li><a href="#">6</a></li>
+                 <li><a href="#">7</a></li>
+                 <li><a href="#">»</a></li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -106,13 +117,20 @@ export default {
     position: relative ;
     display: flex ;
     width: 100%;
+    flex-direction: column ;
+    height: 80%;
 }
 
 .thomas-left {
     position: relative ;
     display: flex ;
     flex-direction: column ;
-    width: 20%;
+    width: 100%;
+    height: 0%;
+    margin: auto;
+    left: 35%;
+    top: 7%;
+    
 }
 .thomas-right {
     background-color: rgb(255, 255, 255);
@@ -216,4 +234,26 @@ export default {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+ul.pagination li {
+    display: inline;
+}
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+ul.pagination li a.active {
+    background-color: #484747;
+    color: white;
+}
+ul.pagination li a:hover:not(.active) {
+    background-color: #e5e5e5;
+}
+
 </style>
