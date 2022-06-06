@@ -49,14 +49,12 @@ export default {
                 if ( response.ok ) {
                     return response.json() ;
                 }
-                else {
-                    console.log( response )
-                }
             })
             .then((data) => { 
                 console.log( data['data']['message'] )
                 alert(data['data']['message'])
             })
+            
 
             this.ticket_title = '' ;
             this.ticket_content = '' ;

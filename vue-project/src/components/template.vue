@@ -80,7 +80,7 @@ export default {
             })
             .then((data) => { 
                 console.log ('doing')
-                // console.log( data['data'] ) ;
+                console.log( data['data'] ) ;
                 this.fetchalltickets['doing'] = data['data'] ;
                 // for( let i = 0 ; i < this.fetchalltickets['doing'].length ; i ++ ) {
                 //     console.log(i)
@@ -141,7 +141,7 @@ export default {
             this.getAllticket() ;
         }
     },
-    mounted() {
+    created() {
         this.getAllticket()
     },
 }
