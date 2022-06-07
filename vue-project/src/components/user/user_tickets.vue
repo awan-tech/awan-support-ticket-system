@@ -156,9 +156,13 @@ export default {
             .then((data) => { 
                 console.log( data )
                 alert( data['message'] ) ;
-                setTimeout( this.fetchTicket(), 3000 ) ;
                 this.input_content = '' ;
+                this.reload() ;
             })
+        },
+        reload() {
+            console.log('reload')
+            setTimeout( this.fetch_all_contents(), 3000 ) ;
         }
     },
     data() {
@@ -166,11 +170,9 @@ export default {
             myticket : {},
             input_content : "",
             all_ticket_contents : {},
-      
-
         }
     },
-    mounted() {
+    created() {
         this.fetchTicket() ;
         this.fetch_all_contents() ;
     }

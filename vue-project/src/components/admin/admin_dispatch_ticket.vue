@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div  class="dispatch-table-td4"><input value="Send" type="submit" @click="dispatch_ticket(data.selected_id, data.ticket_id, 'Processing')" /></div>
-            <div>{{data.selected}}</div> 
+            
             
         </div>
       

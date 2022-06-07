@@ -56,10 +56,11 @@
                 </table>
             </div>
         </div>
-        <div class="tickets-footer" v-if="myticket['ticket_status'] !== 'Processed'">
-            <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88"></textarea>
-            <button class="user-ticket-btn"><span>傳送</span></button>
+        <div class="tickets-footer" v-if="myticket['ticket_status'] !== 'Processed'" >
+            <textarea  name="message" placeholder="輸入訊息" id="message_input" cols="88" v-model="input_content"></textarea>
+            <button  class="user-ticket-btn" @click="responseTicket()" ><span>傳送</span></button>
         </div>
+
     </div>
 </template>
 
@@ -75,7 +76,6 @@ export default {
     ],
     methods : {
        fetchTicket() {
-            // https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/{id}
             var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/'
             url += String( this.ticketcontent['ticketid'])  ;
             console.log( url )
@@ -92,9 +92,7 @@ export default {
             })
             .then((data) => { 
                 this.myticket = data['data'] ;
-                console.log( "testtttttttt")
                 console.log( this.myticket)
-                
             })
 
         },
@@ -141,9 +139,13 @@ export default {
             .then((data) => { 
                 console.log( data )
                 alert( data['message'] ) ;
-                setTimeout( this.fetchTicket(), 3000 ) ;
                 this.input_content = '' ;
+                this.reload() ;
             })
+        },
+        reload() {
+            console.log('reload')
+            setTimeout( this.fetch_all_contents(), 3000 ) ;
         }
 
     },
@@ -154,7 +156,7 @@ export default {
             all_ticket_contents : {}
         }
     },
-    mounted() {
+    created() {
         this.fetchTicket() ;
         this.fetch_all_contents() ;
     }

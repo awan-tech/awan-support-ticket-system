@@ -70,13 +70,8 @@ export default {
     methods: {
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
             this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
-            this.$router.push('/userhome/tickets')
+            this.$router.push('/home/tickets')
         },
-        // change_number_ticket() {
-        //     if( this.alltickets['undo'].length != 0 ) {
-        //         this.number_ticket = this.alltickets['undo'].length
-        //     }
-        // }
     },
     mounted() {
     },

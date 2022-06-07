@@ -52,7 +52,7 @@ export default {
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
       
             this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name ) ; // back to template
-            this.$router.push('/userhome/tickets')
+            this.$router.push('/home/tickets')
         }
     },
     mounted() {
