@@ -16,7 +16,7 @@
 
 <script>
 import header from './components/header.vue'
-
+import { Auth } from "aws-amplify";
 export default {
     provide(){
         return {
@@ -39,14 +39,42 @@ export default {
     },
     methods : {
         changeLoginStatus(id, name, role) {
-            // console.log( 'test1111111' ) ;
+            
             if ( id != 'null') {
                 this.data['id'] = id ;
                 this.data['username'] = name ;
                 this.data['userRole'] = role ;
             }        
+        },
+        async getUserInfo() { 
+            const user = await Auth.currentAuthenticatedUser(); 
+            console.log('attributes:', user.attributes); 
+        },
+        async getLoginStatus() {
+            console.log( 'test1111111' ) ;
+            try {
+                // const userObj = await Auth.currentSession() ;
+                // console.log( userObj ) ;
+                const user = await Auth.currentUserInfo(); 
+                if ( user != null ) {
+                    this.data['id'] = user['attributes']['custom:id'];
+                    this.data['username'] = user['attributes']['custom:name'] ;
+                    this.data['userRole'] = user['attributes']['custom:role'] ;
+                    console.log( 'login status')
+                }
+                else {
+                    console.log( 'no attribute')
+                }
+                // console.log('attributes:', user); 
+            }
+            catch(err) {
+                console.log( err )
+            }
         }
-    }
+    },
+    created() {
+        this.getLoginStatus() ;
+    },
 }
 </script>
 
