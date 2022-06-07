@@ -1,7 +1,14 @@
 import { createApp } from 'vue';
+import { createStore} from 'vuex'
 import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
 import BootstrapVue3 from "bootstrap-vue-3";
+//////////////////////////////// Amplify
+import Amplify from 'aws-amplify'
+// import { AmplifyEventBus } from 'aws-amplify-vue'
+import awsexports from './aws-exports'
+///////////////////////////////////////
+
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
@@ -93,8 +100,33 @@ const router = createRouter( {
 })
 
 
+
 const app = createApp(App);
+
+const store = createStore({
+    modules : {
+    },
+    state() {
+        return {}
+    }
+})
 app.use(BootstrapVue3);
+
 app.use( router )
+
+//////////////////////////////// Amplify
+Amplify.configure( awsexports )
+
+// app.use(AmplifyPlugin, AmplifyModules)
+// AmplifyEventBus.$on('authState', info => {
+//   console.log(`Here is the auth event that was just emitted by an Amplify component: ${info}`)
+//   router.push('home')
+// })
+
+app.config.productionTip = false
+////////////////////////////////
+
+app.use(store);
+
 
 app.mount('#frameapp');

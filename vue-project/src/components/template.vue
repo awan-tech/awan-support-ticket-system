@@ -13,6 +13,7 @@
 
 
 <script>
+// import { Auth } from "aws-amplify";
 //:Userdata="userdata"
 import sidebar from './sidebar.vue'
 export default {
@@ -142,7 +143,8 @@ export default {
         }
     },
     created() {
-        this.getAllticket()
+        this.getAllticket() ;
+        // this.isUserSignIn() ;
     },
 }
 </script>
