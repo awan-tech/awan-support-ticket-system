@@ -97,17 +97,20 @@ export default {
             
             await this.concatTickets() ;
         },
-        changeLoginStatus(id, name, role) {
+        async changeLoginStatus(id, name, role) {
             
             if ( id != 'null') {
-                this.data['id'] = id ;
-                this.data['username'] = name ;
-                this.data['userRole'] = role ;
-                this.getAllticket() ;
+                await this.change_user(id, name, role)
+                // this.data['id'] = id ;
+                // this.data['username'] = name ;
+                // this.data['userRole'] = role ;
+                await this.getAllticket() ;
             }        
         },
-        change_user() {
-
+        change_user( id, name, role) {
+            this.data['id'] = id ;
+            this.data['username'] = name ;
+            this.data['userRole'] = role ;
         },
         async getLoginStatus() {
             try {
@@ -119,7 +122,7 @@ export default {
                     // this.data['id'] = user['attributes']['custom:id'];
                     // this.data['username'] = user['attributes']['custom:name'] ;
                     // this.data['userRole'] = user['attributes']['custom:role'] ;
-                    console.log( 'login status')
+                    console.log( 'login success')
                     // await this.getAllticket() ;
                 }
                 else {

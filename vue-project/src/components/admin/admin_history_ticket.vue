@@ -5,7 +5,7 @@
                 <div class="deadline-tr">歷史清單</div>
                 <div class="deadline -tr">Created At</div>
             </li>
-            <li class="deadline-row" v-for="temp in alltickets['done']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
+            <li class="deadline-row" v-for="temp in every_tickets['proccessed']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
                 <div class="deadline-td2">{{ temp['created_at']}}</div>
             </li>
@@ -33,7 +33,13 @@ export default {
     ],
     data() {
         return {
-            oneTicket : {}
+            oneTicket : {},
+            tickets_page : '0',
+            every_tickets : {
+                not_proccess : [],
+                proccessing : [],
+                proccessed : []
+            },
         }
     },
     inject : [
@@ -43,8 +49,44 @@ export default {
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
             this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
             this.$router.push('/userhome/tickets')
+        },
+        get_All_history_ticket() {
+            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + this.tickets_page + '&status=all&user_id=0&role=0' ;
+
+            fetch( address ,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                // console.log ('all')
+                // console.log( data ) ;
+                for( let i of data['data'] ) {
+                    if ( i['ticket_status'] === 'Not Processed') {
+                        this.every_tickets['not_proccess'].push( i ) ;
+                    }
+                    else if ( i['ticket_status'] === 'Processing' ) {
+                        this.every_tickets['proccessing'].push( i ) ;
+                    }
+                    else if ( i['ticket_status'] === 'Processed' ) {
+                        this.every_tickets['proccessed'].push( i ) ;
+                    }
+                }
+            })
+        },
+        change_page( page ) {
+            this.tickets_page = page ;
         }
     },
+    created() {
+        this.get_All_history_ticket() ;
+    }
 }
 </script>
 
