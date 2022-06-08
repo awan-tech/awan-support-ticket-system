@@ -20,7 +20,8 @@ import { Auth } from "aws-amplify";
 export default {
     provide(){
         return {
-          userlogindata : this.data 
+            userlogindata : this.data,
+            alltickets: this.fetchalltickets,
         }
     },
     components : {
@@ -32,48 +33,115 @@ export default {
                 id : '',
                 userRole : '',
                 username : ''
-            }
-            
+            },
+            fetchalltickets : {},
+            tickets_page : '0'
         }
         
     },
     methods : {
+        async getAllticket() {
+            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
+            let user_id = this.data['id'], role = this.data['userRole'] ;
+            // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
+
+            await fetch( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('undo')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['undo'] = data['data'] ;
+            })
+
+            await fetch( address + '?page=' + this.tickets_page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('doing')
+                console.log( data['data'] ) ;
+                this.fetchalltickets['doing'] = data['data'] ;
+            })
+
+            fetch( address + '?page=' + this.tickets_page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
+            headers : {
+                'Content-Type': 'application/json'
+            },
+            })
+            .then( (response) => {
+                if ( response.ok ) {
+                    return response.json() ;
+                }
+            })
+            .then((data) => { 
+                console.log ('done')
+                this.fetchalltickets['done'] = data['data'] ;
+            })
+            
+            await this.concatTickets() ;
+        },
         changeLoginStatus(id, name, role) {
             
             if ( id != 'null') {
                 this.data['id'] = id ;
                 this.data['username'] = name ;
                 this.data['userRole'] = role ;
+                this.getAllticket() ;
             }        
         },
-        async getUserInfo() { 
-            const user = await Auth.currentAuthenticatedUser(); 
-            console.log('attributes:', user.attributes); 
+        change_user() {
+
         },
         async getLoginStatus() {
-            console.log( 'test1111111' ) ;
             try {
                 // const userObj = await Auth.currentSession() ;
                 // console.log( userObj ) ;
                 const user = await Auth.currentUserInfo(); 
                 if ( user != null ) {
-                    this.data['id'] = user['attributes']['custom:id'];
-                    this.data['username'] = user['attributes']['custom:name'] ;
-                    this.data['userRole'] = user['attributes']['custom:role'] ;
+                    await  this.changeLoginStatus( user['attributes']['custom:id'], user['attributes']['custom:name'], user['attributes']['custom:role'] )
+                    // this.data['id'] = user['attributes']['custom:id'];
+                    // this.data['username'] = user['attributes']['custom:name'] ;
+                    // this.data['userRole'] = user['attributes']['custom:role'] ;
                     console.log( 'login status')
+                    // await this.getAllticket() ;
                 }
                 else {
                     console.log( 'no attribute')
                 }
-                // console.log('attributes:', user); 
             }
             catch(err) {
                 console.log( err )
             }
-        }
+        },
+        concatTickets() {
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['doing']
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['customer_doing'] .concat( this.fetchalltickets['undo'])
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['customer_doing'].sort(function(a,b) {
+                return a.ticket_id > b.ticket_id ? 1 : -1;
+            })
+
+        },
     },
     created() {
         this.getLoginStatus() ;
+        // this.getAllticket() ;
     },
 }
 </script>

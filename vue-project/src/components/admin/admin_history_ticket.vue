@@ -37,7 +37,6 @@ export default {
         }
     },
     inject : [
-        'userdata',
         'alltickets'
     ],
     methods: {

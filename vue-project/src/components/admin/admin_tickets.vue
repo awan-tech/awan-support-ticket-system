@@ -70,7 +70,6 @@ export default {
         'ticket'
     ],
     inject : [
-        'userdata',
         'alltickets',
         'ticketcontent'
     ],

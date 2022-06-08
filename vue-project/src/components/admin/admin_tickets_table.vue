@@ -39,7 +39,6 @@
 <script>
 export default {
     inject : [
-        'userdata',
         'alltickets',
     ],
     data() {

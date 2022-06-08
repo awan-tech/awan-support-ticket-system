@@ -14,7 +14,6 @@
 
 <script>
 // import { Auth } from "aws-amplify";
-//:Userdata="userdata"
 import sidebar from './sidebar.vue'
 export default {
     props: {
@@ -22,10 +21,13 @@ export default {
             type: Object,
         },
     },
+    inject : [
+        'alltickets',
+        'ticketcontent'
+    ],
     provide(){
         return {
-          userdata : this.all_tickets_content,
-          alltickets: this.fetchalltickets,
+        //   alltickets: this.fetchalltickets,
           ticketcontent : this.oneTicket // for user_tickets and admin_tickets from user_table
         }
     },
@@ -62,10 +64,6 @@ export default {
                 console.log ('undo')
                 console.log( data['data'] ) ;
                 this.fetchalltickets['undo'] = data['data'] ;
-                // for( let i = 0 ; i < this.fetchalltickets['undo'].length ; i ++ ) {
-                //     var test = Date.parse(this.fetchalltickets['undo'][i]['created_at']) ;
-                //     this.fetchalltickets['undo'][i]['created_at'] = new Date( test ).toDateString()
-                // } // for
             })
 
             await fetch( address + '?page=' + this.tickets_page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
@@ -83,11 +81,6 @@ export default {
                 console.log ('doing')
                 console.log( data['data'] ) ;
                 this.fetchalltickets['doing'] = data['data'] ;
-                // for( let i = 0 ; i < this.fetchalltickets['doing'].length ; i ++ ) {
-                //     console.log(i)
-                //     var test = Date.parse(this.fetchalltickets['doing'][i]['created_at']) ;
-                //     this.fetchalltickets['doing'][i]['created_at'] = new Date( test ).toDateString()
-                // } // for
             })
 
             fetch( address + '?page=' + this.tickets_page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
@@ -107,18 +100,10 @@ export default {
             })
             .then((data) => { 
                 console.log ('done')
-                // console.log( data['data'] ) ;
                 this.fetchalltickets['done'] = data['data'] ;
-                // for( let i = 0 ; i < this.fetchalltickets['done'].length ; i ++ ) {
-                //     var test = Date.parse(this.fetchalltickets['done'][i]['created_at']) ;
-                //     this.fetchalltickets['done'][i]['created_at'] = new Date( test ).toDateString()
-                // } // for
             })
             
             await this.concatTickets() ;
-            
-
-            
         },
         concatTickets() {
             this.fetchalltickets['customer_doing'] = this.fetchalltickets['doing']
@@ -135,15 +120,16 @@ export default {
         },
         againgetticket() {
             console.log('reload tickets')
+            // this.$router.go(0)
             this.getAllticket()
         },
         change_page( page ) {
             this.tickets_page = page ;
-            this.getAllticket() ;
+            // this.getAllticket() ;
         }
     },
     created() {
-        this.getAllticket() ;
+        // this.getAllticket() ;
         // this.isUserSignIn() ;
     },
 }

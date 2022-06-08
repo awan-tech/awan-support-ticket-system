@@ -84,7 +84,7 @@
 <script>
 export default {
     inject : [
-        'userdata',
+
         'alltickets',
         'ticketcontent'
     ],

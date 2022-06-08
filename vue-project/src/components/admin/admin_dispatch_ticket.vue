@@ -99,7 +99,6 @@
         }
     },
     inject : [
-        'userdata',
         'alltickets'
     ],
     methods : {
