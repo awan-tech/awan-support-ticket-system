@@ -1,8 +1,24 @@
 <template>
     <div id="create-form-container">
-        <!-- <div class>&bull; Keep in Touch &bull;</div> -->
         <div action="#" method="post" id="contact_form">
+            <div class="text">
             <input v-model="ticket_title" type="form-text" placeholder="title" name="telephone" id="telephone_input" required>
+            </div>
+            <div class="service-select">
+                <select>
+                    <option>請選擇您需要的服務</option>
+                    <option>AWS_EC2</option>
+                    <option>AWS_VPC</option>
+                    <option>AWS_Route53</option>
+                    <option>AWS_Cloudfront</option>
+                    <option>AWS_S3</option>
+                    <option>Azure_SQL Database</option>
+                    <option>Azure_App Service</option>
+                    <option>Azure_Azure Active Directory</option>
+                    <option>Azure_Azure Maps</option>
+                    <option>Azure_VM</option>
+                    </select>
+            </div>
 
             <div  class="message">
                 <textarea v-model="ticket_content" name="message" placeholder="I'd like to ask a question" id="message_input" cols="30" rows="5" required></textarea>
@@ -83,7 +99,7 @@ export default {
         position: relative;
         top: -30px;
         left: -20px;
-        height: 80vh;
+        height: 90vh;
     }
     #contact_form {
         padding: 37.5px;
@@ -97,7 +113,7 @@ export default {
         display: flex;
         flex-direction: column ;
     }
-    input[type='form-text'], [type='email'], textarea {
+    input[type='form-text'], [type='email'],textarea {
         background: none;
         border: none;
         border-bottom: solid 2px #474544;
@@ -117,12 +133,26 @@ export default {
         resize: none;
         width: 100%;
     }
+    .service-select select{
+         background: #c5c4c4;
+         color: #111010;
+         /* margin: 15px; */
+         width: 100%;
+         height: 100%;
+         padding: 8px;
+         position: relative;
+         appearance: none;
+         border: solid 2px #474544;
+    }
+    .message{
+        margin-top: 5%;
+    }
+    
     ::-webkit-input-placeholder {
         color: #474544;
     }
     #form_button {
         position: relative;
-        top: 5vh;
         background: none;
         border: solid 2px #474544;
         color: #474544;
