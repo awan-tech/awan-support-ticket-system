@@ -8,19 +8,19 @@
             <li class="table-row" v-for="data in alltickets['customer_doing']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])" >
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
-            <div class="left-page">
+            <!-- <div class="left-page">
                 <ul class="pagination">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a class="active" href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-            </div>
+                <li><a href="">«</a></li>
+                 <li v-for="i in all_tickets_page['doing']+1" :key="i"><a href="/home/tickets_table">{{i}}</a></li>
+                 <li><a class="active" href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>
+                 <li><a href="#">5</a></li>
+                 <li><a href="#">6</a></li>
+                 <li><a href="#">7</a></li>
+                 <li><a href="#">»</a></li>
+            </ul>
+            </div> -->
         </div>
         <div class="tickets-table-right">
             <li class="table-header">
@@ -29,19 +29,19 @@
             <li class="table-row" v-for="data in alltickets['done']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
-            <div class="right-page">
+            <!-- <div class="right-page">
                 <ul class="pagination">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a class="active" href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-            </div>
+                <li><a href="#">«</a></li>
+                 <li v-for="i in all_tickets_page['doing']+1" :key="i"><a href="#">{{i}}</a></li>
+                 <li><a class="active" href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>
+                 <li><a href="#">5</a></li>
+                 <li><a href="#">6</a></li>
+                 <li><a href="#">7</a></li>
+                 <li><a href="#">»</a></li>
+            </ul>
+            </div> -->
 
             
         </div>
@@ -51,7 +51,7 @@
 <script>
 export default {
     inject : [
-        'alltickets'
+        'alltickets',
     ],
     data() {
         return {
