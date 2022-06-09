@@ -29,6 +29,19 @@
             <li class="table-row" v-for="data in alltickets['done']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
+            <div class="right-page">
+                <ul class="pagination">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a class="active" href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
 
             
         </div>
@@ -144,6 +157,16 @@ export default {
          flex-basis: 80%;
          overflow: hidden;
          text-overflow: ellipsis;
+    }
+       .tickets-table-right .right-page{
+        position: relative ;
+        display: flex ;
+        flex-direction: column ;
+        width: 100%;
+        height: 10%;
+        margin: auto;
+        /* left: 35%;
+        top: 7%; */
     }
 ul.pagination {
         display: inline-block;
