@@ -45,7 +45,7 @@ export default {
         }
     },
     inject : [
-        'userdata',
+
         'alltickets'
     ],
     emits:[

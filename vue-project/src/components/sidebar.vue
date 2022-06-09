@@ -45,13 +45,14 @@
             </li>
             
             <li>
-                <router-link to="/">Logout</router-link>
+                <router-link to="/" @click="logout">Logout</router-link>
             </li>
         </ul>
     </nav>
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
 export default {
     emits:[
         'redirect_home'
@@ -80,6 +81,9 @@ export default {
         },
         toggle_myticketSublist() {
             this.myticketSublist = ! this.myticketSublist ;
+        },
+        logout() {
+            Auth.signOut() ;
         }
         
     },
