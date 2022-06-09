@@ -85,7 +85,7 @@ export default {
         position: relative;   
         width: 40%;
         left: 50px;
-        top: 30%;
+        top: 5%;
         table-layout: fixed;
     
     }
@@ -130,8 +130,8 @@ export default {
     .tickets-table-right {
        position: relative;   
         width: 40%;
-        left: 150px;
-        top: 30px;
+        left: 12%;
+        top: 5%;
         table-layout: fixed;
     }
     .tickets-table-right li{
