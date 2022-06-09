@@ -5,19 +5,19 @@
             <input v-model="ticket_title" type="form-text" placeholder="title" name="telephone" id="telephone_input" required>
             </div>
             <div class="service-select">
-                <select>
+                <select v-model="type">
                     <option>請選擇您需要的服務</option>
-                    <option>AWS_EC2</option>
-                    <option>AWS_VPC</option>
-                    <option>AWS_Route53</option>
-                    <option>AWS_Cloudfront</option>
-                    <option>AWS_S3</option>
-                    <option>Azure_SQL Database</option>
-                    <option>Azure_App Service</option>
-                    <option>Azure_Azure Active Directory</option>
-                    <option>Azure_Azure Maps</option>
-                    <option>Azure_VM</option>
-                    </select>
+                    <option>1.AWS_EC2</option>
+                    <option>2.AWS_VPC</option>
+                    <option>3.AWS_Route53</option>
+                    <option>4.AWS_Cloudfront</option>
+                    <option>5.AWS_S3</option>
+                    <option>6.Azure_SQL Database</option>
+                    <option>7.Azure_App Service</option>
+                    <option>8.Azure_Azure Active Directory</option>
+                    <option>9.Azure_Azure Maps</option>
+                    <option>10.Azure_VM</option>
+                </select>
             </div>
 
             <div  class="message">
@@ -39,12 +39,12 @@ export default {
         return {
             ticket_title : '',
             ticket_content : '',
-
+            type : ''
         }
     },
     methods: {
         submmitAndCreate() {
-            if ( this.ticket_title === '' || this.ticket_content === '') {
+            if ( this.ticket_title === '' || this.ticket_content === '' || this.type === '') {
                 alert('請填好表格')
                 return false ;
             }
@@ -55,10 +55,10 @@ export default {
                 },
                 body :  JSON.stringify({
                 "customer_id": this.userlogindata['id'],
-                    "service_id": '3',
+                    "service_id": this.type.split('.')[0] ,
                     "ticket_title": this.ticket_title,
                     "ticket_content": this.ticket_content,
-                    "urgency": 1
+                    "urgency": '1'
                 })
             })
             .then( (response) => {

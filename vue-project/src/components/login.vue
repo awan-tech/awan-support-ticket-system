@@ -66,6 +66,7 @@ export default {
           )
 
           console.log( '登入成功')
+     
           const user = await Auth.currentUserInfo(); 
           if ( user != null ) {
               this.checkuser = user['attributes']['custom:name']
@@ -84,37 +85,6 @@ export default {
           console.log( '登入失敗') ;
           this.isUser = 'False'
         }
-
-        //  await fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/login',{
-        //     method: 'POST',
-        //     headers : {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body :  JSON.stringify({
-        //        'account' : this.username,
-        //        'password' : this.password
-        //     })
-        //     })
-        //     .then( (response) => {
-        //         if ( response.ok ) {
-        //             return response.json() ;
-        //         }
-        //     })
-        //     .then((data) => { 
-                
-        //         if ( data['data']['error'] == '無此帳號或密碼' ) {
-        //           console.log( '登入失敗') ;
-        //           this.isUser = 'False'
-        //         }
-        //         else {
-        //           console.log( '登入成功')
-        //           this.checkuser = data['data']['name']
-        //           this.role = data['data']['role']
-        //           this.userid = data['data']['id']
-
-        //           
-        //         }  
-        //     })
         
       },
       loginstatus() {

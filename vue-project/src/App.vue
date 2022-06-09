@@ -22,7 +22,8 @@ export default {
         return {
             userlogindata : this.data,
             alltickets: this.fetchalltickets,
-            all_tickets_page : this. temp_all_tickets_page
+            all_tickets_page : this. temp_all_tickets_page,
+            jwtToken : this.temp_JWTtoken
         }
     },
     components : {
@@ -41,20 +42,22 @@ export default {
                 undo:0,
                 doing:0,
                 done:0
-            }
+            },
+            temp_JWTtoken : ''
         }
         
     },
     methods : {
-        async getAllticket() {
+        async getAllticket( jwt) {
             let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
             let user_id = this.data['id'], role = this.data['userRole'] ;
             // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
-
+            console.log(jwt)
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                // 'Authorization' : String(jwt)
             },
             })
             .then( (response) => {
@@ -72,7 +75,8 @@ export default {
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                // 'Authorization' : String(jwt)
             },
             })
             .then( (response) => {
@@ -90,7 +94,8 @@ export default {
             fetch( address + '?page=' + String(this.tickets_page)  + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                // 'Authorization' : String(jwt)
             },
             })
             .then( (response) => {
@@ -113,7 +118,10 @@ export default {
                 // this.data['id'] = id ;
                 // this.data['username'] = name ;
                 // this.data['userRole'] = role ;
-                await this.getAllticket() ;
+                const userObj = await Auth.currentSession() ;
+                this.temp_JWTtoken = userObj['idToken']['jwtToken'] 
+                // console.log( userObj['idToken']['jwtToken']  )
+                await this.getAllticket( userObj['idToken']['jwtToken']  ) ;
             }        
         },
         change_user( id, name, role) {
@@ -123,12 +131,16 @@ export default {
         },
         async getLoginStatus() {
             try {
-                // const userObj = await Auth.currentSession() ;
-                // console.log( userObj ) ;
+                
                 const user = await Auth.currentUserInfo(); 
                 if ( user != null ) {
                     await  this.changeLoginStatus( user['attributes']['custom:id'], user['attributes']['custom:name'], user['attributes']['custom:role'] )
                     console.log( 'login success')
+                    console.log(user)
+                    this.temp_JWTtoken = await Auth.currentSession()['idToken']['jwtToken']  ;
+                    // this.temp_JWTtoken = userObj['idToken']['jwtToken'] 
+                    console.log( this.temp_JWTtoken ) 
+                    // console.log( userObj['idToken']['jwtToken'] ) ;
                     // await this.getAllticket() ;
                 }
                 else {

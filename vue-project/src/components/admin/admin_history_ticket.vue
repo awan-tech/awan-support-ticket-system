@@ -12,16 +12,11 @@
         </div>
         <div class="thomas-left">
             <ul class="pagination">
-                 <li><a href="#">«</a></li>
+                 <li><a href="#/home/history_ticket">«</a></li>
                  
-                 <li v-for="n in all_page+1" :key="n"><a href="#"> {{n}}</a></li>
-                 <!-- <li><a class="active" href="#">2</a></li>
-                 <li><a href="#">3</a></li>
-                 <li><a href="#">4</a></li>
-                 <li><a href="#">5</a></li>
-                 <li><a href="#">6</a></li>
-                 <li><a href="#">7</a></li> -->
-                 <li><a href="#">»</a></li>
+                 <li v-for="n in all_page+1" :key="n" @click="change_page( n )" ><a href="#/home/history_ticket"> {{n}}</a></li>
+          
+                 <li><a href="#/home/history_ticket">»</a></li>
             </ul>
         </div>
     </div>
@@ -41,7 +36,8 @@ export default {
                 proccessing : [],
                 proccessed : []
             },
-            all_page : 0
+            all_page : 0,
+            page_class : ''
         }
     },
     inject : [
@@ -52,8 +48,8 @@ export default {
             this.$emit('all_ticket_contents', ticketid, tickettitle, ticket_admin_name )
             this.$router.push('/userhome/tickets')
         },
-        get_All_history_ticket() {
-            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + String(this.tickets_page)  + '&status=all&user_id=0&role=0' ;
+        get_All_history_ticket( page ) {
+            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + String(page)  + '&status=all&user_id=0&role=0' ;
 
             fetch( address ,{
             method: 'GET',
@@ -86,11 +82,12 @@ export default {
             })
         },
         change_page( page ) {
-            this.tickets_page = page ;
+            // this.tickets_page = page ;
+            this.get_All_history_ticket(page)
         }
     },
     created() {
-        this.get_All_history_ticket() ;
+        this.get_All_history_ticket(0) ;
     }
 }
 </script>
