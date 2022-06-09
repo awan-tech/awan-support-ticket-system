@@ -4,7 +4,7 @@
                 <side-bar :Userdata="user" @redirect_home="againgetticket()" > </side-bar>
             </div>
             <div class="template-right">
-                <router-view @all_ticket_contents="transferTicketId"></router-view>
+                <router-view @all_ticket_contents="transferTicketId" ></router-view>
             </div>
             
         </div>
@@ -16,6 +16,10 @@
 // import { Auth } from "aws-amplify";
 import sidebar from './sidebar.vue'
 export default {
+    emits:[
+        'all_ticket_contents',
+        'change_page_to_app'
+    ],
     props: {
         user: {
             type: Object,
@@ -122,10 +126,6 @@ export default {
             console.log('reload tickets')
             // this.$router.go(0)
             this.getAllticket()
-        },
-        change_page( page ) {
-            this.tickets_page = page ;
-            // this.getAllticket() ;
         }
     },
     created() {

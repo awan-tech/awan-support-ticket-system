@@ -3,37 +3,37 @@
        
         <div class="tickets-table-left">
             <li class="table-header">
-                    <div class="tickets-table-left-tr">尚未處理</div>
-            </li>
-            <li class="table-row" v-for="data in alltickets['undo']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
-                     <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
-            </li>
-        <div class="tickets-table-left-pagination">
-            <ul class="pagination">
-                <li><a href="#">«</a></li>
-                 <li><a href="#">1</a></li>
-                 <li><a class="active" href="#">2</a></li>
-                 <li><a href="#">3</a></li>
-                 <li><a href="#">4</a></li>
-                 <li><a href="#">5</a></li>
-                 <li><a href="#">6</a></li>
-                 <li><a href="#">7</a></li>
-                 <li><a href="#">»</a></li>
-            </ul>
-        </div>
-         
-        </div>
-        <div class="tickets-table-right">
-            <li class="table-header">
-                    <div class="tickets-table-right-tr">待處理</div>
+                    <div class="tickets-table-left-tr">正在處理</div>
             </li>
             <li class="table-row" v-for="data in alltickets['doing']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
                      <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
             </li>
-            <div class="tickets-table-right-pagination">
+        <!-- <div class="tickets-table-left-pagination">
+            <ul class="pagination">
+                <li @click="change_page('sub',i)" ><a href="#">«</a></li>
+                 <li v-for="i in all_tickets_page['doing']+1" :key="i" @click="change_page('jump',i)"><a href="#/home/tickets_table">{{i}}</a></li>
+                 <li><a class="active" href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>
+                 <li><a href="#">5</a></li>
+                 <li><a href="#">6</a></li>
+                 <li><a href="#">7</a></li>
+                 <li @click="change_page('add',i)"><a href="#">»</a></li>
+            </ul>
+        </div> -->
+         
+        </div>
+        <div class="tickets-table-right">
+            <li class="table-header">
+                    <div class="tickets-table-right-tr">已處理</div>
+            </li>
+            <li class="table-row" v-for="data in alltickets['done']" :key="data" @click="viewTicket(data['ticket_id'], data['ticket_title'], data['admin_id'])">
+                     <div class="user-table-td1" data-label="Job Id">{{ data.ticket_title}} </div>
+            </li>
+            <!-- <div class="tickets-table-right-pagination">
             <ul class="pagination">
                 <li><a href="#">«</a></li>
-                 <li><a href="#">1</a></li>
+                 <li v-for="i in all_tickets_page['done']+1" :key="i"><a href="#">{{i}}</a></li>
                  <li><a class="active" href="#">2</a></li>
                  <li><a href="#">3</a></li>
                  <li><a href="#">4</a></li>
@@ -42,7 +42,8 @@
                  <li><a href="#">7</a></li>
                  <li><a href="#">»</a></li>
             </ul>
-        </div>
+
+            </div> -->
 
             
         </div>
@@ -54,6 +55,7 @@
 export default {
     inject : [
         'alltickets',
+        'all_tickets_page'
     ],
     data() {
         return {
