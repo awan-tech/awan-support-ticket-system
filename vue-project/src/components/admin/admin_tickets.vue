@@ -75,7 +75,7 @@ export default {
     ],
     methods : {
        fetchTicket() {
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/'
+            var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/'
             url += String( this.ticketcontent['ticketid'])  ;
             console.log( url )
             fetch(url,{
@@ -96,7 +96,7 @@ export default {
 
         },
         fetch_all_contents() {
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/contents?'
+            var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/contents?'
             url += 'ticket_id=' + String( this.ticketcontent['ticketid'])  ;
             console.log( url )
             fetch(url,{
@@ -117,7 +117,7 @@ export default {
         },
         responseTicket( ) {
             console.log( this.input_content)
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/contents'
+            var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/contents'
             console.log( url )
             fetch(url,{
             method: 'POST',

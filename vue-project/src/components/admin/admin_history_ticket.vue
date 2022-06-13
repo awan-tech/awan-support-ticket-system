@@ -49,7 +49,7 @@ export default {
             this.$router.push('/userhome/tickets')
         },
         get_All_history_ticket( page ) {
-            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + String(page)  + '&status=all&user_id=0&role=0' ;
+            let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + String(page)  + '&status=all&user_id=0&role=0' ;
 
             fetch( address ,{
             method: 'GET',

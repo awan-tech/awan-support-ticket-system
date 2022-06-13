@@ -48,7 +48,7 @@ export default {
                 alert('請填好表格')
                 return false ;
             }
-            fetch('https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/create',{
+            fetch('https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/create',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json'

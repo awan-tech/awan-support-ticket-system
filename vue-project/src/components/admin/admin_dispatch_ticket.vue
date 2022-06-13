@@ -111,7 +111,7 @@
             console.log( adminId )
             console.log( ticketId )
             console.log( ticket_status )
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets/assign'
+            var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/assign'
             console.log( url )
             fetch(url,{
             method: 'POST',
@@ -136,7 +136,7 @@
             })
         },
         async find_engineer() {
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer'
+            var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer'
             console.log( url )
             await fetch(url,{
             method: 'GET',
@@ -157,7 +157,7 @@
             await this.find_engineer_supervisor() ;
         },
         find_engineer_supervisor() {
-            var url = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer Supervisor'
+            var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer Supervisor'
             
             console.log( url )
             fetch(url,{
@@ -187,7 +187,7 @@
            }
         },
         getAlltickets() {
-            let address = 'https://kdmm5wrtrb.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + this.tickets_page + '&status=all&user_id=0&role=0' ;
+            let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + this.tickets_page + '&status=all&user_id=0&role=0' ;
 
             fetch( address ,{
             method: 'GET',
