@@ -99,7 +99,8 @@
         }
     },
     inject : [
-        'alltickets'
+        'alltickets',
+        'jwtToken'
     ],
     methods : {
         dispatch_ticket( adminId, ticketId, ticket_status) {
@@ -116,7 +117,8 @@
             fetch(url,{
             method: 'POST',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                    'Authorization' : this.jwtToken.jwt
             },
             body : JSON.stringify({
                 'admin_id' : adminId,
@@ -141,7 +143,8 @@
             await fetch(url,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -163,7 +166,8 @@
             fetch(url,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                    'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -192,7 +196,8 @@
             fetch( address ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                    'Authorization' : this.jwtToken.jwt
             },
             })
             .then( (response) => {

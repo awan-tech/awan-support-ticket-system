@@ -43,7 +43,7 @@ export default {
                 doing:0,
                 done:0
             },
-            temp_JWTtoken : ''
+            temp_JWTtoken : {jwt: ''}
         }
         
     },
@@ -52,7 +52,8 @@ export default {
             let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
             let user_id = this.data['id'], role = this.data['userRole'] ;
             // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
-            console.log('jwt', jwt )
+            console.log('jwt' )
+            console.log( jwt )
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
@@ -65,12 +66,16 @@ export default {
                     return response.json() ;
                 }
             })
+            .catch((err) =>{
+                console.log(err)
+            })
             .then((data) => { 
                 console.log ('undo')
                 console.log( data['data'] ) ;
                 this.fetchalltickets['undo'] = data['data'] ;
                 this.temp_all_tickets_page['undo'] = data['total_page']
             })
+            
 
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
@@ -84,13 +89,16 @@ export default {
                     return response.json() ;
                 }
             })
+            .catch((err) =>{
+                console.log(err)
+            })
             .then((data) => { 
                 console.log ('doing')
                 console.log( data ) ;
                 this.fetchalltickets['doing'] = data['data'] ;
                 this.temp_all_tickets_page['doing'] = data['total_page']
             })
-
+            
             fetch( address + '?page=' + String(this.tickets_page)  + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
@@ -103,11 +111,15 @@ export default {
                     return response.json() ;
                 }
             })
+            .catch((err) =>{
+                console.log(err)
+            })
             .then((data) => { 
                 console.log ('done')
                 this.fetchalltickets['done'] = data['data'] ;
                 this.temp_all_tickets_page['done'] = data['total_page']
             })
+            
             
             await this.concatTickets() ;
         },
@@ -120,9 +132,9 @@ export default {
                 // this.data['userRole'] = role ;
                 const userObj = await Auth.currentSession() ;
                 
-                this.temp_JWTtoken = userObj['idToken']['jwtToken'] 
+                this.temp_JWTtoken.jwt = userObj['idToken']['jwtToken'] 
                 // console.log( 'test', this.temp_JWTtoken )
-                await this.getAllticket( this.temp_JWTtoken  ) ;
+                await this.getAllticket( this.temp_JWTtoken.jwt  ) ;
             }        
         },
         change_user( id, name, role) {
