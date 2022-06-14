@@ -126,7 +126,7 @@ export default {
             console.log('reload tickets')
             // this.$router.go(0)
             this.getAllticket()
-        }
+        },
     },
     created() {
         // this.getAllticket() ;
