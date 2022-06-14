@@ -9,12 +9,13 @@
             <div class="user-table">
                 <li class="table-header">
                     <div class="user-table-tr1">進行中</div>
+                    <div class="user-table-tr1">tag</div>
                     <div class="user-table-tr2">更新時間</div>
                 </li>
                 <li class="table-row" v-for="temp in alltickets['customer_doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
-                     
-                     <div class="user-table-td2" data-label="Payment Status">{{ temp['created_at'] }}</div>
+                     <div class="user-table-td2"  data-label="">tauhoijg</div>
+                     <div class="user-table-td3" data-label="Payment Status">{{ temp['created_at'] }}</div>
                 </li>
          
             </div>
@@ -63,9 +64,9 @@ export default {
 <style>
     .user-table{
         position: relative;   
-        width: 65vw;
-        left: -50px;
-        top: 30px;
+        width: 95%;
+        right: 5%;
+        top: 5%;
      /* padding-left: 10px;
      padding-right: 10px; */
         table-layout: fixed;
@@ -96,8 +97,18 @@ export default {
          flex-basis: 75%;
          overflow: hidden;
          text-overflow: ellipsis;
+         
     }
-    .user-table .user-table-td2 {
+        .user-table .user-table-td2 {
+         flex-basis: content;
+
+         border: solid;
+         border-radius: 8px;
+         margin-right: 37%;
+         margin-bottom: 5%;
+
+    }
+    .user-table .user-table-td3 {
         flex-basis: 25%;
     }
    

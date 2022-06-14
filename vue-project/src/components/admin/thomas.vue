@@ -4,7 +4,7 @@
         <div id="deadline-table" class="thomas-right" >
             <li class="deadline-header">
                 <div class="deadline-tr">公告</div>
-                <!-- <div class="deadline -tr">時間</div> -->
+                <div class="deadline -tr">tag</div>
                 <div class="deadline-tr">
                     <div class="onoffswitch">
                         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
@@ -17,7 +17,8 @@
             </li>
             <li class="deadline-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
-                <div class="deadline-td2">{{ temp['created_at']}}</div>
+                 <div class="deadline-td2">werwtege</div>
+                <div class="deadline-td3">{{ temp['created_at']}}</div>
             </li>
             
         </div>
@@ -172,12 +173,20 @@ export default {
          color: rgb(255, 255, 255);
   }
   #deadline-table .deadline-td1 {
-         flex-basis: 80%;
+         flex-basis: 75%;
          overflow: hidden;
          text-overflow: ellipsis;
     }
-    #deadline-table .deadline-td12 {
-        flex-basis: 10%;
+  #deadline-table .deadline-td2{
+      flex-basis: content;
+      border: solid;
+      border-radius: 8px;
+      margin-right: 34%;
+      margin-bottom: 5%;
+
+  }
+    #deadline-table .deadline-td3 {
+        flex-basis: 25%;
     }
   
 
