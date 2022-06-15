@@ -17,7 +17,7 @@
             </li>
             <li class="deadline-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
-                 <div class="deadline-td2">werwtege</div>
+                 <div class="deadline-td2"><a v-for="temp in ticket_ai_tags" :key="temp">{{temp}}</a></div>
                 <div class="deadline-td3">{{ temp['created_at']}}</div>
             </li>
             

@@ -52,8 +52,8 @@ export default {
             let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
             let user_id = this.data['id'], role = this.data['userRole'] ;
             // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
-            console.log('jwt' )
-            console.log( jwt )
+            // console.log('jwt' )
+            // console.log( jwt )
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {

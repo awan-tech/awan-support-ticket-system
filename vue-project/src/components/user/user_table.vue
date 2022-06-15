@@ -14,7 +14,7 @@
                 </li>
                 <li class="table-row" v-for="temp in alltickets['customer_doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
-                     <div class="user-table-td2"  data-label="">tauhoijg</div>
+                     <div class="user-table-td2"  data-label=""><a v-for="temp in ticket_ai_tags" :key="temp">{{temp}}</a></div>
                      <div class="user-table-td3" data-label="Payment Status">{{ temp['created_at'] }}</div>
                 </li>
          

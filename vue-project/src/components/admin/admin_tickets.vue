@@ -25,6 +25,10 @@
                     <td>
                         緊急程度: {{ myticket['urgency'] }}
                     </td>
+                    <td>
+                        <a v-if="myticket['ticket_ai_tags'].length>0">Tag: <a  v-for="temp in myticket['ticket_ai_tags']" :key="temp" >{{temp}}</a></a>
+                        <a v-else>Tag: none</a>
+                    </td>
                 </tr>
             </table>
            

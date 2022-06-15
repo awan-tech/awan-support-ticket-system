@@ -17,6 +17,8 @@
                     <option>8.Azure_Azure Active Directory</option>
                     <option>9.Azure_Azure Maps</option>
                     <option>10.Azure_VM</option>
+                    <option>12.AWS_Other</option>
+                    <option>13.Azure_Other</option>
                 </select>
             </div>
 
