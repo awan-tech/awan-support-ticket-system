@@ -14,7 +14,14 @@
                 </li>
                 <li class="table-row" v-for="temp in alltickets['customer_doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                     <div class="user-table-td1"  data-label="Job Id">{{ temp['ticket_title']}}</div>
-                     <div class="user-table-td2"  data-label=""><a v-for="temp in ticket_ai_tags" :key="temp">{{temp}}</a></div>
+                     <div class="user-table-td2"   data-label="">
+                        <a v-if="temp.ticket_ai_tags.length>0">
+                            <a v-for="temp in temp.ticket_ai_tags" :key="temp">{{temp}}</a>
+                        </a>  
+                        <a v-else>
+                            <a>none</a>
+                        </a>
+                     </div>
                      <div class="user-table-td3" data-label="Payment Status">{{ temp['created_at'] }}</div>
                 </li>
          

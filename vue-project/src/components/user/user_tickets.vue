@@ -4,24 +4,24 @@
             <table>
                 <tr>
                     <td>
-                        Ticketname: {{ myticket['ticket_title'] }}
+                        Ticket &nbsp; Name&nbsp;: {{ myticket['ticket_title'] }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Customername: {{ myticket['customer_name'] }}
+                        Customer&nbsp;Name&nbsp;: {{ myticket['customer_name'] }}
                     </td>
                     <td>
-                        負責人:  {{ myticket['admin_name'] }}
+                        負責人&nbsp;:  {{ myticket['admin_name'] }}
                     </td> 
                 </tr>
                 <tr>
                     <td>
-                        Time: {{ myticket['created_at'] }}
+                        Time&nbsp;: {{ myticket['created_at'] }}
                     </td>
                     <td>
-                        <a v-if="myticket['ticket_ai_tags'].length>0">Tag: <a  v-for="temp in myticket['ticket_ai_tags']" :key="temp" >{{temp}}</a></a>
-                        <a v-else>Tag: none</a>
+                        <a v-if="tag_length>0">Tag: <a  v-for="temp in myticket['ticket_ai_tags']" :key="temp" >{{temp}}</a></a>
+                        <a v-else>Tag&nbsp;: none</a>
                     </td>
                 </tr>
             </table>
@@ -112,6 +112,7 @@ export default {
             .then((data) => { 
                 this.myticket = data['data'] ;
                 // console.log( "testtttttttt")
+                this.tag_length = this.myticket['ticket_ai_tags'].length
                 console.log( this.myticket)
                 
             })
@@ -176,6 +177,7 @@ export default {
             myticket : {},
             input_content : "",
             all_ticket_contents : {},
+            tag_length : 0
         }
     },
     created() {

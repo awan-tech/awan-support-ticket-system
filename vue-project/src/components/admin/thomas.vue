@@ -17,7 +17,14 @@
             </li>
             <li class="deadline-row" v-for="temp in alltickets['doing']" :key="temp" @click="viewTicket(temp['ticket_id'], temp['ticket_title'], temp['admin_id'])">
                 <div class="deadline-td1">{{ temp['ticket_title']}} </div>
-                 <div class="deadline-td2"><a v-for="temp in ticket_ai_tags" :key="temp">{{temp}}</a></div>
+                    <div class="deadline-td2">
+                    <a v-if="temp.ticket_ai_tags.length>0">
+                            <a v-for="temp in temp.ticket_ai_tags" :key="temp">{{temp}}</a>
+                        </a>  
+                        <a v-else>
+                            <a>none</a>
+                        </a>
+                    </div>
                 <div class="deadline-td3">{{ temp['created_at']}}</div>
             </li>
             
@@ -35,7 +42,8 @@ export default {
     data() {
         return {
             oneTicket : {},
-            number_ticket : 0
+            number_ticket : 0,
+            
         }
     },
     inject : [
