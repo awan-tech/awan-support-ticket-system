@@ -56,7 +56,7 @@ export default {
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json',
-                    'Authorization' : this.jwtToken,
+                    'Authorization' : this.jwtToken.jwt,
 
                 },
                 body :  JSON.stringify({

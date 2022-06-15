@@ -41,7 +41,8 @@ export default {
         }
     },
     inject : [
-        'alltickets'
+        'alltickets',
+        'jwtToken'
     ],
     methods: {
         viewTicket( ticketid, tickettitle, ticket_admin_name ) {
@@ -49,12 +50,13 @@ export default {
             this.$router.push('/userhome/tickets')
         },
         get_All_history_ticket( page ) {
-            let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + String(page)  + '&status=all&user_id=0&role=0' ;
-
+            let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets?page=' + String(page)  + '&status=all&user_id=0&role=Engineer' ;
+            // console.log( this.jwtToken )
             fetch( address ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             })
             .then( (response) => {
@@ -64,7 +66,7 @@ export default {
             })
             .then((data) => { 
                 // console.log ('all')
-                // console.log( data ) ;
+                console.log( data ) ;
                 for( let i of data['data'] ) {
                     if ( i['ticket_status'] === 'Not Processed') {
                         this.every_tickets['not_proccess'].push( i ) ;
@@ -82,7 +84,6 @@ export default {
             })
         },
         change_page( page ) {
-            // this.tickets_page = page ;
             this.get_All_history_ticket(page)
         }
     },

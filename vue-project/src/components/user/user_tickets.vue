@@ -97,7 +97,7 @@ export default {
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json',
-                    'Authorization' : this.jwtToken.jwt
+                'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -107,8 +107,8 @@ export default {
             })
             .then((data) => { 
                 this.myticket = data['data'] ;
-                console.log( "testtttttttt")
-                console.log( this.myticket)
+                // console.log( "testtttttttt")
+                // console.log( this.myticket)
                 
             })
 
@@ -142,7 +142,7 @@ export default {
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json',
-                    'Authorization' : this.jwtToken.jwt
+                'Authorization' : this.jwtToken.jwt
             },
             body :JSON.stringify( {
                 "ticket_id" : this.ticketcontent['ticketid'],

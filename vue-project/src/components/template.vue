@@ -27,7 +27,8 @@ export default {
     },
     inject : [
         'alltickets',
-        'ticketcontent'
+        'ticketcontent',
+        'jwtToken'
     ],
     provide(){
         return {
@@ -56,7 +57,8 @@ export default {
             await fetch( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             })
             .then( (response) => {
@@ -73,7 +75,8 @@ export default {
             await fetch( address + '?page=' + this.tickets_page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             })
             .then( (response) => {
@@ -90,7 +93,8 @@ export default {
             fetch( address + '?page=' + this.tickets_page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             // body :  JSON.stringify({
             //     "user_id": this.user['id'],
@@ -129,8 +133,7 @@ export default {
         },
     },
     created() {
-        // this.getAllticket() ;
-        // this.isUserSignIn() ;
+ 
     },
 }
 </script>

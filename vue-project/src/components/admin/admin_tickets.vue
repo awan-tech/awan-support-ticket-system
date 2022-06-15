@@ -105,7 +105,7 @@ export default {
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json',
-                    'Authorization' : this.jwtToken.jwt
+                'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -126,7 +126,7 @@ export default {
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json',
-                    'Authorization' : this.jwtToken.jwt
+                'Authorization' : this.jwtToken.jwt
             },
             body :JSON.stringify( {
                 "ticket_id" : this.ticketcontent['ticketid'],
