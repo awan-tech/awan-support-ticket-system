@@ -4,7 +4,7 @@
                 <side-bar :Userdata="user" @redirect_home="againgetticket()" > </side-bar>
             </div>
             <div class="template-right">
-                <router-view @all_ticket_contents="transferTicketId"></router-view>
+                <router-view @all_ticket_contents="transferTicketId" ></router-view>
             </div>
             
         </div>
@@ -13,19 +13,27 @@
 
 
 <script>
-//:Userdata="userdata"
+// import { Auth } from "aws-amplify";
 import sidebar from './sidebar.vue'
 export default {
+    emits:[
+        'all_ticket_contents',
+        'change_page_to_app'
+    ],
     props: {
         user: {
             type: Object,
         },
     },
+    inject : [
+        'alltickets',
+        'ticketcontent',
+        'jwtToken'
+    ],
     provide(){
         return {
-          userdata : this.all_tickets_content,
-          alltickets: this.fetchalltickets,
-          ticketcontent : this.oneTicket 
+        //   alltickets: this.fetchalltickets,
+          ticketcontent : this.oneTicket // for user_tickets and admin_tickets from user_table
         }
     },
     components : {
@@ -36,24 +44,22 @@ export default {
             status : false,
             all_tickets_content : { topics: [ '123']},
             fetchalltickets : {},
-            oneTicket : {}
+            oneTicket : {},
+            tickets_page : '0'
         }
     },
     methods : {
+        async getAllticket() {
+            let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
+            let user_id = this.user['id'], role = this.user['userRole'] ;
+            // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
 
-//         35,Processing
-// 36,Not Processed
-// 37,Proccessed
-        getAllticket() {
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Not Processed',{
-            method: 'POST',
+            await fetch( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
-            body :  JSON.stringify({
-                "user_id": this.user['id'],
-                "role": this.user['userRole']
-            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -66,15 +72,12 @@ export default {
                 this.fetchalltickets['undo'] = data['data'] ;
             })
 
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processing',{
-            method: 'POST',
+            await fetch( address + '?page=' + this.tickets_page + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
-            body :  JSON.stringify({
-                "user_id": this.user['id'],
-                "role": this.user['userRole']
-            })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -87,15 +90,16 @@ export default {
                 this.fetchalltickets['doing'] = data['data'] ;
             })
 
-            fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/ticket?page=0&status=Processed',{
-            method: 'POST',
+            fetch( address + '?page=' + this.tickets_page + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
+            method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
-            body :  JSON.stringify({
-                "user_id": this.user['id'],
-                "role": this.user['userRole']
-            })
+            // body :  JSON.stringify({
+            //     "user_id": this.user['id'],
+            //     "role": this.user['userRole']
+            // })
             })
             .then( (response) => {
                 if ( response.ok ) {
@@ -104,9 +108,18 @@ export default {
             })
             .then((data) => { 
                 console.log ('done')
-                console.log( data['data'] ) ;
                 this.fetchalltickets['done'] = data['data'] ;
             })
+            
+            await this.concatTickets() ;
+        },
+        concatTickets() {
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['doing']
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['customer_doing'] .concat( this.fetchalltickets['undo'])
+            this.fetchalltickets['customer_doing'] = this.fetchalltickets['customer_doing'].sort(function(a,b) {
+                return a.ticket_id > b.ticket_id ? 1 : -1;
+            })
+
         },
         transferTicketId( ticketid, tickettitle, ticket_admin_name) {
             this.oneTicket['ticketid'] = ticketid ;
@@ -115,11 +128,12 @@ export default {
         },
         againgetticket() {
             console.log('reload tickets')
+            // this.$router.go(0)
             this.getAllticket()
-        }
+        },
     },
-    mounted() {
-        this.getAllticket()
+    created() {
+ 
     },
 }
 </script>
@@ -131,7 +145,7 @@ export default {
         display: flex ;
         flex-direction: row ;
         overflow:auto;
-        
+        height: 120%;
         
     }
     .template-left{
@@ -139,7 +153,7 @@ export default {
         display: flex ;
         flex-direction: row ;
         background-color: #e5e5e5;
-       
+        height: 100%;
         
     }
     .template-right{
@@ -172,8 +186,4 @@ export default {
         z-index:1;
         
     }
-    /* .template-right route-view{
-        position: relative;
-        z-index: 10;
-    } */
 </style>

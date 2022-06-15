@@ -1,33 +1,36 @@
 <template>
-    <section>
-        <div class="container" >
-            <form >
-                <div class="form-div">
-                <label for="account" class="form-label">帳號 | Account</label>
-                <input v-model="username" type="text" class="form-control" id="account" required>
-                </div>
-                <div class="form-div">
-                <label for="password" class="form-label">密碼 | Password</label>
-                <input v-model="password" type="password" class="form-control" id="password" required>
-                </div>
-                <div>
-                    <button @click.prevent="getData" type="submit" class="form-btn" >登入 | Login</button>
-                </div>
-                <div v-if="isUser === 'False'">
-                    帳號密碼錯誤
-                </div>
-                <div v-else-if="isUser === 'True'">
-                    登入成功
-                </div>
-            
-            </form>
-        </div>
-    </section>
+ 
+  <div class="container" >
+      <form >
+          <div class="form-div">
+          <label for="account" class="form-label">帳號 | Account</label>
+          <input v-model="username" type="text" class="form-control" id="account" required>
+          </div>
+          <div class="form-div">
+          <label for="password" class="form-label">密碼 | Password</label>
+          <input v-model="password" type="password" class="form-control" id="password" required>
+          </div>
+          <div>
+              <button @click.prevent="getData" type="submit" class="form-btn" >登入 | Login</button>
+          </div>
+          <div v-if="isUser === 'False'">
+              <p style="color:red">帳號密碼錯誤  </p>
+          </div>
+          <div v-else-if="isUser === 'True'">
+              登入成功
+          </div>
+      
+      </form>
+  </div>
+   
     
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
 export default {
+
+  
     props: {
       user: {
         type: String,
@@ -46,43 +49,43 @@ export default {
       }
     },
     methods: {
-      
-      getData() {
-        console.log('test');
-         fetch('https://ukbemjsll9.execute-api.us-east-2.amazonaws.com/test/api/login',{
-            method: 'POST',
-            headers : {
-                'Content-Type': 'application/json'
-            },
-            body :  JSON.stringify({
-               'account' : this.username,
-               'password' : this.password
-            })
-            })
-            .then( (response) => {
-                if ( response.ok ) {
-                    return response.json() ;
-                }
-            })
-            .then((data) => { 
-                
-                if ( data['data']['error'] == '無此帳號或密碼' ) {
-                  console.log( '登入失敗') ;
-                  this.isUser = 'False'
-                }
-                else {
-                  console.log( '登入成功')
-                  this.checkuser = data['data']['name']
-                  this.role = data['data']['role']
-                  this.userid = data['data']['id']
+      login() {
+        try {
+                const userObj = Auth.currentAuthenticatedUser() ;
+                console.log( userObj ) ;
+            }
+            catch(err) {
+                console.log( err )
+            }
+      },
+      async getData() { 
+        try{
+          await Auth.signIn(
+            this.username,
+            this.password
+          )
 
+          console.log( '登入成功')
+     
+          const user = await Auth.currentUserInfo(); 
+          if ( user != null ) {
+              this.checkuser = user['attributes']['custom:name']
+              this.role = user['attributes']['custom:role']
+              this.userid = user['attributes']['custom:id']
+              this.loginstatus() ;
+          }
+          else {
+            console.log( '登入失敗') ;
+            this.isUser = 'False'
+          }
 
-                  this.loginstatus() ;
-                }
-                  
-         
-                
-            })
+        }
+        catch( err ) {
+          console.log( err )
+          console.log( '登入失敗') ;
+          this.isUser = 'False'
+        }
+        
       },
       loginstatus() {
    
@@ -94,9 +97,12 @@ export default {
 
         this.$emit( 'loginSuccess', this.userid, this.checkuser, this.role ) ;
 
-
-      
-
+        this.$store.commit({
+          type : 'login_user',
+          userId : this.userid,
+          userName : this.checkuser,
+          userRole : this.role
+        })
         this.username = '' ;
         this.password = '' ;
         
@@ -109,13 +115,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container{
-    padding: 25px;
+    padding: 3%;
     position: absolute;
     width: 33%;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
     background-color: #e5e5e5;  
 }

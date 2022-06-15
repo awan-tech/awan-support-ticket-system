@@ -6,16 +6,17 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .header{
         position: relative;
         width: 100%;
-        height: 50px;
+        height: 10vh;
         /* padding: 1px ; */
-        margin: 0px;
+        margin: auto;
         top: 10%;
-        background-color:#e5e5e5;
+        background-color:#E0E0E0;
         text-align: center;
+        line-height: 100%;
         font-size:35px;
         font-family:Sans-serif;
         font-weight: bolder;
