@@ -99,7 +99,8 @@
         }
     },
     inject : [
-        'alltickets'
+        'alltickets',
+        'jwtToken'
     ],
     methods : {
         dispatch_ticket( adminId, ticketId, ticket_status) {
@@ -108,15 +109,16 @@
                 return false ;
             }
                 
-            console.log( adminId )
-            console.log( ticketId )
-            console.log( ticket_status )
+            // console.log( adminId )
+            // console.log( ticketId )
+            // console.log( ticket_status )
             var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/assign'
-            console.log( url )
+            // console.log( url )
             fetch(url,{
             method: 'POST',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             body : JSON.stringify({
                 'admin_id' : adminId,
@@ -130,7 +132,7 @@
                 }
             })
             .then((data) => { 
-                console.log( data )
+                // console.log( data )
                 alert( data['data']['message'])
                 this.reload() ;
             })
@@ -141,7 +143,8 @@
             await fetch(url,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -150,7 +153,7 @@
                 }
             })
             .then((data) => { 
-                console.log( data['data'] ) ;
+                // console.log( data['data'] ) ;
                 this.allEngineers = this.allEngineers.concat( data['data'] )
             })
 
@@ -159,11 +162,12 @@
         find_engineer_supervisor() {
             var url = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/users?role=Engineer Supervisor'
             
-            console.log( url )
+            // console.log( url )
             fetch(url,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -172,17 +176,15 @@
                 }
             })
             .then((data) => { 
-                console.log( data['data'] ) ;
+                // console.log( data['data'] ) ;
                 this.allEngineers = this.allEngineers.concat( data['data'] )
             })
         },
         get_engineer_id( index ,name, status) {
-            // console.log( index )
-            // console.log( this.every_tickets[status] ) 
             for ( let i of this.allEngineers) {
                if ( i.admin_name === name ) {
                     this.every_tickets[status][index].selected_id = i.admin_id ;
-                    console.log( this.every_tickets[status][index].selected_id )
+                    // console.log( this.every_tickets[status][index].selected_id )
                }
            }
         },
@@ -192,7 +194,8 @@
             fetch( address ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             })
             .then( (response) => {

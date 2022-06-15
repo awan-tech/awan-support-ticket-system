@@ -43,25 +43,31 @@ export default {
                 doing:0,
                 done:0
             },
-            temp_JWTtoken : ''
+            temp_JWTtoken : {jwt: ''}
         }
         
     },
     methods : {
-        async getAllticket() {
+        async getAllticket( jwt ) {
             let address = 'https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets' ;
             let user_id = this.data['id'], role = this.data['userRole'] ;
             // console.log( address + '?page=' + this.tickets_page + '&status=not processed' + '&user_id=' + user_id + '&role=' + role )
+            console.log('jwt' )
+            console.log( jwt )
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=not processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
                 'Content-Type': 'application/json',
+                'Authorization' : jwt,
             },
             })
             .then( (response) => {
                 if ( response.ok ) {
                     return response.json() ;
                 }
+            })
+            .catch((err) =>{
+                console.log(err)
             })
             .then((data) => { 
                 console.log ('undo')
@@ -69,17 +75,22 @@ export default {
                 this.fetchalltickets['undo'] = data['data'] ;
                 this.temp_all_tickets_page['undo'] = data['total_page']
             })
+            
 
             await fetch( address + '?page=' + String(this.tickets_page)  + '&status=processing' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : jwt
             },
             })
             .then( (response) => {
                 if ( response.ok ) {
                     return response.json() ;
                 }
+            })
+            .catch((err) =>{
+                console.log(err)
             })
             .then((data) => { 
                 console.log ('doing')
@@ -87,11 +98,12 @@ export default {
                 this.fetchalltickets['doing'] = data['data'] ;
                 this.temp_all_tickets_page['doing'] = data['total_page']
             })
-
+            
             fetch( address + '?page=' + String(this.tickets_page)  + '&status=processed' + '&user_id=' + user_id + '&role=' + role ,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : jwt
             },
             })
             .then( (response) => {
@@ -99,11 +111,15 @@ export default {
                     return response.json() ;
                 }
             })
+            .catch((err) =>{
+                console.log(err)
+            })
             .then((data) => { 
                 console.log ('done')
                 this.fetchalltickets['done'] = data['data'] ;
                 this.temp_all_tickets_page['done'] = data['total_page']
             })
+            
             
             await this.concatTickets() ;
         },
@@ -114,10 +130,11 @@ export default {
                 // this.data['id'] = id ;
                 // this.data['username'] = name ;
                 // this.data['userRole'] = role ;
-                // const userObj = await Auth.currentSession() ;
-                // this.temp_JWTtoken = userObj['idToken']['jwtToken'] 
-    
-                await this.getAllticket(   ) ;
+                const userObj = await Auth.currentSession() ;
+                
+                this.temp_JWTtoken.jwt = userObj['idToken']['jwtToken'] 
+                // console.log( 'test', this.temp_JWTtoken )
+                await this.getAllticket( this.temp_JWTtoken.jwt  ) ;
             }        
         },
         change_user( id, name, role) {
@@ -130,13 +147,14 @@ export default {
                 
                 const user = await Auth.currentUserInfo(); 
                 if ( user != null ) {
-                    await  this.changeLoginStatus( user['attributes']['custom:id'], user['attributes']['custom:name'], user['attributes']['custom:role'] )
                     console.log( 'login success')
-                    // console.log(user)
+                    await  this.changeLoginStatus( user['attributes']['custom:id'], user['attributes']['custom:name'], user['attributes']['custom:role'] )
                     // this.temp_JWTtoken = await Auth.currentSession()['idToken']['jwtToken']  ;
-                    // console.log( this.temp_JWTtoken ) 
+                    
+                    //  console.log( Auth.currentSession()['idToken']) 
+                    // console.log( 'getlogin', this.temp_JWTtoken ) 
                     // console.log( userObj['idToken']['jwtToken'] ) ;
-                    // await this.getAllticket() ;
+                    // await this.getAllticket( this.temp_JWTtoken  ) ;
                 }
                 else {
                     console.log( 'no attribute')

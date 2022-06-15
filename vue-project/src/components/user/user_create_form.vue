@@ -33,7 +33,8 @@
 <script>
 export default {
     inject : [
-        'userlogindata'
+        'userlogindata',
+        'jwtToken'
     ],
     data() {
         return {
@@ -44,14 +45,19 @@ export default {
     },
     methods: {
         submmitAndCreate() {
+            // console.log( this.jwtToken.jwt ) ;
             if ( this.ticket_title === '' || this.ticket_content === '' || this.type === '') {
+                // console.log( 'createKWT', this.jwtToken.jwt ) ;
+                // alert(this.jwtToken.jwt)
                 alert('請填好表格')
                 return false ;
             }
             fetch('https://u7j2emffl8.execute-api.us-west-2.amazonaws.com/dev/api/tickets/create',{
                 method: 'POST',
                 headers : {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization' : this.jwtToken.jwt,
+
                 },
                 body :  JSON.stringify({
                 "customer_id": this.userlogindata['id'],

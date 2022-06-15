@@ -71,7 +71,8 @@ export default {
     ],
     inject : [
         'alltickets',
-        'ticketcontent'
+        'ticketcontent',
+        'jwtToken'
     ],
     methods : {
        fetchTicket() {
@@ -81,7 +82,8 @@ export default {
             fetch(url,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                    'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -102,7 +104,8 @@ export default {
             fetch(url,{
             method: 'GET',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             }
             })
             .then( (response) => {
@@ -122,7 +125,8 @@ export default {
             fetch(url,{
             method: 'POST',
             headers : {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : this.jwtToken.jwt
             },
             body :JSON.stringify( {
                 "ticket_id" : this.ticketcontent['ticketid'],

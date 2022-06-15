@@ -97,7 +97,12 @@ export default {
 
         this.$emit( 'loginSuccess', this.userid, this.checkuser, this.role ) ;
 
-
+        this.$store.commit({
+          type : 'login_user',
+          userId : this.userid,
+          userName : this.checkuser,
+          userRole : this.role
+        })
         this.username = '' ;
         this.password = '' ;
         

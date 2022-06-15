@@ -107,7 +107,18 @@ const store = createStore({
     modules : {
     },
     state() {
-        return {}
+        return {
+            userId : '' ,
+            userName : '',
+            userRole : ''
+        }
+    },
+    mutations : {
+        login_user( state, payload) {
+            state.userId = payload.userid ;
+            state.userName = payload.userName ;
+            state.userRole = payload.userRole ;
+        }
     }
 })
 app.use(BootstrapVue3);
