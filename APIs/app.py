@@ -9,9 +9,9 @@ import os
 
 try:
     sysdb = mysql.connector.connect(
-            host = "db-awan-ticket-system.cej9rpbmgo1q.us-west-2.rds.amazonaws.com", 
-            user = "admin",
-            password = "Awan123!"
+            host = os.environ.get('DB_HOST'), 
+	    user = os.environ.get('DB_USER'),
+	    password = os.environ.get('DB_PASSWORD')
     )
         
     mycursor = sysdb.cursor()
