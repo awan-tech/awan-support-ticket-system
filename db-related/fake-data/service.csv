@@ -9,3 +9,5 @@ service_id,service_type,service_name
 8,Azure,Azure Active Directory
 9,Azure,Azure Maps
 10,Azure,VM
+11,AWS,Others
+12,Azure,Others
